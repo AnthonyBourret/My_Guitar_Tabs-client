@@ -1,11 +1,11 @@
 # Tablotheque-client
 
 ## How to read commits
-⚡ = Minor correction / fast debug
-🚧 = Work in progress
-🎉 = New feature
-🗃️ = Datas or contents updated
-🔨 = Corrections / debug
-📝 = Readme / Code comments / Documentations
-🚨 = Security
-✨ = Clean code
+:zap: = Minor correction / fast debug \
+:construction: = Work in progress \
+:tada: = New feature \
+:card_file_box: = Datas or contents updated \
+:hammer: = Corrections / debug \
+:memo: = Readme / Code comments / Documentations \
+:rotating_light: = Security \
+:sparkles: = Clean code
