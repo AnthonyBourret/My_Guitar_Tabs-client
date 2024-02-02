@@ -2,8 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+
 #root {
-    background-color: rgb(34, 34, 34);
+    background-color: #1c1917;
     min-height: 100vh;
     display: flex;
     justify-content: center;
