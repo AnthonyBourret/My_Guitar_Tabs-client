@@ -4,8 +4,12 @@
 
 
 #root {
-    background-color: #1c1917;
+    background-color: #292524;
     min-height: 100vh;
     display: flex;
     justify-content: center;
+}
+
+.btn-ghost:hover {
+    background-color: #292524;
 }

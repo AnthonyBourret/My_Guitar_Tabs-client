@@ -28,6 +28,7 @@ function NavBarDesktop() {
                     </Link>
                 </button>
             </div>
+            <div className="divider px-20"></div>
         </div>
     )
 }
