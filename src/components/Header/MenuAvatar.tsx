@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function MenuAvatar() {
     return (
@@ -10,7 +10,7 @@ function MenuAvatar() {
             </div>
             <h1 className="text-lg font-semibold px-4">UserName</h1>
         </div>
-    )
-}
+    );
+};
 
-export default MenuAvatar
+export default MenuAvatar;

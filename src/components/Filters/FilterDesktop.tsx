@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function FilterDesktop() {
     return (
@@ -16,7 +16,7 @@ function FilterDesktop() {
                 </label>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default FilterDesktop
+export default FilterDesktop;

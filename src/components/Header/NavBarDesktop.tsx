@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import LogoHeader from './LogoHeader'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import LogoHeader from './LogoHeader';
 
 function NavBarDesktop() {
     return (
@@ -33,9 +33,9 @@ function NavBarDesktop() {
                     </Link>
                 </button>
             </div>
-            <div className="divider px-20 mt-0"></div>
+            <div className="divider w-[77%] mt-0 self-center"></div>
         </div>
-    )
-}
+    );
+};
 
-export default NavBarDesktop
+export default NavBarDesktop;

@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import LogoHeader from './LogoHeader'
-import MenuAvatar from './MenuAvatar'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import LogoHeader from './LogoHeader';
+import MenuAvatar from './MenuAvatar';
 
 function NavBarMobile() {
     return (
@@ -44,7 +44,7 @@ function NavBarMobile() {
                 </ul>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default NavBarMobile
+export default NavBarMobile;

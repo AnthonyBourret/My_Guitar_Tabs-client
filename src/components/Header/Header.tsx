@@ -1,6 +1,6 @@
-import React from 'react'
-import NavBarMobile from './NavBarMobile'
-import NavBarDesktop from './NavBarDesktop'
+import React from 'react';
+import NavBarMobile from './NavBarMobile';
+import NavBarDesktop from './NavBarDesktop';
 
 function Header() {
   return (
@@ -9,7 +9,7 @@ function Header() {
       <NavBarMobile />
       <NavBarDesktop />
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

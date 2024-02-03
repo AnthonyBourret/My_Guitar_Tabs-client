@@ -1,5 +1,5 @@
-import React from 'react'
-import Header from '../Header/Header'
+import React from 'react';
+import Header from '../Header/Header';
 
 function AddSong() {
   return (
@@ -7,7 +7,7 @@ function AddSong() {
       <Header />
       <div>AddSong</div>
     </>
-  )
-}
+  );
+};
 
-export default AddSong
+export default AddSong;

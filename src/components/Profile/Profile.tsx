@@ -1,5 +1,5 @@
-import React from 'react'
-import Header from '../Header/Header'
+import React from 'react';
+import Header from '../Header/Header';
 
 function Profile() {
   return (
@@ -7,7 +7,7 @@ function Profile() {
       <Header />
       <div>Profile</div>
     </>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function AvatarDesktop() {
     return (
@@ -14,7 +14,7 @@ function AvatarDesktop() {
                 <h1 className="text-xl font-semibold">UserName</h1>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default AvatarDesktop
+export default AvatarDesktop;

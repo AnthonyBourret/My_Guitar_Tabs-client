@@ -1,5 +1,5 @@
-import React from 'react'
-import Header from '../Header/Header'
+import React from 'react';
+import Header from '../Header/Header';
 
 function EditSong() {
   return (
@@ -7,7 +7,7 @@ function EditSong() {
       <Header />
       <div>EditSong</div>
     </>
-  )
-}
+  );
+};
 
-export default EditSong
+export default EditSong;
