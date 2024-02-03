@@ -8,7 +8,7 @@ interface Props {
 
 function LogoHeader({ widthValue, color }: Props) {
     return (
-        <div className="mt-4 flex justify-end">
+        <div className="mt-4 flex justify-start">
             <Logo widthValue={widthValue} color={color} />
         </div>
     )
