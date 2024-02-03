@@ -1,13 +1,13 @@
 import React from 'react'
 import Header from '../Header/Header'
 
-function AddSong() {
+function Profile() {
   return (
     <>
       <Header />
-      <div>AddSong</div>
+      <div>Profile</div>
     </>
   )
 }
 
-export default AddSong
+export default Profile

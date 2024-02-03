@@ -1,8 +1,12 @@
 import React from 'react'
+import Header from '../Header/Header'
 
 function EditSong() {
   return (
-    <div>EditSong</div>
+    <>
+      <Header />
+      <div>EditSong</div>
+    </>
   )
 }
 
