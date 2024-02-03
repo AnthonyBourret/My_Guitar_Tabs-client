@@ -2,7 +2,7 @@ import React from 'react'
 
 function SongCard() {
     return (
-        <div className="card w-full bg-base-100 shadow-xl pb-16 min-[820px]:pb-0">
+        <div className="card w-full bg-base-100 shadow-xl pb-16 border border-primary min-[820px]:pb-0">
             <div className="card-body items-center min-[820px]:items-start gap-4">
                 <h2 className="card-title text-2xl">Song Title</h2>
                 <h3 className="text-lg">By Artist Name</h3>

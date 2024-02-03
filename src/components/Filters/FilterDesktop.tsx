@@ -2,7 +2,7 @@ import React from 'react'
 
 function FilterDesktop() {
     return (
-        <div className="hidden sm:flex flex-col rounded-box w-64 gap-4 bg-base-100 p-4">
+        <div className="hidden sm:flex flex-col rounded-box w-64 gap-4 bg-base-100 p-4 border border-primary">
             <h2>Show songs by :</h2>
             <div className="flex flex-col w-full gap-2">
                 <label className="form-control w-full max-w-xs">

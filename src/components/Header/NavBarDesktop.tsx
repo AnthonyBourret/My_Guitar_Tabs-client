@@ -6,9 +6,12 @@ function NavBarDesktop() {
     return (
         <div className="hidden sm:flex sm:flex-col items-center w-full">
 
+            {/* Logo */}
             <LogoHeader widthValue={"100%"} color={"#1C1917"} />
 
             <div className="flex gap-12">
+
+                {/* NavBar Menu */}
                 <button className="btn btn-ghost">
                     <Link to="/" className="text-base-content text-base font-semibold">
                         My Songs
