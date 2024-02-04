@@ -9,7 +9,7 @@ function HomePage() {
   return (
     <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
       <Header />
-      <div className="flex flex-col w-full sm:flex-row sm:justify-center gap-12 px-6">
+      <div className="flex flex-col w-full sm:flex-row sm:justify-center gap-8 px-6 sm:gap-12">
         <div className="flex flex-col gap-4">
           <AvatarDesktop />
           <FilterDesktop />
