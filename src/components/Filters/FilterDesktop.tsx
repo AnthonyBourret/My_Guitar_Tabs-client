@@ -10,7 +10,7 @@ function FilterDesktop() {
                         <span className="label-text font-semibold">Difficulty</span>
                     </div>
                     <select className="select select-sm select-bordered bg-neutral">
-                        <option disabled selected>Pick one</option>
+                        <option disabled defaultValue={"none"}>Pick one</option>
                         <option>Beginner</option>
                         <option>Intermediate</option>
                         <option>Confirmed</option>
@@ -21,7 +21,7 @@ function FilterDesktop() {
                         <span className="label-text font-semibold">Progression</span>
                     </div>
                     <select className="select select-sm select-bordered bg-neutral">
-                        <option disabled selected>Pick one</option>
+                        <option disabled defaultValue={"none"}>Pick one</option>
                         <option>To learn</option>
                         <option>In progress</option>
                         <option>Learned</option>
@@ -32,7 +32,7 @@ function FilterDesktop() {
                         <span className="label-text font-semibold">Style</span>
                     </div>
                     <select className="select select-sm select-bordered bg-neutral">
-                        <option disabled selected>Pick one</option>
+                        <option disabled defaultValue={"none"}>Pick one</option>
                         {/* Todo => .map on the fetched data to display the different styles */}
                         <option>Rock</option>
                         <option>Folk</option>
@@ -45,7 +45,7 @@ function FilterDesktop() {
                         <span className="label-text font-semibold">Tuning</span>
                     </div>
                     <select className="select select-sm select-bordered bg-neutral">
-                        <option disabled selected>Pick one</option>
+                        <option disabled defaultValue={"none"}>Pick one</option>
                         {/* Todo => .map on the fetched data to display the different tunings */}
                         <option>EADGBE - Standard</option>
                         <option>DADGBE - Drop D</option>
@@ -56,7 +56,7 @@ function FilterDesktop() {
                         <span className="label-text font-semibold">Capo</span>
                     </div>
                     <select className="select select-sm select-bordered bg-neutral">
-                        <option disabled selected>Pick one</option>
+                        <option disabled defaultValue={"none"}>Pick one</option>
                         <option>None</option>
                         <option>1</option>
                         <option>2</option>
