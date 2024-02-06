@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import InputTextForm from "../CustomComponents/InputTextForm"
-import Logo from '../../svg/Logo'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import InputTextForm from "../CustomComponents/InputTextForm";
+import Logo from '../../svg/Logo';
 
 function Login() {
   return (
@@ -46,7 +46,7 @@ function Login() {
         </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

@@ -8,7 +8,7 @@ interface Props {
 function Logo({ widthValue, color }: Props) {
     return (
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-            width={widthValue} viewBox="0 0 500 194" enable-background="new 0 0 500 194">
+            width={widthValue} viewBox="0 0 500 194" enableBackground="new 0 0 500 194">
             <path fill={color} opacity="1.000000" stroke="none"
                 d="
    M314.000000,195.000000 

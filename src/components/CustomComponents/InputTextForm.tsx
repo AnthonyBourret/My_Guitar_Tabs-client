@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 interface Props {
     label: string
-}
+};
 
 function InputTextForm({ label }: Props) {
     return (
@@ -12,7 +12,7 @@ function InputTextForm({ label }: Props) {
             </div>
             <input type="text" placeholder="Type here" className="input input-sm input-bordered w-full" />
         </label>
-    )
-}
+    );
+};
 
-export default InputTextForm
+export default InputTextForm;
