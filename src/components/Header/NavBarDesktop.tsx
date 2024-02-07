@@ -4,7 +4,7 @@ import LogoHeader from './LogoHeader';
 
 function NavBarDesktop() {
     return (
-        <div className="hidden sm:flex sm:flex-col items-center w-full">
+        <div className="hidden sm:flex sm:flex-col items-center w-full pr-2">
 
             {/* Logo */}
             <LogoHeader widthValue={"100%"} color={"#1C1917"} />

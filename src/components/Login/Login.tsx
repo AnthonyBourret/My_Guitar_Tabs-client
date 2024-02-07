@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import InputTextForm from "../CustomComponents/InputTextForm";
+import InputTextAuth from "../CustomComponents/InputTextAuth";
 import Logo from '../../svg/Logo';
 
 function Login() {
@@ -16,10 +16,10 @@ function Login() {
         <div className="flex flex-col gap-6 items-center">
 
           {/* Username Input */}
-          <InputTextForm label="Username :" />
+          <InputTextAuth label="Username :" />
 
           {/* Password Input */}
-          <InputTextForm label="Password :" />
+          <InputTextAuth label="Password :" />
 
           {/* Login Button */}
           <button className="btn btn-primary btn-sm px-4 text-base">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import InputTextForm from "../CustomComponents/InputTextForm";
+import InputTextAuth from "../CustomComponents/InputTextAuth";
 import Logo from '../../svg/Logo';
 
 function Signup() {
@@ -16,16 +16,16 @@ function Signup() {
         <div className="flex flex-col gap-4 sm:w-2/3 items-center">
 
           {/* Username Input */}
-          <InputTextForm label="Username :" />
+          <InputTextAuth label="Username :" />
 
           {/* Email Input */}
-          <InputTextForm label="Email :" />
+          <InputTextAuth label="Email :" />
 
           {/* Password Input */}
-          <InputTextForm label="Password :" />
+          <InputTextAuth label="Password :" />
 
           {/* Confirm Password Input */}
-          <InputTextForm label="Confirm Password :" />
+          <InputTextAuth label="Confirm Password :" />
 
           {/* Accept CGU Checkbox*/}
           <div className="form-control sm:self-start">
