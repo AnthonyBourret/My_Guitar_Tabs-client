@@ -1,4 +1,5 @@
 import React from 'react';
+import BadgeStyle from "./BadgeStyle";
 import { IconInProgress, IconLearned, IconToLearn } from '../../svg';
 
 function SongCard() {
@@ -15,8 +16,8 @@ function SongCard() {
             </div>
             <div className="w-full flex flex-col gap-8 items-center min-[820px]:flex-row min-[820px]:justify-between">
                 <div className="flex gap-4 justify-center">
-                    <div className="badge badge-sm badge-outline p-3 min-[820px]:badge-md min-[820px]:p-4">Style 1</div>
-                    <div className="badge badge-sm badge-outline p-3 min-[820px]:badge-md min-[820px]:p-4">Style 2</div>
+                    <BadgeStyle style="Rock" />
+                    <BadgeStyle style="Pop" />
                 </div>
                 <button className="btn btn-sm w-fit btn-primary min-[820px]:btn-md">See Tabs</button>
             </div>

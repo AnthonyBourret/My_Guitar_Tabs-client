@@ -1,10 +1,7 @@
 import React from 'react';
 
-interface Props {
-    label: string
-};
 
-function InputTextForm({ label }: Props) {
+function InputTextAuth({ label }: { label: string }) {
     return (
         <label className="form-control w-full">
             <div className="label">
@@ -15,4 +12,4 @@ function InputTextForm({ label }: Props) {
     );
 };
 
-export default InputTextForm;
+export default InputTextAuth;
