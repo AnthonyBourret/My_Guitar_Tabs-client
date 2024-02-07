@@ -6,7 +6,7 @@ function TextAreaInput({ label, placeholder }: { label: string, placeholder: str
             <div className="label">
                 <span className="label-text text-base font-semibold">{label}</span>
             </div>
-            <textarea className="textarea textarea-bordered h-24" placeholder={placeholder}></textarea>
+            <textarea className="textarea textarea-bordered h-24 bg-neutral" placeholder={placeholder}></textarea>
         </label>
     )
 }

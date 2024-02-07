@@ -7,7 +7,7 @@ function SongCard() {
         <div className="flex flex-col gap-8 border border-primary bg-base-100 rounded-box w-full items-center p-4 min-[820px]:w-full">
             <div className="w-full flex flex-col gap-2">
                 <div className="flex justify-between">
-                    <h2 className="text-3xl self-start font-semibold min-[820px]:text-3xl">Song Title</h2>
+                    <h2 className="text-2xl self-start font-semibold min-[820px]:text-3xl">Song Title</h2>
                     <div className="relative">
                         <IconInProgress />
                     </div>
