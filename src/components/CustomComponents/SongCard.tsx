@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import BadgeStyle from "./BadgeStyle";
 import { IconInProgress, IconLearned, IconToLearn } from '../../svg';
 
@@ -19,7 +20,12 @@ function SongCard() {
                     <BadgeStyle style="Rock" />
                     <BadgeStyle style="Pop" />
                 </div>
-                <button className="btn btn-sm w-fit btn-primary min-[820px]:btn-md">See Tabs</button>
+                <Link
+                    to="/song"
+                    className="btn btn-sm w-fit btn-primary min-[820px]:btn-md"
+                >
+                    See Tabs
+                </Link>
             </div>
         </div>
     );

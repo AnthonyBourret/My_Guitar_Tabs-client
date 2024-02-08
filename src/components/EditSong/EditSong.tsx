@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import TextInput from "../CustomComponents/TextInput";
 import SelectInput from "../CustomComponents/SelectInput";
 import TextAreaInput from "../CustomComponents/TextAreaInput";
-import BadgeStyle from "../CustomComponents/BadgeStyle";
+import BadgeStyleEdit from "../CustomComponents/BadgeStyleEdit";
 import {
   difficultyOptions,
   progressionOptions,
@@ -32,8 +32,8 @@ function EditSong() {
           <div className="flex flex-col gap-4 items-center sm:w-[40%]">
             <SelectInput label="Style" disabledText="Choose a style - 2 max" options={styleOptions} />
             <div className="flex gap-4">
-              <BadgeStyle style="Pop" />
-              <BadgeStyle style="Rock" />
+              <BadgeStyleEdit style="Pop" />
+              <BadgeStyleEdit style="Rock" />
             </div>
           </div>
         </div>
