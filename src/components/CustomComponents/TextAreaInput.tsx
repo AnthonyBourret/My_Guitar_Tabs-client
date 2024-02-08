@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function TextAreaInput({ label, placeholder }: { label: string, placeholder: string }) {
     return (
@@ -8,7 +8,7 @@ function TextAreaInput({ label, placeholder }: { label: string, placeholder: str
             </div>
             <textarea className="textarea textarea-bordered h-24 bg-neutral" placeholder={placeholder}></textarea>
         </label>
-    )
-}
+    );
+};
 
-export default TextAreaInput
+export default TextAreaInput;

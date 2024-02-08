@@ -4,14 +4,17 @@ import Header from '../Header/Header';
 import BadgeStyle from "../CustomComponents/BadgeStyle";
 import EditProgressionModal from "../Modals/EditProgressionModal";
 import DeleteSongModal from "../Modals/DeleteSongModal";
-import DeleteSong from "../Modals/DeleteSongModal";
+import LoaderSongPage from "../Loaders/LoaderSongPage";
 import { IconLink } from "../../svg";
 
 function SongPage() {
     return (
-        <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
+        <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8 px-12">
             <Header />
             <div className="flex flex-col w-full bg-base-100 border border-primary rounded-box p-4 gap-10 sm:w-fit sm:mx-16 lg:w-5/8">
+
+                {/* Loader */}
+                {/* <LoaderSongPage /> */}
 
                 {/* Header of the displayed song informations */}
                 <div className="flex flex-col justify-between sm:px-2 sm:flex-row">

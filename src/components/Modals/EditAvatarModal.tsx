@@ -7,10 +7,14 @@ function EditAvatarModal() {
                 <h3 className="font-semibold text-xl">New avatar :</h3>
                 <input type="file" className="file-input file-input-bordered w-full" />
                 <button type="submit" className="btn btn-primary btn-md text-lg w-fit self-center">Save</button>
+
+                {/* Close button */}
                 <form method="dialog">
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                 </form>
             </div>
+
+            {/* Close when the outside of the modal is clicked */}
             <form method="dialog" className="modal-backdrop">
                 <button>close</button>
             </form>

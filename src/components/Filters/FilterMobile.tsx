@@ -18,6 +18,8 @@ function FilterMobile() {
 
             {/* On click the filters will be displayed */}
             <div className="collapse-content flex flex-col items-center gap-4">
+
+                {/* Difficulty filter */}
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
                         <span className="label-text font-semibold">Difficulty</span>
@@ -30,6 +32,8 @@ function FilterMobile() {
                             </option>)}
                     </select>
                 </label>
+
+                {/* Progression filter */}
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
                         <span className="label-text font-semibold">Progression</span>
@@ -42,6 +46,8 @@ function FilterMobile() {
                             </option>)}
                     </select>
                 </label>
+
+                {/* Style filter */}
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
                         <span className="label-text font-semibold">Style</span>
@@ -55,6 +61,8 @@ function FilterMobile() {
                             </option>)}
                     </select>
                 </label>
+
+                {/* Tuning filter */}
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
                         <span className="label-text font-semibold">Tuning</span>
@@ -68,6 +76,8 @@ function FilterMobile() {
                             </option>)}
                     </select>
                 </label>
+
+                {/* Capo filter */}
                 <label className="form-control w-full max-w-xs">
                     <div className="label">
                         <span className="label-text font-semibold">Capo</span>
@@ -80,6 +90,8 @@ function FilterMobile() {
                             </option>)}
                     </select>
                 </label>
+
+                {/* Reset filters button */}
                 <button type="button" className="btn btn-sm btn-primary w-fit my-4">Reset filters</button>
             </div>
         </div>

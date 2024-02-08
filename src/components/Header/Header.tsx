@@ -28,7 +28,6 @@ function Header() {
           <NavBarMobile />
         )
       }
-      {/* <NavBarMobile /> */}
       <NavBarDesktop />
     </div>
   );

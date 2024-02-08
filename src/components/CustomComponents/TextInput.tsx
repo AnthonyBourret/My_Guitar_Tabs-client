@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function TextInput({ label, placeholder }: { label: string, placeholder: string }) {
     return (
@@ -8,7 +8,7 @@ function TextInput({ label, placeholder }: { label: string, placeholder: string 
             </div>
             <input type="text" placeholder={placeholder} className="input input-sm input-bordered w-full bg-neutral" />
         </label>
-    )
-}
+    );
+};
 
-export default TextInput
+export default TextInput;
