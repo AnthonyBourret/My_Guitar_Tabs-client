@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header';
 import BadgeStyle from "../CustomComponents/BadgeStyle";
+import EditProgressionModal from "../Modals/EditProgressionModal";
 import { Link } from "react-router-dom";
 
 function SongPage() {
@@ -21,7 +22,17 @@ function SongPage() {
                     </div>
                     <div className="flex flex-col w-fit px-12 py-4 self-center items-center justify-center gap-4 bg-neutral rounded-box border border-primary">
                         <p className="text-lg font-semibold lg:text-xl">In Progress</p>
-                        <button type="button" className="btn btn-sm btn-primary">Edit status</button>
+                        <button
+                            type="button"
+                            onClick={() => {
+                                if (document) {
+                                    (document.getElementById("progression_modal") as HTMLDialogElement).showModal();
+                                }
+                            }}
+                            className="btn btn-sm btn-primary"
+                        >
+                            Edit status
+                        </button>
                     </div>
                 </div>
 
@@ -46,10 +57,11 @@ function SongPage() {
 
                 {/* Edit and Delete buttons */}
                 <div className="flex w-full justify-center gap-4">
-                    <button type="button" className="btn btn-sm btn-primary">Edit song</button>
+                    < Link to="/edit-song" className="btn btn-sm btn-primary">Edit song</Link>
                     <button type="button" className="btn btn-sm btn-primary">Delete song</button>
                 </div>
             </div>
+            <EditProgressionModal />
         </div>
     );
 };
