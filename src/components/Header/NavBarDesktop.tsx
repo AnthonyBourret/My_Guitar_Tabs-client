@@ -12,26 +12,26 @@ function NavBarDesktop() {
             <div className="flex gap-12">
 
                 {/* NavBar Menu */}
-                <button className="btn btn-ghost">
-                    <Link to="/" className="text-base-content text-base font-semibold">
+                <Link to="/" className="text-base-content text-base font-semibold">
+                    <button className="btn btn-ghost">
                         My Songs
-                    </Link>
-                </button>
-                <button className="btn btn-ghost">
-                    <Link to="/add-a-song" className="text-base-content text-base font-semibold">
+                    </button>
+                </Link>
+                <Link to="/add-a-song" className="text-base-content text-base font-semibold">
+                    <button className="btn btn-ghost">
                         Add a Song
-                    </Link>
-                </button>
-                <button className="btn btn-ghost">
-                    <Link to="/profile" className="text-base-content text-base font-semibold">
+                    </button>
+                </Link>
+                <Link to="/profile" className="text-base-content text-base font-semibold">
+                    <button className="btn btn-ghost">
                         My Profile
-                    </Link>
-                </button>
-                <button className="btn btn-ghost">
-                    <Link to="/" className="text-base-content text-base font-semibold">
+                    </button>
+                </Link>
+                <Link to="/" className="text-base-content text-base font-semibold">
+                    <button className="btn btn-ghost">
                         Logout
-                    </Link>
-                </button>
+                    </button>
+                </Link>
             </div>
             <div className="divider w-[77%] mt-0 self-center"></div>
         </div>
