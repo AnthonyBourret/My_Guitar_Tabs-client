@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import Header from '../Header/Header';
 import BadgeStyle from "../CustomComponents/BadgeStyle";
 import EditProgressionModal from "../Modals/EditProgressionModal";
-import { Link } from "react-router-dom";
+import { IconLink } from "../../svg";
 
 function SongPage() {
     return (
@@ -46,9 +47,15 @@ function SongPage() {
                 {/* Link and Comments sections */}
                 <div className="flex flex-col gap-2 px-4 w-full">
                     <p className="font-semibold sm:text-lg">Tab :</p>
-                    <Link to="/tabsLink" className="truncate" target="_blank" rel="noreferrer">www.blablablablabla.com/zefzef</Link>
+                    <div className="flex gap-2 items-center">
+                        <IconLink />
+                        <Link to="/tabsLink" className="truncate" target="_blank" rel="noreferrer">www.blablablablabla.com/zefzef</Link>
+                    </div>
                     <p className="font-semibold sm:text-lg">Lyrics :</p>
-                    <Link to="/lyricsLink" className="truncate" target="_blank" rel="noreferrer">htttp://www.memememememe.com/popioppoihoih</Link>
+                    <div className="flex gap-2 items-center">
+                        <IconLink />
+                        <Link to="/lyricsLink" className="truncate" target="_blank" rel="noreferrer">www.blablablablabla.com/zefzef/235zefrzefz34</Link>
+                    </div>
                 </div>
                 <div className="flex flex-col gap-2 px-4 w-full">
                     <h3 className="font-semibold sm:text-lg">Comments :</h3>
