@@ -1,15 +1,11 @@
 import React from 'react';
 
-function EditProgressionModal() {
+function EditMailModal() {
     return (
-        <dialog id="progression_modal" className="modal">
+        <dialog id="mail_modal" className="modal">
             <div className="modal-box flex flex-col gap-6 pb-0 border border-primary min-[440px]:w-3/5 sm:w-2/5 sm:px-10">
-                <h3 className="font-semibold text-2xl">New status :</h3>
-                <select className="select select-bordered bg-neutral select-sm">
-                    <option>To Learn</option>
-                    <option>In Progress</option>
-                    <option>Learned</option>
-                </select>
+                <h3 className="font-semibold text-xl">New mail :</h3>
+                <input type="text" className="input input-sm input-bordered bg-neutral" placeholder="New mail" />
                 <button type="submit" className="btn btn-primary btn-md text-lg w-fit self-center">Save</button>
                 <form method="dialog">
                     <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
@@ -22,4 +18,4 @@ function EditProgressionModal() {
     );
 };
 
-export default EditProgressionModal;
+export default EditMailModal;
