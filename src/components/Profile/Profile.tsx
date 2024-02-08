@@ -5,6 +5,7 @@ import EditAvatarModal from "../Modals/EditAvatarModal";
 import EditMailModal from "../Modals/EditMailModal";
 import EditUsernameModal from "../Modals/EditUsernameModal";
 import DeleteAccountModal from "../Modals/DeleteAccountModal";
+import LoaderProfile from "../Loaders/LoaderProfile";
 
 function Profile() {
   return (
@@ -15,6 +16,10 @@ function Profile() {
           <h1 className="text-2xl font-semibold self-start">My profile</h1>
           <div className="divider mb-0"></div>
         </div>
+
+        {/* Loader */}
+        {/* <LoaderProfile /> */}
+
         {/* Avatar & Username */}
         <div className="flex flex-row-reverse gap-2 items-center justify-between w-full min-[590px]:gap-8">
           <div className="avatar items-center">
@@ -41,8 +46,20 @@ function Profile() {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="text-lg font-semibold">Song added : </h2>
-            <p >4</p>
+            <h2 className="text-lg font-semibold">Songs added : </h2>
+            <p>4</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <h2 className="text-lg font-semibold">Songs learned : </h2>
+            <p>1</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <h2 className="text-lg font-semibold">Songs in progress : </h2>
+            <p>2</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <h2 className="text-lg font-semibold">Songs to learn : </h2>
+            <p>1</p>
           </div>
           <div className="flex flex-col gap-2">
             <h2 className="text-lg font-semibold">Member since : </h2>

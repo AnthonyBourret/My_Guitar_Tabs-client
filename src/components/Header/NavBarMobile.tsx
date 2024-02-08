@@ -20,7 +20,7 @@ function NavBarMobile() {
                     {/* Logo */}
                     <LogoHeader widthValue={"100%"} color={"#292524"} />
 
-                    {/* Navogation Menu */}
+                    {/* Navigation Menu */}
                     <li className="pt-6">
                         <Link to="/" className="text-base-content text-lg font-semibold">
                             My Songs
