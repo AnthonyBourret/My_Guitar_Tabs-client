@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import Header from '../Header/Header';
 import BadgeStyle from "../CustomComponents/BadgeStyle";
 import EditProgressionModal from "../Modals/EditProgressionModal";
+import DeleteSongModal from "../Modals/DeleteSongModal";
+import DeleteSong from "../Modals/DeleteSongModal";
 import { IconLink } from "../../svg";
 
 function SongPage() {
     return (
-        <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8 px-6">
+        <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
             <Header />
             <div className="flex flex-col w-full bg-base-100 border border-primary rounded-box p-4 gap-10 sm:w-fit sm:mx-16 lg:w-5/8">
 
@@ -65,10 +67,23 @@ function SongPage() {
                 {/* Edit and Delete buttons */}
                 <div className="flex w-full justify-center gap-4">
                     < Link to="/edit-song" className="btn btn-sm btn-primary">Edit song</Link>
-                    <button type="button" className="btn btn-sm btn-primary">Delete song</button>
+                    <button
+                        type="button"
+                        className="btn btn-sm btn-primary"
+                        onClick={() => {
+                            if (document) {
+                                (document.getElementById("delete_modal") as HTMLDialogElement).showModal();
+                            }
+                        }}
+                    >
+                        Delete song
+                    </button>
                 </div>
             </div>
+
+            {/* Modals */}
             <EditProgressionModal />
+            <DeleteSongModal />
         </div>
     );
 };

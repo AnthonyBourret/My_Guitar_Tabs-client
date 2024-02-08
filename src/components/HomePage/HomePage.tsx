@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import FilterDesktop from '../Filters/FilterDesktop';
 import FilterMobile from "../Filters/FilterMobile";
 import SongCard from '../CustomComponents/SongCard';
-import AvatarDesktop from './AvatarDesktop';
+import AvatarDesktop from '../CustomComponents/AvatarDesktop';
 
 function HomePage() {
   return (
