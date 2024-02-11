@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './components/HomePage/HomePage';
 import AddSong from './components/AddSong/AddSong';
 import EditSong from './components/EditSong/EditSong';
