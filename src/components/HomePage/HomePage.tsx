@@ -11,6 +11,7 @@ function HomePage() {
 
   const [songs, setSongs] = useState([]);
 
+  // For db connexion test => userId to remove
   const { data, error, isLoading } = useFetch('user/1/songs', 'GET');
 
   useEffect(() => {
@@ -19,7 +20,6 @@ function HomePage() {
     }
   }, [songs, data, isLoading]);
 
-  console.log(songs);
   if (error) return null;
 
   return (

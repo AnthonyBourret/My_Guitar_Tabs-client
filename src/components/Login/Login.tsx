@@ -1,9 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, redirect } from 'react-router-dom';
+import axiosInstance from "../../utils/axiosInstance";
 import InputTextAuth from "../CustomComponents/InputTextAuth";
 import Logo from '../../svg/Logo';
 
 function Login() {
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+
+  async function handleSubmit(name: string, pswd: string) {
+    const res = await axiosInstance.post('/login', {
+      username: name,
+      password: pswd
+    })
+    if (res.status === 200) {
+      console.log('success');
+
+    } else {
+      console.log('error');
+    }
+  }
+
   return (
     <div className="w-full flex flex-col gap-4 pt-2 items-center bg-neutral justify-center px-6">
 
@@ -16,13 +35,17 @@ function Login() {
         <div className="flex flex-col gap-6 items-center">
 
           {/* Username Input */}
-          <InputTextAuth label="Username :" />
+          <InputTextAuth label="Username :" setterFunction={setUsername} />
 
           {/* Password Input */}
-          <InputTextAuth label="Password :" />
+          <InputTextAuth label="Password :" setterFunction={setPassword} />
 
           {/* Login Button */}
-          <button className="btn btn-primary btn-sm px-4 text-base">
+          <button
+            type="submit"
+            className="btn btn-primary btn-sm px-4 text-base"
+            onClick={() => handleSubmit(username, password)}
+          >
             Login
           </button>
 

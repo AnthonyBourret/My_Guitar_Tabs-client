@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import InputTextAuth from "../CustomComponents/InputTextAuth";
 import Logo from '../../svg/Logo';
 
 function Signup() {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPssaword] = useState('');
+  const [isCGUAccepted, setIsCGUAccepted] = useState('false')
+
   return (
     <div className="w-full flex flex-col gap-2 items-center bg-neutral justify-center px-6">
 
@@ -16,22 +22,24 @@ function Signup() {
         <div className="flex flex-col gap-4 sm:w-2/3 items-center">
 
           {/* Username Input */}
-          <InputTextAuth label="Username :" />
+          <InputTextAuth label="Username :" setterFunction={setUsername} />
 
           {/* Email Input */}
-          <InputTextAuth label="Email :" />
+          <InputTextAuth label="Email :" setterFunction={setEmail} />
 
           {/* Password Input */}
-          <InputTextAuth label="Password :" />
+          <InputTextAuth label="Password :" setterFunction={setPassword} />
 
           {/* Confirm Password Input */}
-          <InputTextAuth label="Confirm Password :" />
+          <InputTextAuth label="Confirm Password :" setterFunction={setConfirmPssaword} />
 
           {/* Accept CGU Checkbox*/}
           <div className="form-control sm:self-start">
             <label className="cursor-pointer label">
               <span className="label-text font-semibold mr-4">Accept CGU</span>
-              <input type="checkbox" className="checkbox checkbox-xs checkbox-success" />
+              <input
+                type="checkbox"
+                className="checkbox checkbox-xs checkbox-success" />
             </label>
           </div>
 
