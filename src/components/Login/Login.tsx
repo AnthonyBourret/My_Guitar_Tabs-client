@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link, redirect } from 'react-router-dom';
+import { useCookies } from "react-cookie";
 import axiosInstance from "../../utils/axiosInstance";
 import InputTextAuth from "../CustomComponents/InputTextAuth";
 import Logo from '../../svg/Logo';
 
 function Login() {
+  const [cookies, setCookie, removeCookie] = useCookies(['userId']);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -16,8 +18,8 @@ function Login() {
       password: pswd
     })
     if (res.status === 200) {
+      setCookie('userId', res.data.id, { path: '/' });
       console.log('success');
-
     } else {
       console.log('error');
     }
@@ -35,10 +37,10 @@ function Login() {
         <div className="flex flex-col gap-6 items-center">
 
           {/* Username Input */}
-          <InputTextAuth label="Username :" setterFunction={setUsername} />
+          <InputTextAuth label="Username :" type={'text'} setterFunction={setUsername} />
 
           {/* Password Input */}
-          <InputTextAuth label="Password :" setterFunction={setPassword} />
+          <InputTextAuth label="Password :" type={'password'} setterFunction={setPassword} />
 
           {/* Login Button */}
           <button

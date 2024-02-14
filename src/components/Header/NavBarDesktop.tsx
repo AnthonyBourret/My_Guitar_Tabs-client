@@ -12,7 +12,7 @@ function NavBarDesktop() {
             <div className="flex gap-12">
 
                 {/* NavBar Menu */}
-                <Link to="/" className="text-base-content text-base font-semibold">
+                <Link to="/home" className="text-base-content text-base font-semibold">
                     <button className="btn btn-ghost">
                         My Songs
                     </button>

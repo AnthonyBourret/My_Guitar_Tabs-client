@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { useCookies } from "react-cookie";
 import HomePage from './components/HomePage/HomePage';
 import AddSong from './components/AddSong/AddSong';
 import EditSong from './components/EditSong/EditSong';
@@ -15,9 +16,9 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/home" element={<HomePage />} />
-      <Route path="/song" element={<SongPage />} />
+      <Route path="/song/:id" element={<SongPage />} />
       <Route path="/add-a-song" element={<AddSong />} />
-      <Route path="/edit-song" element={<EditSong />} />
+      <Route path="/edit-song/:id" element={<EditSong />} />
       <Route path="/profile" element={<Profile />} />
     </Routes>
   );

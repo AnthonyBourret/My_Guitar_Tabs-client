@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useCookies } from "react-cookie";
 import useFetch from "../../hooks/useFetch";
+import { SongProps } from "../../types/types";
 import Header from '../Header/Header';
 import FilterDesktop from '../Filters/FilterDesktop';
 import FilterMobile from "../Filters/FilterMobile";
@@ -10,12 +12,12 @@ import LoaderCardSong from "../Loaders/LoaderCardSong";
 function HomePage() {
 
   const [songs, setSongs] = useState([]);
+  const userId = useCookies(['userId'])[0].userId;
 
-  // For db connexion test => userId to remove
-  const { data, error, isLoading } = useFetch('user/1/songs', 'GET');
+  const { data, error, isLoading } = useFetch(`user/${userId}/songs`, 'GET');
 
   useEffect(() => {
-    if (data) {
+    if (data && userId) {
       setSongs(data);
     }
   }, [songs, data, isLoading]);
@@ -32,12 +34,17 @@ function HomePage() {
           <FilterMobile />
         </div>
         <div className="w-full min-[820px]:w-1/2 flex flex-col gap-6">
-          {/* Todo => .map on the fectched data to display the user's songs*/}
           {isLoading && <LoaderCardSong />}
-          <SongCard />
-          <SongCard />
-          <SongCard />
-          <SongCard />
+          {songs.map((song: SongProps) => (
+            <SongCard
+              key={song.id}
+              id={song.id}
+              title={song.title}
+              artist={song.artist}
+              Styles={song.Styles}
+              status={song.status}
+            />
+          ))}
         </div>
       </div>
     </div>
