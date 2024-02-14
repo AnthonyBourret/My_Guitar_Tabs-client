@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 import axiosInstance from "../../utils/axiosInstance";
 import InputTextAuth from "../CustomComponents/InputTextAuth";

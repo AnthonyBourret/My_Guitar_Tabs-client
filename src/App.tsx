@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 import HomePage from './components/HomePage/HomePage';
 import AddSong from './components/AddSong/AddSong';
@@ -11,15 +11,42 @@ import SongPage from "./components/SongPage/SongPage";
 
 function App() {
 
+  // Login with a cookie, temporary solution => useContext will be used later
+  const [cookies] = useCookies(['userId']);
+
   return (
+
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/home" element={<HomePage />} />
-      <Route path="/song/:id" element={<SongPage />} />
-      <Route path="/add-a-song" element={<AddSong />} />
-      <Route path="/edit-song/:id" element={<EditSong />} />
-      <Route path="/profile" element={<Profile />} />
+
+      {/* Home (logged => HomePage, not logged => Login) */}
+      <Route path="/" element={cookies.userId
+        ? <HomePage />
+        : <Login />} />
+
+      {/* Signup page */}
+      <Route path="/signup" element={cookies.userId
+        ? <HomePage />
+        : <Signup />} />
+
+      {/* Song page */}
+      <Route path="/song/:id" element={cookies.userId
+        ? <SongPage />
+        : <Login />} />
+
+      {/* Add a song page */}
+      <Route path="/add-a-song" element={cookies.userId
+        ? <AddSong />
+        : <Login />} />
+
+      {/* Edit a song page */}
+      <Route path="/edit-song/:id" element={cookies.userId
+        ? <EditSong />
+        : <Login />} />
+
+      {/* Profile page */}
+      <Route path="/profile" element={cookies.userId
+        ? <Profile />
+        : <Login />} />
     </Routes>
   );
 };
