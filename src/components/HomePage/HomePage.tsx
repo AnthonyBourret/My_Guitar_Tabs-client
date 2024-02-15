@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { useCookies } from "react-cookie";
 import useFetch from "../../hooks/useFetch";
+import { SongProps } from "../../types/types";
 import Header from '../Header/Header';
 import FilterDesktop from '../Filters/FilterDesktop';
 import FilterMobile from "../Filters/FilterMobile";
 import SongCard from '../CustomComponents/SongCard';
 import AvatarDesktop from '../CustomComponents/AvatarDesktop';
 import LoaderCardSong from "../Loaders/LoaderCardSong";
+import NewUserMessage from "./NewUserMessage";
 
 function HomePage() {
 
   const [songs, setSongs] = useState([]);
+  const [cookies] = useCookies(['userInfo']);
+  const userId = cookies.userInfo?.id;
 
-  const { data, error, isLoading } = useFetch('user/1/songs', 'GET');
+  const { data, error, isLoading } = useFetch(`user/${userId}/songs`, 'GET');
 
   useEffect(() => {
-    if (data) {
+    if (data && userId) {
       setSongs(data);
     }
   }, [songs, data, isLoading]);
 
-  console.log(songs);
   if (error) return null;
 
   return (
@@ -27,17 +31,29 @@ function HomePage() {
       <Header />
       <div className="flex flex-col w-full sm:flex-row sm:justify-center gap-8 px-6 sm:gap-12">
         <div className="flex flex-col gap-4">
-          <AvatarDesktop />
-          <FilterDesktop />
-          <FilterMobile />
+          {songs.length != 0 &&
+            <>
+              <AvatarDesktop />
+              <FilterDesktop />
+              <FilterMobile />
+            </>
+          }
         </div>
         <div className="w-full min-[820px]:w-1/2 flex flex-col gap-6">
-          {/* Todo => .map on the fectched data to display the user's songs*/}
           {isLoading && <LoaderCardSong />}
-          <SongCard />
-          <SongCard />
-          <SongCard />
-          <SongCard />
+          {songs.length != 0
+            ? songs.map((song: SongProps) => (
+              <SongCard
+                key={song.id}
+                id={song.id}
+                title={song.title}
+                artist={song.artist}
+                Styles={song.Styles}
+                status={song.status}
+              />
+            ))
+            : <NewUserMessage />
+          }
         </div>
       </div>
     </div>

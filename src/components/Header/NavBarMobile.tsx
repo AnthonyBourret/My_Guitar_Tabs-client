@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useCookies } from "react-cookie";
 import LogoHeader from './LogoHeader';
 import MenuAvatar from './MenuAvatar';
 
 function NavBarMobile() {
+    const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
+
+    function handleLogout() {
+        removeCookie('userInfo', { path: '/' });
+    }
     return (
         <div className="sm:hidden flex justify-between items-center w-full bg-neutral bg-opacity-50 backdrop-blur-[10px] z-10 fixed top-0 left-0 px-4 pt-4 pb-2">
 
@@ -37,9 +43,13 @@ function NavBarMobile() {
                         </Link>
                     </li>
                     <li className="pt-2">
-                        <Link to="/" className="text-base-content text-lg font-semibold">
-                            Log Out
-                        </Link>
+                        <button
+                            className="text-base-content text-lg font-semibold"
+                            type="button"
+                            onClick={() => handleLogout()}
+                        >
+                            Logout
+                        </button>
                     </li>
                 </ul>
             </div>

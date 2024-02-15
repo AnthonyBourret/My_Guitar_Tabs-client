@@ -5,7 +5,7 @@ import {
     styleOptions,
     capoOptions,
     tuningOptions
-} from "../../utils/InputValues";
+} from "../../utils/inputValues";
 
 function FilterDesktop() {
     return (

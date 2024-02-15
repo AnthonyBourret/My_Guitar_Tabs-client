@@ -5,7 +5,7 @@ import {
     styleOptions,
     capoOptions,
     tuningOptions
-} from "../../utils/InputValues";
+} from "../../utils/inputValues";
 function FilterMobile() {
     return (
         // To display the filters, the collapse component (checkbox type) has to be clicked on
