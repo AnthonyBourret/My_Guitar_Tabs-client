@@ -34,6 +34,7 @@ function SongCard({
                 </div>
                 <Link
                     to={`/song/${id}`}
+
                     className="btn btn-sm w-fit btn-primary min-[820px]:btn-md"
                 >
                     See Tabs
