@@ -1,90 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
-import * as EmailValidator from 'email-validator';
-import axiosInstance from "../../utils/axiosInstance";
 import InputTextAuth from "../CustomComponents/InputTextAuth";
 import Toast from "../CustomComponents/Toast";
 import Logo from '../../svg/Logo';
+import handleSignup from "../../utils/handleSignup";
 
 function Signup() {
-  const [cookies, setCookie, removeCookie] = useCookies(['userId']);
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmedPassword, setConfirmedPassword] = useState('');
-  const [isCGUAccepted, setIsCGUAccepted] = useState('false');
-  const [isVisible, setIsVisible] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
-  // Fucntion to handle the signup
-  async function handleSignup(username: string, email: string, password: string, confirmedPassword: string) {
-
-    // Check if the fields are filled & if the email is valid
-    if (username === '') {
-      setErrorMessage("Please, enter a username.");
-      setIsVisible(true);
-      return;
-    };
-    if (email === '') {
-      setErrorMessage("Please, enter an email.");
-      setIsVisible(true);
-      return;
-    };
-    if (!EmailValidator.validate(email)) {
-      setErrorMessage("Please, enter a valid email.");
-      setIsVisible(true);
-      return;
-    };
-    if (password === '') {
-      setErrorMessage("Please, enter a password.");
-      setIsVisible(true);
-      return;
-    };
-    if (confirmedPassword === '' && password !== '') {
-      setErrorMessage("Please, confirm your password.");
-      setIsVisible(true);
-      return;
-    };
-    if (password !== confirmedPassword) {
-      setErrorMessage("Passwords do not match.");
-      setIsVisible(true);
-      return;
-    };
-    if (username === '' && email === '' && password === '' && confirmedPassword === '') {
-      setErrorMessage("Please, fill all the fields.");
-      setIsVisible(true);
-      return;
-    };
-    if (isCGUAccepted === 'false') {
-      setErrorMessage("Please, accept the CGU.");
-      setIsVisible(true);
-      return;
-    };
-
-    // Send the request to the server
-    const res = await axiosInstance.post('/signup', {
-      username: username,
-      mail: email,
-      password: password,
-      passwordConfirm: confirmedPassword,
-    })
-      // If the request is successful, set the cookie with the userId
-      .then((res) => {
-        console.log(res);
-        if (res.status === 200) {
-          setCookie('userId', res.data, { path: '/' });
-          console.log('success');
-        }
-      })
-      // If the request fails, display an error message
-      .catch((error) => {
-        setIsVisible(true);
-        setErrorMessage(error.response.data.error);
-        console.log(error);
-      });
-  };
+  const [username, setUsername] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmedPassword, setConfirmedPassword] = useState<string>('');
+  const [isCGUAccepted, setIsCGUAccepted] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   // UseEffect to remove the Toast after 4 seconds
   useEffect(() => {
@@ -126,7 +58,7 @@ function Signup() {
               <input
                 type="checkbox"
                 className="checkbox checkbox-sm checkbox-success"
-                onChange={(e) => setIsCGUAccepted(e.target.checked ? 'true' : 'false')}
+                onChange={(e) => setIsCGUAccepted(e.target.checked ? true : false)}
               />
             </label>
           </div>
@@ -135,7 +67,16 @@ function Signup() {
           <button
             className="btn btn-primary btn-sm px-4 text-base sm:my-2"
             type="submit"
-            onClick={() => handleSignup(username, email, password, confirmedPassword)}
+            onClick={() => handleSignup(
+              username,
+              email,
+              password,
+              confirmedPassword,
+              isCGUAccepted,
+              setCookie as (name: string, value: any, options?: any) => void, // Update the type of setCookie
+              setIsVisible,
+              setErrorMessage
+            )}
           >
             Signup
           </button>

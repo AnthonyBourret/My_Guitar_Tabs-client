@@ -12,39 +12,39 @@ import SongPage from "./components/SongPage/SongPage";
 function App() {
 
   // Login with a cookie, temporary solution => useContext will be used later
-  const [cookies] = useCookies(['userId']);
+  const [cookies] = useCookies(['userInfo']);
 
   return (
 
     <Routes>
 
       {/* Home (logged => HomePage, not logged => Login) */}
-      <Route path="/" element={cookies.userId
+      <Route path="/" element={cookies.userInfo
         ? <HomePage />
         : <Login />} />
 
       {/* Signup page */}
-      <Route path="/signup" element={cookies.userId
+      <Route path="/signup" element={cookies.userInfo
         ? <HomePage />
         : <Signup />} />
 
       {/* Song page */}
-      <Route path="/song/:id" element={cookies.userId
+      <Route path="/song/:id" element={cookies.userInfo
         ? <SongPage />
         : <Login />} />
 
       {/* Add a song page */}
-      <Route path="/add-a-song" element={cookies.userId
+      <Route path="/add-a-song" element={cookies.userInfo
         ? <AddSong />
         : <Login />} />
 
       {/* Edit a song page */}
-      <Route path="/edit-song/:id" element={cookies.userId
+      <Route path="/edit-song/:id" element={cookies.userInfo
         ? <EditSong />
         : <Login />} />
 
       {/* Profile page */}
-      <Route path="/profile" element={cookies.userId
+      <Route path="/profile" element={cookies.userInfo
         ? <Profile />
         : <Login />} />
     </Routes>

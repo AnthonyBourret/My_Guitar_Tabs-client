@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { SongProps } from "../../types/types";
 import BadgeStyle from "./BadgeStyle";
 import { IconInProgress, IconLearned, IconToLearn } from '../../svg';
+import capitalize from "../../utils/capitalizeFirstLetter";
 
 function SongCard({
     id,
@@ -15,7 +16,7 @@ function SongCard({
             <div className="w-full flex flex-col gap-2">
 
                 <div className="flex justify-between">
-                    <h1 className="text-xl self-start font-semibold min-[820px]:text-2xl mr-4 min-[820px]:mr-6">{title}</h1>
+                    <h1 className="text-xl self-start font-semibold min-[820px]:text-2xl mr-4 min-[820px]:mr-6">{capitalize(title)}</h1>
                     <div className="relative">
                         {status === "In progress" && <IconInProgress />}
                         {status === "To Learn" && <IconToLearn />}

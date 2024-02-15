@@ -13,7 +13,8 @@ import NewUserMessage from "./NewUserMessage";
 function HomePage() {
 
   const [songs, setSongs] = useState([]);
-  const userId = useCookies(['userId'])[0].userId;
+  const [cookies] = useCookies(['userInfo']);
+  const userId = cookies.userInfo?.id;
 
   const { data, error, isLoading } = useFetch(`user/${userId}/songs`, 'GET');
 

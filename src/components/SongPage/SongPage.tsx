@@ -69,7 +69,7 @@ function SongPage() {
 
                 {/* Edit and Delete buttons */}
                 <div className="flex w-full justify-center gap-4">
-                    < Link to="/edit-song" className="btn btn-sm btn-primary">Edit song</Link>
+                    < Link to="/edit-song/:id" className="btn btn-sm btn-primary">Edit song</Link>
                     <button
                         type="button"
                         className="btn btn-sm btn-primary"

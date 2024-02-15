@@ -1,59 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
-import axiosInstance from "../../utils/axiosInstance";
 import InputTextAuth from "../CustomComponents/InputTextAuth";
 import Toast from "../CustomComponents/Toast";
 import Logo from '../../svg/Logo';
+import handleLogin from "../../utils/handleLogin";
 
 function Login() {
-  const [cookies, setCookie, removeCookie] = useCookies(['userId']);
+
+  const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isVisible, setIsVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
-  // Function to handle the login and post the data to the server
-  async function handleSubmit(name: string, pswd: string) {
-
-    // Check if the fields are empty and setting the error message and the Toast to visible
-    if (name === '' && pswd !== '') {
-      setErrorMessage("Please, enter a username.");
-      setIsVisible(true);
-      return;
-    }
-    if (pswd === '' && name !== '') {
-      setErrorMessage("Please, enter a password.");
-      setIsVisible(true);
-      return;
-    }
-    if (name === '' && pswd === '') {
-      setErrorMessage("Please, fill the login fields.");
-      setIsVisible(true);
-      return;
-    }
-
-    // Post the data to the server
-    const res = await axiosInstance.post('/login', {
-      username: name,
-      password: pswd
-    })
-      // If the response is successful, set the cookie with the userId
-      .then((res) => {
-        if (res.status === 200) {
-          setCookie('userId', res.data.id, { path: '/' });
-          console.log('success');
-        }
-      })
-      // If the response is an error, display an error message and set the Toast to visible
-      .catch((error) => {
-        setErrorMessage("Invalid username or password.");
-        setIsVisible(true);
-        console.log(error);
-      });
-  };
-
 
   // UseEffect to remove the Toast after 4 seconds
   useEffect(() => {
@@ -86,7 +46,13 @@ function Login() {
           <button
             type="submit"
             className="btn btn-primary btn-sm px-4 text-base"
-            onClick={() => handleSubmit(username, password)}
+            onClick={() => handleLogin(
+              username,
+              password,
+              setCookie as (name: string, value: any, options?: any) => void, // Update the type of setCookie
+              setIsVisible,
+              setErrorMessage
+            )}
           >
             Login
           </button>

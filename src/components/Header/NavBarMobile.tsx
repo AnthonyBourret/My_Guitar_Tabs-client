@@ -5,10 +5,10 @@ import LogoHeader from './LogoHeader';
 import MenuAvatar from './MenuAvatar';
 
 function NavBarMobile() {
-    const [cookies, setCookie, removeCookie] = useCookies(['userId']);
+    const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
     function handleLogout() {
-        removeCookie('userId', { path: '/' });
+        removeCookie('userInfo', { path: '/' });
     }
     return (
         <div className="sm:hidden flex justify-between items-center w-full bg-neutral bg-opacity-50 backdrop-blur-[10px] z-10 fixed top-0 left-0 px-4 pt-4 pb-2">

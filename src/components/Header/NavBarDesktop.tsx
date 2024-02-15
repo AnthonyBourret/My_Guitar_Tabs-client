@@ -4,10 +4,10 @@ import { useCookies } from "react-cookie";
 import LogoHeader from './LogoHeader';
 
 function NavBarDesktop() {
-    const [cookies, setCookie, removeCookie] = useCookies(['userId']);
+    const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
     function handleLogout() {
-        removeCookie('userId', { path: '/' });
+        removeCookie('userInfo', { path: '/' });
     }
 
     return (
