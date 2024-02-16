@@ -14,7 +14,7 @@ function Profile() {
   const [cookies] = useCookies(["userInfo"]);
   const id = cookies.userInfo.id;
   const username = cookies.userInfo.username;
-  const avatar = cookies.userInfo.avatar;
+  const avatar = cookies.userInfo.picture;
 
   const { data: userData, error: userError, isLoading: userLoading } = useFetch(`/user/${id}`, 'GET');
   const { data: userSongsData, error: userSongsDataError, isLoading: userSongsDataLoading } = useFetch(`/user/${id}/songs`, 'GET');
@@ -46,7 +46,7 @@ function Profile() {
             <div className="flex flex-row-reverse gap-2 items-center justify-between w-full min-[590px]:gap-8">
               <div className="avatar items-center">
                 <div className="w-14 rounded-full border border-primary">
-                  <img src={avatar} />
+                  <img src={avatar ? avatar : "/public/DefaultAvatar.png"} />
                   <div className="absolute top-8 left-10">
                     <EditProfileButton modalName="avatar_modal" />
                   </div>
