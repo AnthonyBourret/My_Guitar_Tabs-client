@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useCookies } from "react-cookie";
+import useFetch from "../../hooks/useFetch";
 import Header from '../Header/Header';
 import EditProfileButton from "../CustomComponents/EditProfileButton";
 import EditAvatarModal from "../Modals/EditAvatarModal";
@@ -6,8 +8,26 @@ import EditMailModal from "../Modals/EditMailModal";
 import EditUsernameModal from "../Modals/EditUsernameModal";
 import DeleteAccountModal from "../Modals/DeleteAccountModal";
 import LoaderProfile from "../Loaders/LoaderProfile";
+import capitalize from "../../utils/capitalizeFirstLetter";
 
 function Profile() {
+  const [cookies] = useCookies(["userInfo"]);
+  const id = cookies.userInfo.id;
+  const username = cookies.userInfo.username;
+  const avatar = cookies.userInfo.avatar;
+
+  const { data: userData, error: userError, isLoading: userLoading } = useFetch(`/user/${id}`, 'GET');
+  const { data: userSongsData, error: userSongsDataError, isLoading: userSongsDataLoading } = useFetch(`/user/${id}/songs`, 'GET');
+  const [userInfo, setUserInfo] = useState<any | undefined>();
+  const [userSongsInfo, setUserSongsInfo] = useState<any | undefined>();
+
+  useEffect(() => {
+    if (userData && userSongsData) {
+      setUserInfo(userData);
+      setUserSongsInfo(userSongsData);
+    }
+  }, [userData, userSongsData]);
+
   return (
     <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
       <Header />
@@ -18,74 +38,77 @@ function Profile() {
         </div>
 
         {/* Loader */}
-        {/* <LoaderProfile /> */}
+        {userLoading || userSongsDataLoading && <LoaderProfile />}
 
         {/* Avatar & Username */}
-        <div className="flex flex-row-reverse gap-2 items-center justify-between w-full min-[590px]:gap-8">
-          <div className="avatar items-center">
-            <div className="w-14 rounded-full border border-primary">
-              <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-              <div className="absolute top-8 left-10">
-                <EditProfileButton modalName="avatar_modal" />
+        {userInfo && userSongsInfo && (
+          <div className="w-full flex flex-col gap-8">
+            <div className="flex flex-row-reverse gap-2 items-center justify-between w-full min-[590px]:gap-8">
+              <div className="avatar items-center">
+                <div className="w-14 rounded-full border border-primary">
+                  <img src={avatar} />
+                  <div className="absolute top-8 left-10">
+                    <EditProfileButton modalName="avatar_modal" />
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <h1 className="text-2xl font-semibold">{capitalize(username)}</h1>
+                <EditProfileButton modalName="username_modal" />
               </div>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-semibold">Username</h1>
-            <EditProfileButton modalName="username_modal" />
-          </div>
-        </div>
 
-        {/* User info */}
-        <div className="flex flex-col w-full gap-6">
-          <div className="flex flex-col gap-2">
-            <h2 className="text-lg font-semibold">Mail : </h2>
-            <div className="flex items-center gap-2">
-              <p>admin@admin.com</p>
-              <EditProfileButton modalName="mail_modal" />
+            {/* User info */}
+            <div className="flex flex-col w-full gap-6">
+              <div className="flex flex-col gap-2">
+                <h2 className="text-lg font-semibold">Mail : </h2>
+                <div className="flex items-center gap-2">
+                  <p>{userData.mail}</p>
+                  <EditProfileButton modalName="mail_modal" />
+                </div>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h2 className="text-lg font-semibold">Songs added : </h2>
+                <p>{userSongsInfo.length}</p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h2 className="text-lg font-semibold">Songs learned : </h2>
+                <p>{userSongsInfo.filter((song: { status: string; }) => song.status === "Learned").length}</p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h2 className="text-lg font-semibold">Songs in progress : </h2>
+                <p>{userSongsInfo.filter((song: { status: string; }) => song.status === "In progress").length}</p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h2 className="text-lg font-semibold">Songs to learn : </h2>
+                <p>{userSongsInfo.filter((song: { status: string; }) => song.status === "To learn").length}</p>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h2 className="text-lg font-semibold">Member since : </h2>
+                <p>01/02/2024</p>
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col gap-2">
-            <h2 className="text-lg font-semibold">Songs added : </h2>
-            <p>4</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <h2 className="text-lg font-semibold">Songs learned : </h2>
-            <p>1</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <h2 className="text-lg font-semibold">Songs in progress : </h2>
-            <p>2</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <h2 className="text-lg font-semibold">Songs to learn : </h2>
-            <p>1</p>
-          </div>
-          <div className="flex flex-col gap-2">
-            <h2 className="text-lg font-semibold">Member since : </h2>
-            <p>01/02/2024</p>
-          </div>
-        </div>
 
-        {/* Delete account */}
-        <button
-          type="button"
-          className="btn btn-sm w-fit btn-primary self-center"
-          onClick={() => {
-            if (document) {
-              (document.getElementById("delete_modal") as HTMLDialogElement).showModal();
-            }
-          }}
-        >
-          Delete my account
-        </button>
+            {/* Delete account */}
+            <button
+              type="button"
+              className="btn btn-sm w-fit btn-primary self-center mt-10"
+              onClick={() => {
+                if (document) {
+                  (document.getElementById("delete_modal") as HTMLDialogElement).showModal();
+                }
+              }}
+            >
+              Delete my account
+            </button>
+          </div>
+        )}
 
         {/* Modals */}
         <EditAvatarModal />
         <EditMailModal />
         <EditUsernameModal />
         <DeleteAccountModal />
-
       </div>
     </div>
   );
