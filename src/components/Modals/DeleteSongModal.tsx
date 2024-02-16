@@ -1,11 +1,30 @@
 import React from 'react';
+import axiosInstance from "../../utils/axiosInstance";
+import { useParams } from "react-router-dom";
 
 function DeleteSongModal() {
+
+    const { id } = useParams();
+    function deleteSong() {
+        axiosInstance.delete(`song/${id}`)
+            .then(() => {
+                window.location.href = "/";
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
     return (
         <dialog id="delete_modal" className="modal">
             <div className="modal-box flex flex-col gap-8 pb-0 pt-12 border border-primary min-[440px]:w-3/5 sm:w-2/5 sm:px-10">
                 <p className="font-semibold text-base text-center">Are you sure you want to delete the song ?</p>
-                <button type="submit" className="btn btn-primary btn-md text-lg w-fit self-center">Delete</button>
+                <button
+                    type="submit"
+                    className="btn btn-primary btn-md text-lg w-fit self-center"
+                    onClick={deleteSong}
+                >
+                    Delete
+                </button>
 
                 {/* Close button */}
                 <form method="dialog">
