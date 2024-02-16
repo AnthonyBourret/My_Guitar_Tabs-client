@@ -25,7 +25,7 @@ function SongPage() {
     return (
         <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8 px-12">
             <Header />
-            <div className="flex flex-col w-full bg-base-100 border border-primary rounded-box p-4 gap-10 sm:w-3/4">
+            <div className="flex flex-col w-full bg-base-100 border border-primary rounded-box p-4 gap-10 lg:w-3/5">
 
                 {isLoading && <LoaderSongPage />}
 
@@ -33,10 +33,10 @@ function SongPage() {
                 {song && (
                     <div className="flex flex-col gap-8">
                         <div className="flex flex-col justify-between sm:px-2 sm:flex-row">
-                            <div className="flex flex-col items-center">
-                                <h1 className="text-xl font-semibold pr-6 lg:text-2xl">{capitalize(song.title)}</h1>
-                                <h2 className="text-lg pl-6 pt-1 lg:text-xl">by {song.artist}</h2>
-                                <div className="flex gap-6 p-4 w-fit m-auto mt-4">
+                            <div className="flex flex-col items-center sm:w-1/2 sm:pl-2">
+                                <h1 className="text-2xl font-semibold lg:text-3xl sm:self-start text-center sm:text-left">{capitalize(song.title)}</h1>
+                                <h2 className="text-lg pt-2 lg:text-xl sm:self-start">by {song.artist}</h2>
+                                <div className="flex gap-6 py-4 w-fit mt-4 sm:self-start">
 
                                     {/* Display the styles of the song */}
                                     {song.Styles.map((style, index) => (
@@ -44,7 +44,7 @@ function SongPage() {
                                     }
                                 </div>
                             </div>
-                            <div className="flex flex-col w-fit px-12 py-4 self-center items-center justify-center gap-4 bg-neutral rounded-box border border-primary">
+                            <div className="flex flex-col w-1/2 sm:w-1/3 py-4 self-center lg:self-start items-center justify-center gap-4 bg-neutral rounded-box border border-primary">
                                 <p className="text-lg font-semibold lg:text-xl">{song.status}</p>
                                 <button
                                     type="button"
@@ -53,7 +53,7 @@ function SongPage() {
                                             (document.getElementById("progression_modal") as HTMLDialogElement).showModal();
                                         }
                                     }}
-                                    className="btn btn-sm btn-primary"
+                                    className="btn btn-sm w-fit btn-primary"
                                 >
                                     Edit status
                                 </button>
@@ -100,10 +100,10 @@ function SongPage() {
 
                         {/* Edit and Delete buttons */}
                         <div className="flex w-full justify-center gap-4">
-                            < Link to="/edit-song/:id" className="btn btn-sm btn-primary">Edit song</Link>
+                            < Link to="/edit-song/:id" className="btn btn-sm btn-primary border border-neutral">Edit song</Link>
                             <button
                                 type="button"
-                                className="btn btn-sm btn-primary"
+                                className="btn btn-sm btn-primary border border-neutral"
                                 onClick={() => {
                                     if (document) {
                                         (document.getElementById("delete_modal") as HTMLDialogElement).showModal();
