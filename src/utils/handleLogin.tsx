@@ -30,7 +30,7 @@ async function handleLogin(
     const res = await axiosInstance.post('/login', {
         username: name,
         password: pswd
-    })
+    }, { withCredentials: true })
         // If the response is successful, set the cookie with the userId
         .then((res) => {
             if (res.status === 200) {

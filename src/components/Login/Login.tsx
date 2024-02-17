@@ -24,6 +24,7 @@ function Login() {
       return () => clearTimeout(timer);
     }
   }, [isVisible]);
+  console.log(cookies);
 
   return (
     <div className="w-full flex flex-col gap-4 pt-2 items-center bg-neutral justify-center px-6">

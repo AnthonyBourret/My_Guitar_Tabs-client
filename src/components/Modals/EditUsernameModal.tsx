@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { useCookies } from "react-cookie";
 import axiosInstance from "../../utils/axiosInstance";
 
-function EditUsernameModal() {
-    const [cookies, setCookie, removeCookie] = useCookies(["userInfo"]);
-    const id = cookies.userInfo.id;
-    const pic = cookies.userInfo.picture;
+function EditUsernameModal({ userId }: { userId: number }) {
 
     const [newUsername, setNewUsername] = useState<string>("");
 
@@ -17,12 +14,6 @@ function EditUsernameModal() {
         try {
             const response = await axiosInstance.patch(`/user/${id}`, {
                 username: newUsername,
-            });
-            removeCookie("userInfo");
-            setCookie("userInfo", {
-                id: id,
-                username: newUsername,
-                picture: pic,
             });
             console.log(response.data);
         } catch (error) {
@@ -43,7 +34,7 @@ function EditUsernameModal() {
                 <button
                     type="submit"
                     className="btn btn-primary btn-md text-lg w-fit self-center"
-                    onClick={() => handleSubmit(id)}
+                    onClick={() => handleSubmit(userId)}
                 >
                     Save
                 </button>

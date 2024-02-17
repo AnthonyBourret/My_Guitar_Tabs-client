@@ -8,16 +8,11 @@ import EditMailModal from "../Modals/EditMailModal";
 import EditUsernameModal from "../Modals/EditUsernameModal";
 import DeleteAccountModal from "../Modals/DeleteAccountModal";
 import LoaderProfile from "../Loaders/LoaderProfile";
-import capitalize from "../../utils/capitalizeFirstLetter";
 
-function Profile() {
-  const [cookies] = useCookies(["userInfo"]);
-  const id = cookies.userInfo.id;
-  const username = cookies.userInfo.username;
-  const avatar = cookies.userInfo.picture;
+function Profile({ userId }: { userId: number }) {
 
-  const { data: userData, error: userError, isLoading: userLoading } = useFetch(`/user/${id}`, 'GET');
-  const { data: userSongsData, error: userSongsDataError, isLoading: userSongsDataLoading } = useFetch(`/user/${id}/songs`, 'GET');
+  const { data: userData, error: userError, isLoading: userLoading } = useFetch(`/user/${userId}`, 'GET');
+  const { data: userSongsData, error: userSongsDataError, isLoading: userSongsDataLoading } = useFetch(`/user/${userId}/songs`, 'GET');
   const [userInfo, setUserInfo] = useState<any | undefined>();
   const [userSongsInfo, setUserSongsInfo] = useState<any | undefined>();
 
@@ -46,14 +41,14 @@ function Profile() {
             <div className="flex flex-row-reverse gap-2 items-center justify-between w-full min-[590px]:gap-8">
               <div className="avatar items-center">
                 <div className="w-14 rounded-full border border-primary">
-                  <img src={avatar ? avatar : "/public/DefaultAvatar.png"} />
+                  <img src={userData.picture ? userData.picture : "/public/DefaultAvatar.png"} />
                   <div className="absolute top-8 left-10">
                     <EditProfileButton modalName="avatar_modal" />
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <h1 className="text-2xl font-semibold">{capitalize(username)}</h1>
+                <h1 className="text-2xl font-semibold">{userData.username}</h1>
                 <EditProfileButton modalName="username_modal" />
               </div>
             </div>
@@ -106,9 +101,9 @@ function Profile() {
 
         {/* Modals */}
         <EditAvatarModal />
-        <EditMailModal />
-        <EditUsernameModal />
-        <DeleteAccountModal />
+        <EditMailModal userId={userId} />
+        <EditUsernameModal userId={userId} />
+        <DeleteAccountModal userId={userId} />
       </div>
     </div>
   );

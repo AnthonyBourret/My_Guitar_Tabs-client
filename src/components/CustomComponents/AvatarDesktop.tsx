@@ -1,7 +1,5 @@
 import React from 'react';
 import { useCookies } from "react-cookie";
-import capitalize from "../../utils/capitalizeFirstLetter";
-
 
 function AvatarDesktop() {
 
@@ -19,7 +17,7 @@ function AvatarDesktop() {
                 </div>
             </div>
             <div className="w-full flex justify-center">
-                <h1 className="text-xl font-semibold">{capitalize(userName)}</h1>
+                <h1 className="text-xl font-semibold">{userName}</h1>
             </div>
         </div>
     );

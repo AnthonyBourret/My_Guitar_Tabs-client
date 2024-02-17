@@ -10,13 +10,10 @@ import AvatarDesktop from '../CustomComponents/AvatarDesktop';
 import LoaderCardSong from "../Loaders/LoaderCardSong";
 import NewUserMessage from "./NewUserMessage";
 
-function HomePage() {
-
-  const [songs, setSongs] = useState([]);
-  const [cookies] = useCookies(['userInfo']);
-  const userId = cookies.userInfo?.id;
+function HomePage({ userId }: { userId: number }) {
 
   const { data, error, isLoading } = useFetch(`user/${userId}/songs`, 'GET');
+  const [songs, setSongs] = useState([]);
 
   useEffect(() => {
     if (data && userId) {

@@ -65,7 +65,7 @@ async function handleSignup(
         .then((res) => {
             console.log(res);
             if (res.status === 200) {
-                setCookie('userInfo', res.data, { path: '/' });
+                setCookie('userInfo', res.data);
                 console.log('success');
             }
         })

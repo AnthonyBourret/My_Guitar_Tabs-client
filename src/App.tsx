@@ -12,7 +12,10 @@ import SongPage from "./components/SongPage/SongPage";
 function App() {
 
   // Login with a cookie, temporary solution => useContext will be used later
+  // Problem: when the account is delete from the database, the cookie is not deleted correctly
+
   const [cookies] = useCookies(['userInfo']);
+  const userId = cookies.userInfo?.id;
 
   return (
 
@@ -20,12 +23,13 @@ function App() {
 
       {/* Home (logged => HomePage, not logged => Login) */}
       <Route path="/" element={cookies.userInfo
-        ? <HomePage />
+        ? <HomePage userId={userId} />
         : <Login />} />
+
 
       {/* Signup page */}
       <Route path="/signup" element={cookies.userInfo
-        ? <HomePage />
+        ? <HomePage userId={userId} />
         : <Signup />} />
 
       {/* Song page */}
@@ -45,7 +49,7 @@ function App() {
 
       {/* Profile page */}
       <Route path="/profile" element={cookies.userInfo
-        ? <Profile />
+        ? <Profile userId={userId} />
         : <Login />} />
     </Routes>
   );

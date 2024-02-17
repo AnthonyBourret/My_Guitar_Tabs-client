@@ -3,9 +3,7 @@ import { useCookies } from "react-cookie";
 import * as EmailValidator from 'email-validator';
 import axiosInstance from "../../utils/axiosInstance";
 
-function EditMailModal() {
-    const [cookies] = useCookies(["userInfo"]);
-    const id = cookies.userInfo.id;
+function EditMailModal({ userId }: { userId: number }) {
     const [mail, setMail] = useState<string>("");
 
     async function updateMail() {
@@ -19,7 +17,7 @@ function EditMailModal() {
         }
         if (EmailValidator.validate(mail) && mail !== "") {
             try {
-                await axiosInstance.patch(`/user/${id}`, { mail: mail });
+                await axiosInstance.patch(`/user/${userId}`, { mail: mail });
                 console.log("Mail updated!");
                 window.location.href = "/profile";
             } catch (error) {
