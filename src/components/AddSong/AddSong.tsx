@@ -1,9 +1,13 @@
 import React from 'react';
+
+// Import Components
 import Header from '../Header/Header';
 import TextInput from "../CustomComponents/TextInput";
 import SelectInput from "../CustomComponents/SelectInput";
 import TextAreaInput from "../CustomComponents/TextAreaInput";
 import BadgeStyle from "../CustomComponents/BadgeStyle";
+
+// Import options used in SelectInput
 import {
   difficultyOptions,
   progressionOptions,
@@ -65,7 +69,6 @@ function AddSong() {
 
         {/* Submit button */}
         <button type="submit" className="btn btn-base w-fit my-4 m-auto btn-primary">Add song to my tabs</button>
-
       </div>
     </div>
   );

@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
+
+// Import Components
 import InputTextAuth from "../CustomComponents/InputTextAuth";
 import Toast from "../CustomComponents/Toast";
+
+// Import SVG
 import Logo from '../../svg/Logo';
+
+// Import Function
 import handleLogin from "../../utils/handleLogin";
+
 
 function Login() {
 
@@ -24,7 +31,6 @@ function Login() {
       return () => clearTimeout(timer);
     }
   }, [isVisible]);
-  console.log(cookies);
 
   return (
     <div className="w-full flex flex-col gap-4 pt-2 items-center bg-neutral justify-center px-6">

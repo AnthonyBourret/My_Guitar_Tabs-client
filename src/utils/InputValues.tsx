@@ -1,3 +1,6 @@
+// Definition of the different options for the select inputs
+// Values are the same as the ones in the database except the tunings (to change)
+
 export const difficultyOptions = [
     "Beginner",
     "Intermediate",

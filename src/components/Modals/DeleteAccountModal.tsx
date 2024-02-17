@@ -1,9 +1,10 @@
 import React from 'react';
 import { useCookies } from "react-cookie";
-import axiosInstance from "../../utils/axiosInstance";
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from "../../utils/axiosInstance";
 
 function DeleteAccountModal({ userId }: { userId: number }) {
+
     const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
     const navigate = useNavigate();
 
@@ -23,9 +24,9 @@ function DeleteAccountModal({ userId }: { userId: number }) {
             <div className="modal-box flex flex-col gap-8 pb-0 pt-12 border border-primary min-[440px]:w-3/5 sm:w-2/5 sm:px-10">
                 <p className="font-semibold text-base text-center">Are you sure you want to delete your account ?</p>
                 <button
-                    onClick={() => deleteAccount(userId)}
-                    type="submit"
                     className="btn btn-primary btn-md text-lg w-fit self-center"
+                    type="button"
+                    onClick={() => deleteAccount(userId)}
                 >
                     Delete
                 </button>

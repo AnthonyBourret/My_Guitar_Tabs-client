@@ -1,26 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
+
+// Import Components
 import Header from '../Header/Header';
 import BadgeStyle from "../CustomComponents/BadgeStyle";
 import EditProgressionModal from "../Modals/EditProgressionModal";
 import DeleteSongModal from "../Modals/DeleteSongModal";
 import LoaderSongPage from "../Loaders/LoaderSongPage";
+
+// Import Fetch hook
+import useFetch from "../../hooks/useFetch";
+
+// Import SVG
 import { IconLink } from "../../svg";
+
+// Import Utils
 import capitalize from "../../utils/capitalizeFirstLetter";
+
+// Import Types
 import { SongPageProps } from "../../types/types";
 
-function SongPage() {
-    const { id } = useParams();
 
+function SongPage() {
+
+    // The user's id is set with useParams
+    const { id } = useParams();
+    // Fetch the song
     const { data, error, isLoading } = useFetch(`song/${id}`, 'GET');
+    // State to set the song
     const [song, setSong] = useState<SongPageProps | undefined>();
 
+    // When the data is fetched, set the song
     useEffect(() => {
         if (data) {
             setSong(data);
         }
     }, [data]);
+
+    // If there is an error, return null
+    if (error) return null;
+
 
     return (
         <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8 px-12">

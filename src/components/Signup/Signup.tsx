@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
+
+// Import Components
 import InputTextAuth from "../CustomComponents/InputTextAuth";
 import Toast from "../CustomComponents/Toast";
+
+// Import SVG
 import Logo from '../../svg/Logo';
+
+// Import Function
 import handleSignup from "../../utils/handleSignup";
+
 
 function Signup() {
 
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
+  // States
   const [username, setUsername] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');

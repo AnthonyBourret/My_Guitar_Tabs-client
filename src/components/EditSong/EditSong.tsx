@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
+
+// Import Components
 import Header from '../Header/Header';
 import TextInput from "../CustomComponents/TextInput";
 import SelectInput from "../CustomComponents/SelectInput";
 import TextAreaInput from "../CustomComponents/TextAreaInput";
-import BadgeStyleEdit from "../CustomComponents/BadgeStyleEdit";
+// Components to delete style => not used yet, for a V2
+// import BadgeStyleEdit from "../CustomComponents/BadgeStyleEdit";
+
+// Import Fetch hook
+import useFetch from "../../hooks/useFetch";
+
+// Import Types
 import { SongPageProps } from "../../types/types";
+
+// Import Utils
 import capitalize from "../../utils/capitalizeFirstLetter";
 import {
   difficultyOptions,
@@ -18,16 +27,23 @@ import {
 
 
 function EditSong() {
-  const { id } = useParams();
 
+  // The user's id is set with useParams
+  const { id } = useParams();
+  // Fetch the song
   const { data, error, isLoading } = useFetch(`song/${id}`, 'GET');
+  // State to set the song
   const [song, setSong] = useState<SongPageProps | undefined>();
 
+  // When the data is fetched, set the song
   useEffect(() => {
     if (data) {
       setSong(data);
     }
   }, [data]);
+
+  // If there is an error, return null
+  if (error) return null;
 
   return (
     <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
@@ -105,9 +121,7 @@ function EditSong() {
 
           {/* Save changes button */}
           <button type="submit" className="btn btn-base w-fit my-4 m-auto btn-primary">Save changes</button>
-
         </div>
-
       )}
     </div>
   );

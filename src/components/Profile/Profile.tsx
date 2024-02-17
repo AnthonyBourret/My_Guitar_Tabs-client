@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useCookies } from "react-cookie";
+
+// Import Fetch hook
 import useFetch from "../../hooks/useFetch";
+
+// Import Components
 import Header from '../Header/Header';
 import EditProfileButton from "../CustomComponents/EditProfileButton";
 import EditAvatarModal from "../Modals/EditAvatarModal";
@@ -9,13 +12,18 @@ import EditUsernameModal from "../Modals/EditUsernameModal";
 import DeleteAccountModal from "../Modals/DeleteAccountModal";
 import LoaderProfile from "../Loaders/LoaderProfile";
 
+
 function Profile({ userId }: { userId: number }) {
 
+  // Fetch user's data and user's songs data
   const { data: userData, error: userError, isLoading: userLoading } = useFetch(`/user/${userId}`, 'GET');
   const { data: userSongsData, error: userSongsDataError, isLoading: userSongsDataLoading } = useFetch(`/user/${userId}/songs`, 'GET');
+
+  // State to set user's data and user's songs data
   const [userInfo, setUserInfo] = useState<any | undefined>();
   const [userSongsInfo, setUserSongsInfo] = useState<any | undefined>();
 
+  // When the data is fetched, set the user's data and user's songs data
   useEffect(() => {
     if (userData && userSongsData) {
       setUserInfo(userData);
@@ -23,9 +31,14 @@ function Profile({ userId }: { userId: number }) {
     }
   }, [userData, userSongsData]);
 
+  // If there is an error, return null
+  if (userError || userSongsDataError) return null;
+
   return (
     <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
+
       <Header />
+
       <div className="flex flex-col gap-8 w-[90%] items-center justify-center bg-base-100 border border-primary rounded-box p-6 min-[590px]:w-1/2 min-[590px]:px-8 lg:w-2/5">
         <div className="w-full">
           <h1 className="text-2xl font-semibold self-start">My profile</h1>
@@ -41,6 +54,8 @@ function Profile({ userId }: { userId: number }) {
             <div className="flex flex-row-reverse gap-2 items-center justify-between w-full min-[590px]:gap-8">
               <div className="avatar items-center">
                 <div className="w-14 rounded-full border border-primary">
+
+                  {/* // If the user has no avatar, the default avatar is displayed */}
                   <img src={userData.picture ? userData.picture : "/public/DefaultAvatar.png"} />
                   <div className="absolute top-8 left-10">
                     <EditProfileButton modalName="avatar_modal" />
@@ -86,8 +101,8 @@ function Profile({ userId }: { userId: number }) {
 
             {/* Delete account */}
             <button
-              type="button"
               className="btn btn-sm w-fit btn-primary self-center mt-10"
+              type="button"
               onClick={() => {
                 if (document) {
                   (document.getElementById("delete_modal") as HTMLDialogElement).showModal();
