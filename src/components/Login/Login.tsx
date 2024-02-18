@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 
 // Import Components
 import InputTextAuth from "../CustomComponents/InputTextAuth";
 import Toast from "../CustomComponents/Toast";
+
+// Import Hook
+import useToastDisplay from "../../hooks/useToastDisplay";
 
 // Import SVG
 import Logo from '../../svg/Logo';
@@ -17,20 +20,14 @@ function Login() {
 
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
+  // States
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isVisible, setIsVisible] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [toastMessage, setToastMessage] = useState('');
 
   // UseEffect to remove the Toast after 4 seconds
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(() => {
-        setIsVisible(false);
-      }, 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible]);
+  useToastDisplay(isVisible, setIsVisible);
 
   return (
     <div className="w-full flex flex-col gap-4 pt-2 items-center bg-neutral justify-center px-6">
@@ -58,7 +55,7 @@ function Login() {
               password,
               setCookie as (name: string, value: any, options?: any) => void, // Update the type of setCookie
               setIsVisible,
-              setErrorMessage
+              setToastMessage
             )}
           >
             Login
@@ -85,7 +82,7 @@ function Login() {
       </div>
 
       {/* Toast with error message */}
-      {isVisible && <Toast message={errorMessage} />}
+      {isVisible && <Toast message={toastMessage} />}
     </div>
   );
 };

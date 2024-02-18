@@ -16,7 +16,6 @@ import NewUserMessage from "./NewUserMessage";
 import { SongProps } from "../../types/types";
 
 
-
 function HomePage({ userId }: { userId: number }) {
 
   // Fetch user's songs

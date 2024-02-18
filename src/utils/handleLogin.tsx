@@ -6,22 +6,22 @@ async function handleLogin(
     pswd: string,
     setCookie: (name: string, value: any, options?: any) => void,
     setIsVisible: React.Dispatch<React.SetStateAction<boolean>>,
-    setErrorMessage: React.Dispatch<React.SetStateAction<string>>,
+    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
 ) {
 
     // Check if the fields are empty and setting the error message and the Toast to visible
     if (name === '' && pswd !== '') {
-        setErrorMessage("Please, enter a username.");
+        setToastMessage("Please, enter a username.");
         setIsVisible(true);
         return;
     }
     if (pswd === '' && name !== '') {
-        setErrorMessage("Please, enter a password.");
+        setToastMessage("Please, enter a password.");
         setIsVisible(true);
         return;
     }
     if (name === '' && pswd === '') {
-        setErrorMessage("Please, fill the login fields.");
+        setToastMessage("Please, fill the login fields.");
         setIsVisible(true);
         return;
     }
@@ -40,7 +40,7 @@ async function handleLogin(
         })
         // If the response is an error, display an error message and set the Toast to visible
         .catch((error) => {
-            setErrorMessage("Invalid username or password.");
+            setToastMessage("Invalid username or password.");
             setIsVisible(true);
             console.log(error);
         });

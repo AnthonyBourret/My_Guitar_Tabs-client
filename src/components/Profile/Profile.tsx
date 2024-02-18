@@ -11,6 +11,7 @@ import EditMailModal from "../Modals/EditMailModal";
 import EditUsernameModal from "../Modals/EditUsernameModal";
 import DeleteAccountModal from "../Modals/DeleteAccountModal";
 import LoaderProfile from "../Loaders/LoaderProfile";
+import EditPasswordModal from "../Modals/EditPasswordModal";
 
 
 function Profile({ userId }: { userId: number }) {
@@ -100,22 +101,36 @@ function Profile({ userId }: { userId: number }) {
             </div>
 
             {/* Delete account */}
-            <button
-              className="btn btn-sm w-fit btn-primary self-center mt-10"
-              type="button"
-              onClick={() => {
-                if (document) {
-                  (document.getElementById("delete_modal") as HTMLDialogElement).showModal();
-                }
-              }}
-            >
-              Delete my account
-            </button>
+            <div className="flex flex-col gap-6 self-center my-4 min-[820px]:flex-row min-[820px]:gap-4">
+              <button
+                className="btn btn-sm btn-primary"
+                type="button"
+                onClick={() => {
+                  if (document) {
+                    (document.getElementById("password_modal") as HTMLDialogElement).showModal();
+                  }
+                }}
+              >
+                Change password
+              </button>
+              <button
+                className="btn btn-sm btn-primary"
+                type="button"
+                onClick={() => {
+                  if (document) {
+                    (document.getElementById("delete_modal") as HTMLDialogElement).showModal();
+                  }
+                }}
+              >
+                Delete my account
+              </button>
+            </div>
           </div>
         )}
 
         {/* Modals */}
         <EditAvatarModal />
+        <EditPasswordModal userId={userId} />
         <EditMailModal userId={userId} />
         <EditUsernameModal userId={userId} />
         <DeleteAccountModal userId={userId} />

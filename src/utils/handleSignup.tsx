@@ -10,46 +10,46 @@ async function handleSignup(
     isCGUAccepted: boolean,
     setCookie: (name: string, value: any, options?: any) => void,
     setIsVisible: React.Dispatch<React.SetStateAction<boolean>>,
-    setErrorMessage: React.Dispatch<React.SetStateAction<string>>,
+    setToastMessage: React.Dispatch<React.SetStateAction<string>>,
 ) {
     // Check if the fields are filled & if the email is valid
     if (username === '') {
-        setErrorMessage("Please, enter a username.");
+        setToastMessage("Please, enter a username.");
         setIsVisible(true);
         return;
     };
     if (email === '') {
-        setErrorMessage("Please, enter an email.");
+        setToastMessage("Please, enter an email.");
         setIsVisible(true);
         return;
     };
     if (!EmailValidator.validate(email)) {
-        setErrorMessage("Please, enter a valid email.");
+        setToastMessage("Please, enter a valid email.");
         setIsVisible(true);
         return;
     };
     if (password === '') {
-        setErrorMessage("Please, enter a password.");
+        setToastMessage("Please, enter a password.");
         setIsVisible(true);
         return;
     };
     if (confirmedPassword === '' && password !== '') {
-        setErrorMessage("Please, confirm your password.");
+        setToastMessage("Please, confirm your password.");
         setIsVisible(true);
         return;
     };
     if (password !== confirmedPassword) {
-        setErrorMessage("Passwords do not match.");
+        setToastMessage("Passwords do not match.");
         setIsVisible(true);
         return;
     };
     if (username === '' && email === '' && password === '' && confirmedPassword === '') {
-        setErrorMessage("Please, fill all the fields.");
+        setToastMessage("Please, fill all the fields.");
         setIsVisible(true);
         return;
     };
     if (isCGUAccepted === false) {
-        setErrorMessage("Please, accept the CGU.");
+        setToastMessage("Please, accept the CGU.");
         setIsVisible(true);
         return;
     };
@@ -72,7 +72,7 @@ async function handleSignup(
         // If the request fails, display an error message
         .catch((error) => {
             setIsVisible(true);
-            setErrorMessage(error.response.data.error);
+            setToastMessage(error.response.data.error);
             console.log(error);
         });
 };

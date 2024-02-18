@@ -40,8 +40,8 @@ function AddSong() {
           <div className="flex flex-col gap-4 items-center sm:w-[40%]">
             <SelectInput label="Style" disabledText="Chose a style - 2 max" options={styleOptions} />
             <div className="flex gap-4">
-              <BadgeStyle style="Pop" />
-              <BadgeStyle style="Rock" />
+              <BadgeStyle style="Pop" color="white" />
+              <BadgeStyle style="Rock" color="white" />
             </div>
           </div>
         </div>

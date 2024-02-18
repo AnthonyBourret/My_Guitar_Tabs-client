@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
 
 // Import Components
 import InputTextAuth from "../CustomComponents/InputTextAuth";
 import Toast from "../CustomComponents/Toast";
+
+// Import Hooks
+import useToastDisplay from "../../hooks/useToastDisplay";
 
 // Import SVG
 import Logo from '../../svg/Logo';
@@ -24,17 +27,10 @@ function Signup() {
   const [confirmedPassword, setConfirmedPassword] = useState<string>('');
   const [isCGUAccepted, setIsCGUAccepted] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [toastMessage, setToastMessage] = useState<string>('');
 
   // UseEffect to remove the Toast after 4 seconds
-  useEffect(() => {
-    if (isVisible) {
-      const timer = setTimeout(() => {
-        setIsVisible(false);
-      }, 4000);
-      return () => clearTimeout(timer);
-    }
-  }, [isVisible]);
+  useToastDisplay(isVisible, setIsVisible);
 
   return (
     <div className="w-full flex flex-col gap-2 items-center bg-neutral justify-center px-6">
@@ -44,8 +40,8 @@ function Signup() {
         <Logo widthValue={"80%"} color={"#1C1917"} />
       </div>
 
-      <div className="flex flex-col bg-base-100 items-center p-8 py-4 rounded-box border border-primary sm:w-2/5">
-        <div className="flex flex-col gap-4 sm:w-2/3 items-center">
+      <div className="flex flex-col bg-base-100 items-center p-8 py-4 rounded-box border border-primary min-[820px]:w-2/5 lg:w-1/3">
+        <div className="flex flex-col gap-4 min-[820px]:w-2/3 items-center">
 
           {/* Username Input */}
           <InputTextAuth label="Username :" type={'text'} setterFunction={setUsername} />
@@ -65,7 +61,7 @@ function Signup() {
               <span className="label-text font-semibold mr-4">Accept CGU</span>
               <input
                 type="checkbox"
-                className="checkbox checkbox-sm checkbox-success"
+                className="checkbox checkbox-sm"
                 onChange={(e) => setIsCGUAccepted(e.target.checked ? true : false)}
               />
             </label>
@@ -83,7 +79,7 @@ function Signup() {
               isCGUAccepted,
               setCookie as (name: string, value: any, options?: any) => void, // Update the type of setCookie
               setIsVisible,
-              setErrorMessage
+              setToastMessage
             )}
           >
             Signup
@@ -99,7 +95,7 @@ function Signup() {
       </div>
 
       {/* Toast */}
-      {isVisible && <Toast message={errorMessage} />}
+      {isVisible && <Toast message={toastMessage} />}
     </div>
   );
 };

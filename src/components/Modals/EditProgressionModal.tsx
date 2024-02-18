@@ -1,38 +1,56 @@
 import React, { useEffect, useState } from 'react';
-import axiosInstance from "../../utils/axiosInstance";
 import { useParams } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
+
+// Import Components
+import Toast from "../CustomComponents/Toast";
+
+// Import utils
+import useToastDisplay from "../../hooks/useToastDisplay";
+import reloadPageTimeOut from "../../utils/reloadPageTimeOut";
+
 
 function EditProgressionModal() {
     const { id } = useParams();
+
+    // States
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const [toastMessage, setToastMessage] = useState('');
     const [status, setStatus] = useState<string>("");
     const [currentStatus, setCurrentStatus] = useState<string>("");
 
+    // Function to edit the progression
     async function editProgression(status: string, id: string | undefined) {
-        if (id) {
-            const res = await axiosInstance.patch(`/song/${id}`, {
-                status: status
-            })
-                .then((res) => {
-                    console.log(res.data);
-                    window.location.href = `/song/${id}`;
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
+        try {
+            const res = await axiosInstance.patch(`song/${id}`, { status: status });
+            if (res.status === 200) {
+                setIsVisible(true);
+                setToastMessage(res.data);
+                reloadPageTimeOut();
+            }
+        } catch (error) {
+            setIsVisible(true);
+            setToastMessage("An error occurred");
+            console.error(error);
+        };
     };
 
+    // UseEffect to get the current status of the song
     useEffect(() => {
-        if (id) {
-            axiosInstance.get(`song/${id}`)
-                .then((res) => {
-                    setCurrentStatus(res.data.status);
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
+        async function getCurrentStatus() {
+            try {
+                const res = await axiosInstance.get(`song/${id}`);
+                setCurrentStatus(res.data.status);
+            } catch (error) {
+                console.error(error);
+            };
+        };
+        getCurrentStatus();
     }, [status]);
+
+    // UseEffect to remove the Toast after 4 seconds
+    useToastDisplay(isVisible, setIsVisible);
+
 
     return (
         <dialog id="progression_modal" className="modal">
@@ -49,6 +67,7 @@ function EditProgressionModal() {
                 <button
                     onClick={() => editProgression(status, id)}
                     type="submit"
+                    disabled={status === "" || status === currentStatus}
                     className="btn btn-primary btn-md text-lg w-fit self-center"
                 >Save</button>
 
@@ -62,6 +81,9 @@ function EditProgressionModal() {
             <form method="dialog" className="modal-backdrop">
                 <button>close</button>
             </form>
+
+            {/* Toast */}
+            {isVisible && <Toast message={toastMessage} />}
         </dialog>
     );
 };

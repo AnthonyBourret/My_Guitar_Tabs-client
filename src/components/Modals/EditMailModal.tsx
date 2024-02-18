@@ -1,30 +1,50 @@
 import React, { useState } from 'react';
-import { useCookies } from "react-cookie";
 import * as EmailValidator from 'email-validator';
 import axiosInstance from "../../utils/axiosInstance";
 
-function EditMailModal({ userId }: { userId: number }) {
-    const [mail, setMail] = useState<string>("");
+// Import Components
+import Toast from "../CustomComponents/Toast";
 
+// Import utils
+import useToastDisplay from "../../hooks/useToastDisplay";
+import reloadPageTimeOut from "../../utils/reloadPageTimeOut";
+
+
+function EditMailModal({ userId }: { userId: number }) {
+
+    // States
+    const [mail, setMail] = useState<string>("");
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const [toastMessage, setToastMessage] = useState('');
+
+    // Function to update the mail
     async function updateMail() {
         if (mail === "") {
-            console.error("Field is empty !");
+            setIsVisible(true);
+            setToastMessage("Please enter a mail");
             return;
         }
         if (!EmailValidator.validate(mail)) {
-            console.error("Invalid mail !");
+            setIsVisible(true);
+            setToastMessage("Invalid mail !");
             return;
         }
         if (EmailValidator.validate(mail) && mail !== "") {
             try {
-                await axiosInstance.patch(`/user/${userId}`, { mail: mail });
-                console.log("Mail updated!");
-                window.location.href = "/profile";
+                const res = await axiosInstance.patch(`/user/${userId}`, { mail: mail });
+                setIsVisible(true);
+                setToastMessage(res.data);
+                reloadPageTimeOut();
             } catch (error) {
+                setIsVisible(true);
+                setToastMessage("An error occurred");
                 console.error(error);
             };
         }
     };
+
+    // UseEffect to remove the Toast after 4 seconds
+    useToastDisplay(isVisible, setIsVisible);
 
     return (
         <dialog id="mail_modal" className="modal">
@@ -54,6 +74,9 @@ function EditMailModal({ userId }: { userId: number }) {
             <form method="dialog" className="modal-backdrop">
                 <button>close</button>
             </form>
+
+            {/* Toast */}
+            {isVisible && <Toast message={toastMessage} />}
         </dialog>
     );
 };
