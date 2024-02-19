@@ -17,6 +17,13 @@ function EditPasswordModal({ userId }: { userId: number }) {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [toastMessage, setToastMessage] = useState('');
 
+    // Function to handle the Enter key
+    async function handleKey(e: React.KeyboardEvent) {
+        if (e.key === 'Enter') {
+            await updatePassword();
+        };
+    };
+
     // Function to update the password
     async function updatePassword() {
 
@@ -40,7 +47,7 @@ function EditPasswordModal({ userId }: { userId: number }) {
 
         if (password === confirmPassword) {
             try {
-                const res = await axiosInstance.patch(`/user/${userId}`, {
+                const res = await axiosInstance.patch(`/user/${userId}/password`, {
                     password: password,
                     passwordConfirm: confirmPassword,
                 });
@@ -69,6 +76,7 @@ function EditPasswordModal({ userId }: { userId: number }) {
                     type="password"
                     className="input input-sm input-bordered bg-neutral"
                     placeholder="..."
+                    onKeyDown={handleKey}
                 />
                 <h3 className="font-semibold text-lg">Confirm new password :</h3>
                 <input
@@ -76,6 +84,7 @@ function EditPasswordModal({ userId }: { userId: number }) {
                     type="password"
                     className="input input-sm input-bordered bg-neutral"
                     placeholder="..."
+                    onKeyDown={handleKey}
                 />
                 <button
                     onClick={() => { updatePassword() }}

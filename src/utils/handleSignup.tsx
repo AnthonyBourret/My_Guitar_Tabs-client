@@ -13,6 +13,11 @@ async function handleSignup(
     setToastMessage: React.Dispatch<React.SetStateAction<string>>,
 ) {
     // Check if the fields are filled & if the email is valid
+    if (username === '' && email === '' && password === '' && confirmedPassword === '' && isCGUAccepted === false) {
+        setToastMessage("Please, fill the inscription form.");
+        setIsVisible(true);
+        return;
+    };
     if (username === '') {
         setToastMessage("Please, enter a username.");
         setIsVisible(true);

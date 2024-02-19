@@ -8,6 +8,7 @@ function DeleteAccountModal({ userId }: { userId: number }) {
     const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
     const navigate = useNavigate();
 
+    // Function to delete the account
     async function deleteAccount(id: number) {
         try {
             const res = await axiosInstance.delete(`/user/${id}`);

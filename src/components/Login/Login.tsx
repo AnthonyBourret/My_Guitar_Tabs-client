@@ -26,6 +26,19 @@ function Login() {
   const [isVisible, setIsVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
 
+  // Function to handle the Enter key
+  async function handleKey(e: React.KeyboardEvent) {
+    if (e.key === 'Enter') {
+      await handleLogin(
+        username,
+        password,
+        setCookie as (name: string, value: any, options?: any) => void, // Update the type of setCookie
+        setIsVisible,
+        setToastMessage
+      );
+    };
+  };
+
   // UseEffect to remove the Toast after 4 seconds
   useToastDisplay(isVisible, setIsVisible);
 
@@ -41,10 +54,20 @@ function Login() {
         <div className="flex flex-col gap-6 items-center">
 
           {/* Username Input */}
-          <InputTextAuth label="Username :" type={'text'} setterFunction={setUsername} />
+          <InputTextAuth
+            label="Username :"
+            type={'text'}
+            setterFunction={setUsername}
+            handleKey={handleKey}
+          />
 
           {/* Password Input */}
-          <InputTextAuth label="Password :" type={'password'} setterFunction={setPassword} />
+          <InputTextAuth
+            label="Password :"
+            type={'password'}
+            setterFunction={setPassword}
+            handleKey={handleKey}
+          />
 
           {/* Login Button */}
           <button

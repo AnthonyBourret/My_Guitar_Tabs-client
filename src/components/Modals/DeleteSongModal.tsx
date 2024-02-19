@@ -6,6 +6,13 @@ function DeleteSongModal() {
     const { id } = useParams();
     const navigate = useNavigate();
 
+    // Function to handle the Enter key
+    async function handleKey(e: React.KeyboardEvent) {
+        if (e.key === 'Enter') {
+            await deleteSong();
+        };
+    };
+
     // Function to delete the song
     async function deleteSong() {
         try {
@@ -26,6 +33,7 @@ function DeleteSongModal() {
                     type="submit"
                     className="btn btn-primary btn-md text-lg w-fit self-center"
                     onClick={deleteSong}
+                    onKeyDown={handleKey}
                 >
                     Delete
                 </button>

@@ -20,6 +20,14 @@ function EditUsernameModal({ userId }: { userId: number }) {
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         setNewUsername(e.target.value);
     };
+
+    // Function to handle the Enter key
+    async function handleKey(e: React.KeyboardEvent, id: number) {
+        if (e.key === 'Enter') {
+            await handleSubmit(id);
+        };
+    };
+
     // Function to send the new username to the server
     async function handleSubmit(id: number) {
         // If the input is empty, display a Toast and return
@@ -55,6 +63,7 @@ function EditUsernameModal({ userId }: { userId: number }) {
                     className="input input-sm input-bordered bg-neutral"
                     placeholder="New username"
                     onChange={handleChange}
+                    onKeyDown={(e) => handleKey(e, userId)}
                 />
                 <button
                     type="submit"

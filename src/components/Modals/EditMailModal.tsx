@@ -9,7 +9,6 @@ import Toast from "../CustomComponents/Toast";
 import useToastDisplay from "../../hooks/useToastDisplay";
 import reloadPageTimeOut from "../../utils/reloadPageTimeOut";
 
-
 function EditMailModal({ userId }: { userId: number }) {
 
     // States
@@ -17,18 +16,25 @@ function EditMailModal({ userId }: { userId: number }) {
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [toastMessage, setToastMessage] = useState('');
 
+    // Function to handle the Enter key
+    async function handleKey(e: React.KeyboardEvent) {
+        if (e.key === 'Enter') {
+            await updateMail();
+        };
+    };
+
     // Function to update the mail
     async function updateMail() {
         if (mail === "") {
             setIsVisible(true);
             setToastMessage("Please enter a mail");
             return;
-        }
+        };
         if (!EmailValidator.validate(mail)) {
             setIsVisible(true);
             setToastMessage("Invalid mail !");
             return;
-        }
+        };
         if (EmailValidator.validate(mail) && mail !== "") {
             try {
                 const res = await axiosInstance.patch(`/user/${userId}`, { mail: mail });
@@ -40,7 +46,7 @@ function EditMailModal({ userId }: { userId: number }) {
                 setToastMessage("An error occurred");
                 console.error(error);
             };
-        }
+        };
     };
 
     // UseEffect to remove the Toast after 4 seconds
@@ -55,6 +61,7 @@ function EditMailModal({ userId }: { userId: number }) {
                     type="text"
                     className="input input-sm input-bordered bg-neutral"
                     placeholder="New mail"
+                    onKeyDown={handleKey}
                 />
                 <button
                     onClick={() => { updateMail() }}

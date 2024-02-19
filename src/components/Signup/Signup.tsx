@@ -29,6 +29,23 @@ function Signup() {
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string>('');
 
+
+  // Function to handle the Enter key
+  async function handleKey(e: React.KeyboardEvent) {
+    if (e.key === 'Enter') {
+      await handleSignup(
+        username,
+        email,
+        password,
+        confirmedPassword,
+        isCGUAccepted,
+        setCookie as (name: string, value: any, options?: any) => void, // Update the type of setCookie
+        setIsVisible,
+        setToastMessage
+      );
+    };
+  };
+
   // UseEffect to remove the Toast after 4 seconds
   useToastDisplay(isVisible, setIsVisible);
 
@@ -44,16 +61,36 @@ function Signup() {
         <div className="flex flex-col gap-4 min-[820px]:w-2/3 items-center">
 
           {/* Username Input */}
-          <InputTextAuth label="Username :" type={'text'} setterFunction={setUsername} />
+          <InputTextAuth
+            label="Username :"
+            type={'text'}
+            setterFunction={setUsername}
+            handleKey={handleKey}
+          />
 
           {/* Email Input */}
-          <InputTextAuth label="Email :" type={'email'} setterFunction={setEmail} />
+          <InputTextAuth
+            label="Email :"
+            type={'email'}
+            setterFunction={setEmail}
+            handleKey={handleKey}
+          />
 
           {/* Password Input */}
-          <InputTextAuth label="Password :" type={'password'} setterFunction={setPassword} />
+          <InputTextAuth
+            label="Password :"
+            type={'password'}
+            setterFunction={setPassword}
+            handleKey={handleKey}
+          />
 
           {/* Confirm Password Input */}
-          <InputTextAuth label="Confirm Password :" type={'password'} setterFunction={setConfirmedPassword} />
+          <InputTextAuth
+            label="Confirm Password :"
+            type={'password'}
+            setterFunction={setConfirmedPassword}
+            handleKey={handleKey}
+          />
 
           {/* Accept CGU Checkbox*/}
           <div className="form-control sm:self-center">
