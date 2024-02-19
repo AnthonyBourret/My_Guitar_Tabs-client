@@ -43,7 +43,7 @@ function App() {
 
       {/* Add a song page */}
       <Route path="/add-a-song" element={cookies.userInfo
-        ? <AddSong />
+        ? <AddSong userId={userId} />
         : <Login />} />
 
       {/* Edit a song page */}

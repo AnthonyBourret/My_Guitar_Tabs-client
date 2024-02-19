@@ -27,7 +27,7 @@ export const capoOptions = [
 ];
 
 export const styleOptions = [
-    "BLues",
+    "Blues",
     "Classical",
     "Country",
     "Death Metal",

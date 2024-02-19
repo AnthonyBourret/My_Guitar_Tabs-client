@@ -1,12 +1,24 @@
 import React from 'react';
 
-function TextAreaInput({ label, placeholder }: { label: string, placeholder: string }) {
+interface Props {
+    label: string,
+    inputName: string,
+    placeholder: string,
+};
+
+function TextAreaInput({ label, inputName, placeholder }: Props) {
     return (
         <label className="form-control w-full">
             <div className="label">
                 <span className="label-text text-base font-semibold">{label}</span>
             </div>
-            <textarea className="textarea textarea-bordered h-24 bg-neutral" placeholder={placeholder}></textarea>
+            <textarea
+                name={inputName}
+                defaultValue=""
+                className="textarea textarea-bordered h-24 bg-neutral"
+                placeholder={placeholder}
+            >
+            </textarea>
         </label>
     );
 };

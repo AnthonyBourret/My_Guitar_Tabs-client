@@ -5,7 +5,7 @@ import {
     styleOptions,
     capoOptions,
     tuningOptions
-} from "../../utils/inputValues";
+} from "../../utils/InputValues";
 
 function FilterDesktop() {
     return (
@@ -18,8 +18,8 @@ function FilterDesktop() {
                     <div className="label">
                         <span className="label-text font-semibold">Difficulty</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral">
-                        <option disabled selected defaultValue={"none"}>Pick one</option>
+                    <select className="select select-sm select-bordered bg-neutral" defaultValue="Pick One">
+                        <option disabled>Pick one</option>
                         {difficultyOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
@@ -32,8 +32,8 @@ function FilterDesktop() {
                     <div className="label">
                         <span className="label-text font-semibold">Progression</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral">
-                        <option disabled selected defaultValue={"none"}>Pick one</option>
+                    <select className="select select-sm select-bordered bg-neutral" defaultValue="Pick One">
+                        <option disabled>Pick one</option>
                         {progressionOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
@@ -46,8 +46,8 @@ function FilterDesktop() {
                     <div className="label">
                         <span className="label-text font-semibold">Style</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral">
-                        <option disabled selected defaultValue={"none"}>Pick one</option>
+                    <select className="select select-sm select-bordered bg-neutral" defaultValue="Pick One">
+                        <option disabled>Pick one</option>
                         {/* Todo => .map on the fetched data to display the different styles */}
                         {styleOptions.map((option, index) =>
                             <option key={index}>
@@ -61,8 +61,8 @@ function FilterDesktop() {
                     <div className="label">
                         <span className="label-text font-semibold">Tuning</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral">
-                        <option disabled selected defaultValue={"none"}>Pick one</option>
+                    <select className="select select-sm select-bordered bg-neutral" defaultValue="Pick One">
+                        <option disabled>Pick one</option>
                         {/* Todo => .map on the fetched data to display the different tunings */}
                         {tuningOptions.map((option, index) =>
                             <option key={index}>
@@ -76,8 +76,8 @@ function FilterDesktop() {
                     <div className="label">
                         <span className="label-text font-semibold">Capo</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral">
-                        <option disabled selected defaultValue={"none"}>Pick one</option>
+                    <select className="select select-sm select-bordered bg-neutral" defaultValue="Pick One">
+                        <option disabled>Pick one</option>
                         {capoOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
