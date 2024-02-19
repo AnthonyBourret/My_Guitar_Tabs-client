@@ -1,9 +1,13 @@
 import React from 'react';
+
+// Import Components
 import Header from '../Header/Header';
 import TextInput from "../CustomComponents/TextInput";
 import SelectInput from "../CustomComponents/SelectInput";
 import TextAreaInput from "../CustomComponents/TextAreaInput";
 import BadgeStyle from "../CustomComponents/BadgeStyle";
+
+// Import options used in SelectInput
 import {
   difficultyOptions,
   progressionOptions,
@@ -36,8 +40,8 @@ function AddSong() {
           <div className="flex flex-col gap-4 items-center sm:w-[40%]">
             <SelectInput label="Style" disabledText="Chose a style - 2 max" options={styleOptions} />
             <div className="flex gap-4">
-              <BadgeStyle style="Pop" />
-              <BadgeStyle style="Rock" />
+              <BadgeStyle style="Pop" color="white" />
+              <BadgeStyle style="Rock" color="white" />
             </div>
           </div>
         </div>
@@ -65,7 +69,6 @@ function AddSong() {
 
         {/* Submit button */}
         <button type="submit" className="btn btn-base w-fit my-4 m-auto btn-primary">Add song to my tabs</button>
-
       </div>
     </div>
   );

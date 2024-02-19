@@ -19,7 +19,7 @@ function SongCard({
                     <h1 className="text-xl self-start font-semibold min-[820px]:text-2xl mr-4 min-[820px]:mr-6">{capitalize(title)}</h1>
                     <div className="relative">
                         {status === "In progress" && <IconInProgress />}
-                        {status === "To Learn" && <IconToLearn />}
+                        {status === "To learn" && <IconToLearn />}
                         {status === "Learned" && <IconLearned />}
                     </div>
                 </div>

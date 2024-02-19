@@ -1,19 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axiosInstance from "../../utils/axiosInstance";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 function DeleteSongModal() {
-
     const { id } = useParams();
-    function deleteSong() {
-        axiosInstance.delete(`song/${id}`)
-            .then(() => {
-                window.location.href = "/";
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+    const navigate = useNavigate();
+
+    // Function to handle the Enter key
+    async function handleKey(e: React.KeyboardEvent) {
+        if (e.key === 'Enter') {
+            await deleteSong();
+        };
+    };
+
+    // Function to delete the song
+    async function deleteSong() {
+        try {
+            const res = await axiosInstance.delete(`/song/${id}`);
+            if (res.status === 200) {
+                navigate("/");
+            }
+        } catch (error) {
+            console.error(error);
+        };
     }
+
     return (
         <dialog id="delete_modal" className="modal">
             <div className="modal-box flex flex-col gap-8 pb-0 pt-12 border border-primary min-[440px]:w-3/5 sm:w-2/5 sm:px-10">
@@ -22,6 +33,7 @@ function DeleteSongModal() {
                     type="submit"
                     className="btn btn-primary btn-md text-lg w-fit self-center"
                     onClick={deleteSong}
+                    onKeyDown={handleKey}
                 >
                     Delete
                 </button>

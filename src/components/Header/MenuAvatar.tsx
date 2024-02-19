@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
-import capitalize from "../../utils/capitalizeFirstLetter";
 
 function MenuAvatar() {
 
@@ -17,7 +16,7 @@ function MenuAvatar() {
                 </div>
             </div>
             <Link to="/profile">
-                <div className="text-lg font-semibold px-4">{capitalize(userName)}</div>
+                <div className="text-lg font-semibold px-4">{userName}</div>
             </Link>
         </div>
     );
