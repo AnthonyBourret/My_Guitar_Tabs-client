@@ -3,23 +3,41 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from "../../utils/axiosInstance";
 
+// Components
+import Toast from "../CustomComponents/Toast";
+
+// Hooks
+import useToastDisplay from "../../hooks/useToastDisplay";
+
 function DeleteAccountModal({ userId }: { userId: number }) {
 
     const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
     const navigate = useNavigate();
+
+    // States
+    const [isVisible, setIsVisible] = React.useState<boolean>(false);
+    const [toastMessage, setToastMessage] = React.useState<string>("");
 
     // Function to delete the account
     async function deleteAccount(id: number) {
         try {
             const res = await axiosInstance.delete(`/user/${id}`);
             if (res.status === 200) {
-                removeCookie('userInfo');
-                navigate("/");
-            }
+                setToastMessage(res.data);
+                setIsVisible(true);
+                setTimeout(() => {
+                    removeCookie('userInfo', { path: '/' });
+                    navigate("/");
+                }, 2500);
+            };
         } catch (error) {
             console.error(error);
         };
     };
+
+    // useEffect to display the toast
+    useToastDisplay(isVisible, setIsVisible);
+
     return (
         <dialog id="delete_modal" className="modal">
             <div className="modal-box flex flex-col gap-8 pb-0 pt-12 border border-primary min-[440px]:w-3/5 sm:w-2/5 sm:px-10">
@@ -42,6 +60,7 @@ function DeleteAccountModal({ userId }: { userId: number }) {
             <form method="dialog" className="modal-backdrop">
                 <button>close</button>
             </form>
+            {isVisible && <Toast message={toastMessage} />}
         </dialog>
     );
 };

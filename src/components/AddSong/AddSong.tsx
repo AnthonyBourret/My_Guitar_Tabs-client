@@ -49,9 +49,11 @@ function AddSong({ userId }: { userId: number }) {
 
     const res = await axiosInstance.post(`/user/${userId}/add`, data);
     if (res.status === 200) {
-      setToastMessage('res.data.message');
+      setToastMessage(res.data);
       setIsVisible(true);
-      navigate(`/`);
+      setTimeout(() => {
+        navigate(`/`);
+      }, 2500);
     } else {
       setToastMessage('An error occured, please try again');
       setIsVisible(true);
@@ -71,6 +73,7 @@ function AddSong({ userId }: { userId: number }) {
         <div className="w-full">
           <h1 className="text-2xl font-semibold self-start">Add a new song</h1>
           <div className="divider mb-0"></div>
+          <div className="text-xs">All fields with * are required</div>
         </div>
 
         {/* Song title & artist div */}
@@ -81,27 +84,27 @@ function AddSong({ userId }: { userId: number }) {
           <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:mb-8">
             <div className="flex flex-col gap-6 sm:w-[40%]">
               <TextInput
-                label="Song Title"
+                label="Song Title *"
                 inputName="title"
                 placeholder="Type the song title here"
               />
               <TextInput
-                label="Artist"
+                label="Artist *"
                 inputName="artist"
                 placeholder="Artist/Band name"
               />
             </div>
 
             {/* Style div */}
-            <div className="flex flex-col gap-4 items-center sm:w-[40%]">
+            <div className="flex flex-col gap-6 items-center sm:w-[40%]">
               <SelectInputId
-                label="First style"
+                label="First style *"
                 inputName="firstStyle_id"
                 disabledText="Choose a style"
                 options={styleOptions}
               />
               <SelectInputId
-                label="Second style (optionnal)"
+                label="Second style"
                 inputName="secondStyle_id"
                 disabledText="Choose another style"
                 options={styleOptions}
@@ -113,13 +116,13 @@ function AddSong({ userId }: { userId: number }) {
           <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:mb-8">
             <div className="flex flex-col gap-6 sm:w-[40%] items-center">
               <SelectInputId
-                label="Tuning"
+                label="Tuning *"
                 inputName="tuning_id"
                 disabledText="Pick a Tuning"
                 options={tuningOptions}
               />
               <SelectInputValue
-                label="Capo"
+                label="Capo *"
                 inputName="capo"
                 disabledText="Select a fret number"
                 options={capoOptions}
@@ -129,13 +132,13 @@ function AddSong({ userId }: { userId: number }) {
             {/* Difficulty & Progression div */}
             <div className="flex flex-col gap-6 sm:w-[40%]">
               <SelectInputValue
-                label="Difficulty"
+                label="Difficulty *"
                 inputName="difficulty"
                 disabledText="Chose a difficulty"
                 options={difficultyOptions}
               />
               <SelectInputValue
-                label="Progression"
+                label="Progression *"
                 inputName="status"
                 disabledText="Pick one"
                 options={progressionOptions}
@@ -146,7 +149,7 @@ function AddSong({ userId }: { userId: number }) {
           {/* Tab & Lyrics Link div */}
           <div className="flex flex-col gap-6">
             <TextInput
-              label="Tab Link"
+              label="Tab Link *"
               inputName="tab_link"
               placeholder="Copy/Paste the link to your tab"
             />

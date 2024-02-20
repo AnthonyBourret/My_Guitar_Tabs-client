@@ -1,10 +1,20 @@
 import React, { useState } from 'react';
-import axiosInstance from "../../utils/axiosInstance";
 import { useParams, useNavigate } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
+
+// Components
+import Toast from "../CustomComponents/Toast";
+
+// Hookes 
+import useToastDisplay from "../../hooks/useToastDisplay";
 
 function DeleteSongModal() {
     const { id } = useParams();
     const navigate = useNavigate();
+
+    // States
+    const [isVisible, setIsVisible] = useState<boolean>(false);
+    const [toastMessage, setToastMessage] = useState<string>("");
 
     // Function to handle the Enter key
     async function handleKey(e: React.KeyboardEvent) {
@@ -18,12 +28,19 @@ function DeleteSongModal() {
         try {
             const res = await axiosInstance.delete(`/song/${id}`);
             if (res.status === 200) {
-                navigate("/");
-            }
+                setToastMessage(res.data);
+                setIsVisible(true);
+                setTimeout(() => {
+                    navigate("/");
+                }, 2500);
+            };
         } catch (error) {
             console.error(error);
         };
-    }
+    };
+
+    // UseEffect to display the toast
+    useToastDisplay(isVisible, setIsVisible);
 
     return (
         <dialog id="delete_modal" className="modal">
@@ -48,6 +65,9 @@ function DeleteSongModal() {
             <form method="dialog" className="modal-backdrop">
                 <button>close</button>
             </form>
+
+            {/* Toast */}
+            {isVisible && <Toast message={toastMessage} />}
         </dialog>
     );
 };
