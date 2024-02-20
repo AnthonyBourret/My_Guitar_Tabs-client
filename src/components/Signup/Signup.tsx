@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCookies } from "react-cookie";
+import * as EmailValidator from 'email-validator';
+import axiosInstance from "../../utils/axiosInstance";
+
 
 // Import Components
-import InputTextAuth from "../CustomComponents/InputTextAuth";
+import InputTextSignup from "../CustomComponents/InputTextSignup";
 import Toast from "../CustomComponents/Toast";
 
 // Import Hooks
@@ -12,37 +15,54 @@ import useToastDisplay from "../../hooks/useToastDisplay";
 // Import SVG
 import Logo from '../../svg/Logo';
 
-// Import Function
-import handleSignup from "../../utils/handleSignup";
-
-
 function Signup() {
 
   const [cookies, setCookie, removeCookie] = useCookies(['userInfo']);
 
   // States
-  const [username, setUsername] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmedPassword, setConfirmedPassword] = useState<string>('');
+  const [data, setData] = useState();
   const [isCGUAccepted, setIsCGUAccepted] = useState<boolean>(false);
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const [toastMessage, setToastMessage] = useState<string>('');
 
-
-  // Function to handle the Enter key
-  async function handleKey(e: React.KeyboardEvent) {
-    if (e.key === 'Enter') {
-      await handleSignup(
-        username,
-        email,
-        password,
-        confirmedPassword,
-        isCGUAccepted,
-        setCookie as (name: string, value: any, options?: any) => void, // Update the type of setCookie
-        setIsVisible,
-        setToastMessage
-      );
+  async function handleSignup(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    // Check if all the required fields are filled
+    if (data.username === '' || data.mail === '' || data.password === '' || data.confirmedPassword === '') {
+      setToastMessage('Please fill all the required fields');
+      setIsVisible(true);
+      return;
+    };
+    // Check if the email is valid
+    if (!EmailValidator.validate(formData.get('mail') as string)) {
+      setToastMessage('Please enter a valid email');
+      setIsVisible(true);
+      return;
+    };
+    // Check if the two passwords are the same
+    if (data.password !== data.passwordConfirm) {
+      setToastMessage('Passwords do not match');
+      setIsVisible(true);
+      return;
+    };
+    // Check if the CGU are accepted
+    if (!isCGUAccepted) {
+      setToastMessage('Please accept the CGU');
+      setIsVisible(true);
+      return;
+    };
+    const res = await axiosInstance.post('/signup', data);
+    if (res.status === 200) {
+      setCookie('userInfo', res.data, { path: '/' });
+      setToastMessage('Account created !');
+      setIsVisible(true);
+    } else {
+      setToastMessage('An error occured, please try again');
+      setIsVisible(true);
+      return;
     };
   };
 
@@ -58,38 +78,31 @@ function Signup() {
       </div>
 
       <div className="flex flex-col bg-base-100 items-center p-8 py-4 rounded-box border border-primary min-[820px]:w-2/5 lg:w-1/3">
-        <div className="flex flex-col gap-4 min-[820px]:w-2/3 items-center">
-
-          {/* Username Input */}
-          <InputTextAuth
+        <h1 className="text-xl font-semibold mb-6">Create an account</h1>
+        {/* Signup Form */}
+        <form
+          onSubmit={handleSignup}
+          className="flex flex-col gap-4 min-[820px]:w-2/3 items-center"
+        >
+          <InputTextSignup
             label="Username :"
             type={'text'}
-            setterFunction={setUsername}
-            handleKey={handleKey}
+            inputName="username"
           />
-
-          {/* Email Input */}
-          <InputTextAuth
+          <InputTextSignup
             label="Email :"
             type={'email'}
-            setterFunction={setEmail}
-            handleKey={handleKey}
+            inputName="mail"
           />
-
-          {/* Password Input */}
-          <InputTextAuth
+          <InputTextSignup
             label="Password :"
             type={'password'}
-            setterFunction={setPassword}
-            handleKey={handleKey}
+            inputName="password"
           />
-
-          {/* Confirm Password Input */}
-          <InputTextAuth
+          <InputTextSignup
             label="Confirm Password :"
             type={'password'}
-            setterFunction={setConfirmedPassword}
-            handleKey={handleKey}
+            inputName="passwordConfirm"
           />
 
           {/* Accept CGU Checkbox*/}
@@ -108,20 +121,10 @@ function Signup() {
           <button
             className="btn btn-primary btn-sm px-4 text-base sm:my-2"
             type="submit"
-            onClick={() => handleSignup(
-              username,
-              email,
-              password,
-              confirmedPassword,
-              isCGUAccepted,
-              setCookie as (name: string, value: any, options?: any) => void, // Update the type of setCookie
-              setIsVisible,
-              setToastMessage
-            )}
           >
             Signup
           </button>
-        </div>
+        </form>
       </div>
 
       {/* Legal Mentions Link*/}
