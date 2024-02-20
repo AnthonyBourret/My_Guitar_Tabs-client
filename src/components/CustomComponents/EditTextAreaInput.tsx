@@ -3,23 +3,24 @@ import React from 'react';
 interface Props {
     label: string,
     inputName: string,
-    placeholder: string,
+    value: string,
 };
 
-function TextInput({ label, inputName, placeholder }: Props) {
+function EditTextAreaInput({ label, inputName, value }: Props) {
     return (
         <label className="form-control w-full">
             <div className="label">
                 <span className="label-text text-base font-semibold">{label}</span>
             </div>
-            <input
-                type="text"
+            <textarea
                 name={inputName}
-                placeholder={placeholder}
-                className="input input-sm input-bordered w-full bg-neutral"
-            />
+                defaultValue={value}
+                className="textarea textarea-bordered h-24 bg-neutral"
+                placeholder={value}
+            >
+            </textarea>
         </label>
     );
 };
 
-export default TextInput;
+export default EditTextAreaInput;

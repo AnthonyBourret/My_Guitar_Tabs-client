@@ -3,10 +3,10 @@ import React from 'react';
 interface Props {
     label: string,
     inputName: string,
-    placeholder: string,
+    value: string,
 };
 
-function TextInput({ label, inputName, placeholder }: Props) {
+function EditTextInput({ label, inputName, value }: Props) {
     return (
         <label className="form-control w-full">
             <div className="label">
@@ -15,11 +15,12 @@ function TextInput({ label, inputName, placeholder }: Props) {
             <input
                 type="text"
                 name={inputName}
-                placeholder={placeholder}
+                defaultValue={value}
+                placeholder={value}
                 className="input input-sm input-bordered w-full bg-neutral"
             />
         </label>
     );
 };
 
-export default TextInput;
+export default EditTextInput;
