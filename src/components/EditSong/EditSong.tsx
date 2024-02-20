@@ -7,11 +7,15 @@ import Header from '../Header/Header';
 import EditTextInput from "../CustomComponents/EditTextInput";
 import EditSelectInputValue from "../CustomComponents/EditSelectInputValue";
 import EditSelectInputId from "../CustomComponents/EditSelectInputId";
+import EditSelectStyleInput from "../CustomComponents/EditSelectStyleInput";
 import SelectInputId from "../CustomComponents/SelectInputId";
 import EditTextAreaInput from "../CustomComponents/EditTextAreaInput";
 import Toast from "../CustomComponents/Toast";
 // Components to delete style => not used yet, for a V2
 // import BadgeStyleEdit from "../CustomComponents/BadgeStyleEdit";
+
+// Import SVG
+import IconDelete from "../../svg/IconDelete";
 
 // Import Fetch hook
 import useFetch from "../../hooks/useFetch";
@@ -140,7 +144,7 @@ function EditSong() {
 
                 {song.Styles[1]
                   ? (
-                    <EditSelectInputId
+                    <EditSelectStyleInput
                       label="Second style"
                       inputName="secondStyle_id"
                       value={song.Styles[1].id}
