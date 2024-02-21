@@ -7,7 +7,17 @@ import {
     tuningOptions
 } from "../../utils/InputValues";
 
-function FilterDesktop() {
+interface Props {
+    setFilterDifficulty: React.Dispatch<React.SetStateAction<string | undefined>>;
+}
+
+function FilterDesktop({ setFilterDifficulty }: Props) {
+
+    function handleChangeDifficulty(e: React.ChangeEvent<HTMLSelectElement>) {
+        setFilterDifficulty(e.target.value)
+    };
+
+
     return (
         <div className="hidden sm:flex flex-col rounded-box w-64 gap-4 bg-base-100 p-4 border border-primary">
             <h2 className="font-semibold">Show songs by :</h2>
@@ -18,7 +28,7 @@ function FilterDesktop() {
                     <div className="label">
                         <span className="label-text font-semibold">Difficulty</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral" defaultValue="">
+                    <select className="select select-sm select-bordered bg-neutral" defaultValue="" onChange={handleChangeDifficulty}>
                         <option disabled value="">Pick One</option>
                         {difficultyOptions.map((option: string, index: number) =>
                             <option key={index} value={option}>

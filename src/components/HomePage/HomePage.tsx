@@ -14,6 +14,7 @@ import NewUserMessage from "./NewUserMessage";
 
 // Import Types
 import { SongProps } from "../../types/types";
+import { SongPageProps } from "../../types/types";
 
 
 function HomePage({ userId }: { userId: number }) {
@@ -23,6 +24,11 @@ function HomePage({ userId }: { userId: number }) {
   // State to set songs
   const [songs, setSongs] = useState([]);
 
+  // States to filter the songs
+  const [filterDifficulty, setFilterDifficulty] = useState<string>("");
+  const [filterStatus, setFilterStatus] = useState<string>("");
+  const [filteredArray, setFilteredArray] = useState([] || undefined);
+
   // When the data is fetched, set the songs
   useEffect(() => {
     if (data && userId) {
@@ -30,8 +36,20 @@ function HomePage({ userId }: { userId: number }) {
     }
   }, [songs, data, isLoading]);
 
+  useEffect(() => {
+    if (filterDifficulty) {
+      setFilteredArray([...songs].filter((song: SongPageProps) => song.difficulty.includes(filterDifficulty)));
+    }
+    else {
+      setFilteredArray(songs);
+    }
+  }, [filterDifficulty, songs]);
+
   // If there is an error, return null
   if (error) return null;
+  console.log(filterDifficulty);
+  console.log(songs);
+
 
   return (
     <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
@@ -42,7 +60,9 @@ function HomePage({ userId }: { userId: number }) {
           {songs.length != 0 &&
             <>
               <AvatarDesktop />
-              <FilterDesktop />
+              <FilterDesktop
+                setFilterDifficulty={setFilterDifficulty as React.Dispatch<React.SetStateAction<undefined | string>>}
+              />
               <FilterMobile />
             </>
           }
@@ -54,7 +74,7 @@ function HomePage({ userId }: { userId: number }) {
 
           {/* If the user has at least one song, display the songs list */}
           {songs.length != 0
-            ? songs.map((song: SongProps) => (
+            ? filteredArray.map((song: SongProps) => (
               <SongCard
                 key={song.id}
                 id={song.id}
