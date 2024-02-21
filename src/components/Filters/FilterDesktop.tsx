@@ -18,10 +18,10 @@ function FilterDesktop() {
                     <div className="label">
                         <span className="label-text font-semibold">Difficulty</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral" defaultValue="Pick One">
-                        <option disabled>Pick one</option>
-                        {difficultyOptions.map((option, index) =>
-                            <option key={index}>
+                    <select className="select select-sm select-bordered bg-neutral" defaultValue="">
+                        <option disabled value="">Pick One</option>
+                        {difficultyOptions.map((option: string, index: number) =>
+                            <option key={index} value={option}>
                                 {option}
                             </option>)}
                     </select>
@@ -32,10 +32,10 @@ function FilterDesktop() {
                     <div className="label">
                         <span className="label-text font-semibold">Progression</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral" defaultValue="Pick One">
-                        <option disabled>Pick one</option>
-                        {progressionOptions.map((option, index) =>
-                            <option key={index}>
+                    <select className="select select-sm select-bordered bg-neutral" defaultValue="">
+                        <option disabled value="">Pick one</option>
+                        {progressionOptions.map((option: string, index: number) =>
+                            <option key={index} value={option}>
                                 {option}
                             </option>)}
                     </select>
@@ -46,11 +46,10 @@ function FilterDesktop() {
                     <div className="label">
                         <span className="label-text font-semibold">Style</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral" defaultValue="Pick One">
-                        <option disabled>Pick one</option>
-                        {/* Todo => .map on the fetched data to display the different styles */}
-                        {styleOptions.map((option, index) =>
-                            <option key={index}>
+                    <select className="select select-sm select-bordered bg-neutral" defaultValue="">
+                        <option disabled value="">Pick one</option>
+                        {styleOptions.map((option: string, index: number) =>
+                            <option key={index} value={option}>
                                 {option}
                             </option>)}
                     </select>
@@ -61,11 +60,10 @@ function FilterDesktop() {
                     <div className="label">
                         <span className="label-text font-semibold">Tuning</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral" defaultValue="Pick One">
-                        <option disabled>Pick one</option>
-                        {/* Todo => .map on the fetched data to display the different tunings */}
-                        {tuningOptions.map((option, index) =>
-                            <option key={index}>
+                    <select className="select select-sm select-bordered bg-neutral" defaultValue="">
+                        <option disabled value="">Pick one</option>
+                        {tuningOptions.map((option: string, index: number) =>
+                            <option key={index} value={option}>
                                 {option}
                             </option>)}
                     </select>
@@ -76,10 +74,10 @@ function FilterDesktop() {
                     <div className="label">
                         <span className="label-text font-semibold">Capo</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral" defaultValue="Pick One">
-                        <option disabled>Pick one</option>
-                        {capoOptions.map((option, index) =>
-                            <option key={index}>
+                    <select className="select select-sm select-bordered bg-neutral" defaultValue="">
+                        <option disabled value="">Fret number</option>
+                        {capoOptions.map((option: string, index: number) =>
+                            <option key={index} value={option}>
                                 {option}
                             </option>)}
                     </select>

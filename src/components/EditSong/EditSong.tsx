@@ -62,19 +62,26 @@ function EditSong() {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    if (!data.title
-      || !data.artist
-      || !data.tuning_id
-      || !data.capo
-      || !data.difficulty
-      || !data.status
-      || !data.firstStyle_id
-      || !data.tab_link
+    if (data.firstStyle_id === data.secondStyle_id) {
+      setToastMessage("Please choose two different styles");
+      setIsVisible(true);
+      return;
+    };
+
+    if (data.title === ""
+      || data.artist === ""
+      || data.tuning_id === ""
+      || data.capo === ""
+      || data.difficulty === ""
+      || data.status === ""
+      || data.firstStyle_id === ""
+      || data.tab_link === ""
     ) {
       setToastMessage("Please fill all the required fields");
       setIsVisible(true);
       return;
     };
+
     //Request for the song update
     const resSong = await axiosInstance.patch(`/song/${id}`, {
       title: data.title,
@@ -91,19 +98,19 @@ function EditSong() {
     const resStyle = await axiosInstance.put(`/song/${id}/styles`, {
       firstStyle_id: data.firstStyle_id,
       secondStyle_id: data.secondStyle_id
-    })
+    });
     if (resSong.status === 200 && resStyle.status === 200) {
       setToastMessage("Song updated successfully");
       setIsVisible(true);
       setTimeout(() => {
         window.location.href = `/song/${id}`;
       }, 2500);
-    }
+    };
     if (resSong.status !== 200 || resStyle.status !== 200) {
       setToastMessage("An error occured, please try again later");
       setIsVisible(true);
-    }
-  }
+    };
+  };
 
   // UseEffect to display the toast when the song is updated
   useToastDisplay(isVisible, setIsVisible);
@@ -147,7 +154,7 @@ function EditSong() {
                   label="First style *"
                   inputName="firstStyle_id"
                   value={song.Styles[0].id}
-                  disabledText={song.Styles[0].name}
+                  defaultText={song.Styles[0].name}
                   options={styleOptions}
                 />
 
@@ -170,7 +177,6 @@ function EditSong() {
                       label="Second style"
                       inputName="secondStyle_id"
                       options={styleOptions}
-                      disabledText="No style selected yet"
                     />)
                 }
               </div>
@@ -183,7 +189,7 @@ function EditSong() {
                   label="Tuning *"
                   inputName="tuning_id"
                   value={song.Tuning.id}
-                  disabledText={song.Tuning.strings}
+                  defaultText={song.Tuning.strings}
                   options={tuningOptions}
                 />
                 <EditSelectInputValue
