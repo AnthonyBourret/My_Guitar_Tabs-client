@@ -61,6 +61,20 @@ function EditSong() {
     const form = e.currentTarget as HTMLFormElement;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
+
+    if (!data.title
+      || !data.artist
+      || !data.tuning_id
+      || !data.capo
+      || !data.difficulty
+      || !data.status
+      || !data.firstStyle_id
+      || !data.tab_link
+    ) {
+      setToastMessage("Please fill all the required fields");
+      setIsVisible(true);
+      return;
+    };
     //Request for the song update
     const resSong = await axiosInstance.patch(`/song/${id}`, {
       title: data.title,
