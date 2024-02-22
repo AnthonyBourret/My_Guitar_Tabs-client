@@ -3,6 +3,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 // Import Components
 import Toast from "../CustomComponents/Toast";
+import LoadingDots from "../Loaders/LoadingDots";
 
 // Import utils
 import useToastDisplay from "../../hooks/useToastDisplay";
@@ -15,7 +16,7 @@ function EditPasswordModal({ userId }: { userId: number }) {
     const [password, setPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    const [toastMessage, setToastMessage] = useState('');
+    const [toastMessage, setToastMessage] = useState<string | React.JSX.Element>('');
 
     // Function to handle the Enter key
     async function handleKey(e: React.KeyboardEvent) {
@@ -52,13 +53,14 @@ function EditPasswordModal({ userId }: { userId: number }) {
                     passwordConfirm: confirmPassword,
                 });
                 if (res.status === 200) {
-                    setToastMessage("Password updated");
                     setIsVisible(true);
+                    setToastMessage(<LoadingDots />);
+                    setTimeout(() => { setToastMessage("Password updated") }, 1500);
                     reloadPageTimeOut();
                 }
             } catch (error) {
-                setToastMessage("An error has occurred");
                 setIsVisible(true);
+                setToastMessage("An error has occurred");
                 reloadPageTimeOut();
             }
         }

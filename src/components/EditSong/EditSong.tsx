@@ -11,18 +11,14 @@ import EditSelectStyleInput from "../CustomComponents/EditSelectStyleInput";
 import SelectInputId from "../CustomComponents/SelectInputId";
 import EditTextAreaInput from "../CustomComponents/EditTextAreaInput";
 import Toast from "../CustomComponents/Toast";
-// Components to delete style => not used yet, for a V2
-// import BadgeStyleEdit from "../CustomComponents/BadgeStyleEdit";
-
-// Import SVG
-import IconDelete from "../../svg/IconDelete";
+import LoadingDots from "../Loaders/LoadingDots";
 
 // Import Fetch hook
 import useFetch from "../../hooks/useFetch";
 import useToastDisplay from "../../hooks/useToastDisplay";
 
 // Import Types
-import { SongPageProps } from "../../types/types";
+import { SongProps } from "../../types/types";
 
 // Import Utils
 import {
@@ -42,9 +38,9 @@ function EditSong() {
   const { data, error, isLoading } = useFetch(`song/${id}`, 'GET');
 
   // States
-  const [song, setSong] = useState<SongPageProps | undefined>();
+  const [song, setSong] = useState<SongProps | undefined>();
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [toastMessage, setToastMessage] = useState<string>("");
+  const [toastMessage, setToastMessage] = useState<string | React.JSX.Element>("");
 
   // When the data is fetched, set the song
   useEffect(() => {
@@ -100,15 +96,16 @@ function EditSong() {
       secondStyle_id: data.secondStyle_id
     });
     if (resSong.status === 200 && resStyle.status === 200) {
-      setToastMessage("Song updated successfully");
       setIsVisible(true);
+      setToastMessage(<LoadingDots />);
+      setTimeout(() => { setToastMessage("Song updated succesfully") }, 1500);
       setTimeout(() => {
         window.location.href = `/song/${id}`;
       }, 2500);
     };
     if (resSong.status !== 200 || resStyle.status !== 200) {
-      setToastMessage("An error occured, please try again later");
       setIsVisible(true);
+      setToastMessage("An error occured, please try again later");
     };
   };
 

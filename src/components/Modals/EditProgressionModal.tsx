@@ -4,6 +4,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 // Import Components
 import Toast from "../CustomComponents/Toast";
+import LoadingDots from "../Loaders/LoadingDots";
 
 // Import utils
 import useToastDisplay from "../../hooks/useToastDisplay";
@@ -12,10 +13,9 @@ import reloadPageTimeOut from "../../utils/reloadPageTimeOut";
 
 function EditProgressionModal() {
     const { id } = useParams();
-
     // States
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    const [toastMessage, setToastMessage] = useState('');
+    const [toastMessage, setToastMessage] = useState<string | React.JSX.Element>('');
     const [status, setStatus] = useState<string>("");
     const [currentStatus, setCurrentStatus] = useState<string>("");
 
@@ -25,7 +25,8 @@ function EditProgressionModal() {
             const res = await axiosInstance.patch(`song/${id}`, { status: status });
             if (res.status === 200) {
                 setIsVisible(true);
-                setToastMessage(res.data);
+                setToastMessage(<LoadingDots />);
+                setTimeout(() => { setToastMessage(res.data) }, 1500);
                 reloadPageTimeOut();
             }
         } catch (error) {

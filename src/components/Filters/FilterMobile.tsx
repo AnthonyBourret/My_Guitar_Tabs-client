@@ -45,7 +45,7 @@ function FilterMobile({ setFilters }: FilterProps) {
                         onChange={handleChanges}
                         name="difficulty"
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {difficultyOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
@@ -64,7 +64,7 @@ function FilterMobile({ setFilters }: FilterProps) {
                         onChange={handleChanges}
                         name="status"
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {progressionOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
@@ -83,7 +83,7 @@ function FilterMobile({ setFilters }: FilterProps) {
                         onChange={handleChanges}
                         name="Styles"
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {styleOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
@@ -102,7 +102,7 @@ function FilterMobile({ setFilters }: FilterProps) {
                         onChange={handleChanges}
                         name="Tuning"
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {tuningOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
@@ -121,7 +121,7 @@ function FilterMobile({ setFilters }: FilterProps) {
                         onChange={handleChanges}
                         name="capo"
                     >
-                        <option value="">Not chosen</option>
+                        <option value="">-</option>
                         {capoOptions.map((option, index) =>
                             <option key={index}>
                                 {option}

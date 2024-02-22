@@ -38,7 +38,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                         name="difficulty"
                         defaultValue=""
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {difficultyOptions.map((option: string, index: number) =>
                             <option key={index} value={option}>
                                 {option}
@@ -57,7 +57,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                         name="status"
                         defaultValue=""
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {progressionOptions.map((option: string, index: number) =>
                             <option key={index} value={option}>
                                 {option}
@@ -76,7 +76,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                         name="Styles"
                         defaultValue=""
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {styleOptions.map((option: string, index: number) =>
                             <option key={index} value={option}>
                                 {option}
@@ -95,7 +95,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                         name="Tuning"
                         defaultValue=""
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {tuningOptions.map((option: string, index: number) =>
                             <option key={index} value={option}>
                                 {option}
@@ -114,7 +114,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                         name="capo"
                         defaultValue=""
                     >
-                        <option value="">Not chosen</option>
+                        <option value="">-</option>
                         {capoOptions.map((option: string, index: number) =>
                             <option key={index} value={option}>
                                 {option}

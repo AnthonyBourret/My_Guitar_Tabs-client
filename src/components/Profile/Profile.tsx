@@ -34,7 +34,6 @@ function Profile({ userId }: { userId: number }) {
 
   // If there is an error, return null
   if (userError || userSongsDataError) return null;
-  console.log(userData);
 
   return (
     <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
@@ -58,7 +57,7 @@ function Profile({ userId }: { userId: number }) {
                 <div className="w-14 rounded-full border border-primary">
 
                   {/* // If the user has no avatar, the default avatar is displayed */}
-                  <img src={userData.picture ? userData.picture : "/public/DefaultAvatar.png"} />
+                  <img src={userData.picture ? userData.picture : "/DefaultAvatar.png"} />
                   <div className="absolute top-8 left-10">
                     <EditProfileButton modalName="avatar_modal" />
                   </div>

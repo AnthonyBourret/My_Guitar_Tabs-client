@@ -8,7 +8,6 @@ import Header from '../Header/Header';
 import FilterDesktop from '../Filters/FilterDesktop';
 import FilterMobile from "../Filters/FilterMobile";
 import SongCard from '../CustomComponents/SongCard';
-import AvatarDesktop from '../CustomComponents/AvatarDesktop';
 import LoaderCardSong from "../Loaders/LoaderCardSong";
 import NewUserMessage from "./NewUserMessage";
 
@@ -86,7 +85,7 @@ function HomePage({ userId }: { userId: number }) {
 
           {/* If the user has at least one song, display the songs list */}
           {songs.length != 0
-            ? filteredArray.map((song: SongCardProps) => (
+            && filteredArray.map((song: SongCardProps) => (
               <SongCard
                 key={song.id}
                 id={song.id}
@@ -96,12 +95,12 @@ function HomePage({ userId }: { userId: number }) {
                 status={song.status}
               />
             ))
-            // If the user has no song, display a message to invite him to add one
-            : <NewUserMessage />
           }
+          {/* If the user has no song, display a message */}
+          {songs.length === 0 && <NewUserMessage />}
 
           {/* If the filters selected has no matching songs, display a message */}
-          {filteredArray.length === 0 && (
+          {filteredArray.length === 0 && songs.length < 0 && (
             <div className="flex flex-col items-center">
               <div className="text-2xl font-semibold">No song found</div>
             </div>

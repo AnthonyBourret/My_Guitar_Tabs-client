@@ -23,7 +23,7 @@ function App() {
   return (
 
     //If there is no cookie the user will be redirected to the login page
-    //In fact, the cookie is set when the user logs in or create an account
+    //The cookie is set when the user logs in or creates an account
     <Routes>
 
       {/* Home (logged => HomePage, not logged => Login) */}

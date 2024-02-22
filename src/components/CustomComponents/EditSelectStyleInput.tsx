@@ -4,6 +4,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 //Import Components
 import Toast from "./Toast";
+import LoadingDots from "../Loaders/LoadingDots";
 
 // Import SVG
 import { IconDelete } from "../../svg";
@@ -25,13 +26,14 @@ function EditSelectStyleInput({ label, inputName, value, disabledText, options }
 
     // States
     const [isVisible, setIsVisible] = React.useState<boolean>(false);
-    const [toastMessage, setToastMessage] = React.useState<string>("");
+    const [toastMessage, setToastMessage] = React.useState<string | React.JSX.Element>("");
 
     // Function to delete a style
     async function handleStyleDelete() {
         const res = await axiosInstance.delete(`song/${id}/styles`, { data: { styleId: value } });
         if (res.status === 200) {
-            setToastMessage("Style deleted");
+            setToastMessage(<LoadingDots />);
+            setTimeout(() => { setToastMessage("Style deleted") }, 1500);
             setIsVisible(true);
             setTimeout(() => {
                 window.location.reload();

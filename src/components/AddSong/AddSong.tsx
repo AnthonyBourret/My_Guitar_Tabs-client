@@ -9,6 +9,7 @@ import SelectInputValue from "../CustomComponents/SelectInputValue";
 import SelectInputId from "../CustomComponents/SelectInputId";
 import TextAreaInput from "../CustomComponents/TextAreaInput";
 import Toast from "../CustomComponents/Toast";
+import LoadingDots from "../Loaders/LoadingDots";
 
 // Import Hooks
 import useToastDisplay from "../../hooks/useToastDisplay";
@@ -26,7 +27,7 @@ function AddSong({ userId }: { userId: number }) {
   const navigate = useNavigate();
   // States
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [toastMessage, setToastMessage] = useState<string>('');
+  const [toastMessage, setToastMessage] = useState<string | React.JSX.Element>('');
 
   // Function to submit the form
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -36,27 +37,28 @@ function AddSong({ userId }: { userId: number }) {
     const data = Object.fromEntries(formData.entries());
     // Check if all the required fields are filled
     if (data.title === '' || data.artist === '' || data.firstStyle_id === '' || data.tuning_id === '' || data.difficulty === '' || data.status === '') {
-      setToastMessage('Please fill all the required fields');
       setIsVisible(true);
+      setToastMessage('Please fill all the required fields');
       return;
     };
     // Check if the two styles are different
     if (data.firstStyle_id === data.secondStyle_id) {
-      setToastMessage('Please choose two different styles');
       setIsVisible(true);
+      setToastMessage('Please choose two different styles');
       return;
     };
 
     const res = await axiosInstance.post(`/user/${userId}/add`, data);
     if (res.status === 200) {
-      setToastMessage(res.data);
       setIsVisible(true);
+      setToastMessage(<LoadingDots />);
+      setTimeout(() => { setToastMessage(res.data) }, 1500);
       setTimeout(() => {
         navigate(`/`);
       }, 2500);
     } else {
-      setToastMessage('An error occured, please try again');
       setIsVisible(true);
+      setToastMessage('An error occured, please try again');
       return;
     };
   };
@@ -96,17 +98,15 @@ function AddSong({ userId }: { userId: number }) {
             </div>
 
             {/* Style div */}
-            <div className="flex flex-col gap-6 items-center sm:w-[40%]">
+            <div className="flex flex-col gap-6 sm:w-[40%]">
               <SelectInputId
                 label="First style *"
                 inputName="firstStyle_id"
-                disabledText="Choose a style"
                 options={styleOptions}
               />
               <SelectInputId
                 label="Second style"
                 inputName="secondStyle_id"
-                disabledText="Choose another style"
                 options={styleOptions}
               />
             </div>
@@ -118,7 +118,6 @@ function AddSong({ userId }: { userId: number }) {
               <SelectInputId
                 label="Tuning *"
                 inputName="tuning_id"
-                disabledText="Pick a Tuning"
                 options={tuningOptions}
               />
               <SelectInputValue

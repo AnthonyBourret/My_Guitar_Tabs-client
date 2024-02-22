@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function LoaderSongPage() {
     return (
@@ -10,7 +10,7 @@ function LoaderSongPage() {
             <div className="skeleton h-8 w-full" />
             <div className="skeleton h-28 w-full" />
         </div>
-    )
-}
+    );
+};
 
-export default LoaderSongPage
+export default LoaderSongPage;

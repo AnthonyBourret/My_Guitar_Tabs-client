@@ -1,18 +1,20 @@
 // Definition of the different options for the select inputs
-// Values are the same as the ones in the database except the tunings (to change)
 
+// Difficulty options
 export const difficultyOptions = [
     "Beginner",
     "Intermediate",
     "Confirmed",
 ];
 
+// Progression options
 export const progressionOptions = [
     "To learn",
     "In progress",
     "Learned",
 ];
 
+// Capo options
 export const capoOptions = [
     "None",
     "1",
@@ -26,6 +28,7 @@ export const capoOptions = [
     "9",
 ];
 
+// Styles options => Need to be the same as the ones in the database
 export const styleOptions = [
     "Blues",
     "Classical",
@@ -50,6 +53,7 @@ export const styleOptions = [
     "Ska",
 ];
 
+// Different tunings options => Need to be the same as the ones in the database
 export const tuningOptions = [
     "E-A-D-G-B-E",
     "D-A-D-G-B-E",
