@@ -7,7 +7,21 @@ import {
     tuningOptions
 } from "../../utils/InputValues";
 
-function FilterMobile() {
+// Import Types
+import { FilterProps } from "../../types/types";
+
+
+function FilterMobile({ setFilters }: FilterProps) {
+
+    // Function to handle the changes in the filters
+    function handleChanges(e: React.ChangeEvent<HTMLSelectElement>) {
+        const { name, value } = e.target;
+        setFilters((prevFilters: any) => ({
+            ...prevFilters,
+            [name]: value
+        }));
+    };
+
     return (
         // To display the filters, the collapse component (checkbox type) has to be clicked on
         // It will be closed when the title is clicked on again otherwise it will keep the focus
@@ -25,8 +39,13 @@ function FilterMobile() {
                     <div className="label">
                         <span className="label-text font-semibold">Difficulty</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral" defaultValue="">
-                        <option disabled value="">Pick one</option>
+                    <select
+                        className="select select-sm select-bordered bg-neutral"
+                        defaultValue=""
+                        onChange={handleChanges}
+                        name="difficulty"
+                    >
+                        <option value="">None</option>
                         {difficultyOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
@@ -39,8 +58,13 @@ function FilterMobile() {
                     <div className="label">
                         <span className="label-text font-semibold">Progression</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral" defaultValue="">
-                        <option disabled value="">Pick one</option>
+                    <select
+                        className="select select-sm select-bordered bg-neutral"
+                        defaultValue=""
+                        onChange={handleChanges}
+                        name="status"
+                    >
+                        <option value="">None</option>
                         {progressionOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
@@ -53,8 +77,13 @@ function FilterMobile() {
                     <div className="label">
                         <span className="label-text font-semibold">Style</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral" defaultValue="">
-                        <option disabled value="">Pick one</option>
+                    <select
+                        className="select select-sm select-bordered bg-neutral"
+                        defaultValue=""
+                        onChange={handleChanges}
+                        name="Styles"
+                    >
+                        <option value="">None</option>
                         {styleOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
@@ -67,8 +96,13 @@ function FilterMobile() {
                     <div className="label">
                         <span className="label-text font-semibold">Tuning</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral" defaultValue="">
-                        <option disabled value="">Pick one</option>
+                    <select
+                        className="select select-sm select-bordered bg-neutral"
+                        defaultValue=""
+                        onChange={handleChanges}
+                        name="Tuning"
+                    >
+                        <option value="">None</option>
                         {tuningOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
@@ -81,8 +115,13 @@ function FilterMobile() {
                     <div className="label">
                         <span className="label-text font-semibold">Capo</span>
                     </div>
-                    <select className="select select-sm select-bordered bg-neutral" defaultValue="">
-                        <option disabled value="">Fret number</option>
+                    <select
+                        className="select select-sm select-bordered bg-neutral"
+                        defaultValue=""
+                        onChange={handleChanges}
+                        name="capo"
+                    >
+                        <option value="">Not chosen</option>
                         {capoOptions.map((option, index) =>
                             <option key={index}>
                                 {option}
@@ -91,7 +130,18 @@ function FilterMobile() {
                 </label>
 
                 {/* Reset filters button */}
-                <button type="button" className="btn btn-sm btn-primary w-fit my-4">Reset filters</button>
+                <button
+                    type="button"
+                    className="btn btn-sm btn-primary w-fit my-4"
+                    onClick={() => setFilters({
+                        difficulty: '',
+                        status: '',
+                        Styles: '',
+                        Tuning: '',
+                        capo: ''
+                    })}
+                >
+                    Reset filters</button>
             </div>
         </div>
     );
