@@ -34,6 +34,7 @@ function Profile({ userId }: { userId: number }) {
 
   // If there is an error, return null
   if (userError || userSongsDataError) return null;
+  console.log(userData);
 
   return (
     <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
@@ -96,7 +97,7 @@ function Profile({ userId }: { userId: number }) {
               </div>
               <div className="flex flex-col gap-2">
                 <h2 className="text-lg font-semibold">Member since : </h2>
-                <p>01/02/2024</p>
+                <p>{userData.created_at}</p>
               </div>
             </div>
 

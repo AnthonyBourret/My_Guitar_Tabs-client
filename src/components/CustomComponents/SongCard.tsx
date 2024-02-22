@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { SongProps } from "../../types/types";
+import { SongCardProps } from "../../types/types";
 import BadgeStyle from "./BadgeStyle";
 import { IconInProgress, IconLearned, IconToLearn } from '../../svg';
 import capitalize from "../../utils/capitalizeFirstLetter";
@@ -10,7 +10,7 @@ function SongCard({
     title,
     artist,
     Styles,
-    status }: SongProps) {
+    status }: SongCardProps) {
     return (
         <div className="flex flex-col gap-8 border border-primary bg-base-100 rounded-box w-full items-center p-4 min-[820px]:w-full">
             <div className="w-full flex flex-col gap-2">
