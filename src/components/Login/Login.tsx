@@ -43,14 +43,14 @@ function Login() {
   useToastDisplay(isVisible, setIsVisible);
 
   return (
-    <div className="w-full flex flex-col gap-4 pt-2 items-center bg-neutral justify-center px-6">
+    <div className="w-full flex flex-col gap-4 pt-2 items-center bg-base-300 justify-center px-6">
 
       {/* Logo */}
       <div>
-        <Logo widthValue={"100%"} color={"#1C1917"} />
+        <Logo widthValue={"100%"} color={"#201c1b"} />
       </div>
 
-      <div className="flex flex-col bg-base-100 items-center p-8 rounded-box border border-primary sm:px-20 sm:w-fit">
+      <div className="flex flex-col bg-base-100 items-center p-8 rounded-box border border-primary sm:px-20 sm:w-fit shadow-xl">
         <div className="flex flex-col gap-6 items-center">
 
           {/* Username Input */}

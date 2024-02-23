@@ -98,7 +98,7 @@ function HomePage({ userId }: { userId: number }) {
           {songs.length === 0 && <NewUserMessage />}
 
           {/* If the filters selected has no matching songs, display a message */}
-          {filteredArray.length === 0 && songs.length < 0 && (
+          {filteredArray.length === 0 && songs.length > 0 && (
             <div className="flex flex-col items-center">
               <div className="text-2xl font-semibold">No song found</div>
             </div>

@@ -23,7 +23,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
     };
 
     return (
-        <div className="hidden sm:flex flex-col rounded-box w-64 gap-4 bg-base-100 p-4 border border-primary h-fit">
+        <div className="hidden sm:flex flex-col rounded-box w-64 gap-4 bg-base-100 p-4 border border-primary h-fit shadow-xl">
             <h2 className="font-semibold">Show songs by :</h2>
             <div className="flex flex-col w-full items-center gap-2">
 

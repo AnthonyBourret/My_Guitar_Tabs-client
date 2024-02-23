@@ -4,7 +4,7 @@ import { ArrowDown } from "../../svg";
 
 function NewUserMessage() {
     return (
-        <div className="flex flex-col gap-6 border border-primary bg-base-100 rounded-box w-full items-center p-4 min-[820px]:w-full">
+        <div className="flex flex-col gap-6 border border-primary bg-base-100 rounded-box w-full items-center p-4 min-[820px]:w-full shadow-xl">
             <h2 className="font-semibold">
                 Welcome on My Guitar Tabs !!
             </h2>

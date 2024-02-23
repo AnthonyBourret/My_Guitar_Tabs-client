@@ -41,7 +41,7 @@ function Profile({ userId }: { userId: number }) {
 
       <Header />
 
-      <div className="flex flex-col gap-8 w-[90%] items-center justify-center bg-base-100 border border-primary rounded-box p-6 min-[590px]:w-1/2 min-[590px]:px-8 lg:w-2/5">
+      <div className="flex flex-col gap-8 w-[90%] items-center justify-center bg-base-100 border border-primary rounded-box p-6 min-[590px]:w-1/2 min-[590px]:px-8 lg:w-2/5 shadow-xl">
         <div className="w-full">
           <h1 className="text-2xl font-semibold self-start">My profile</h1>
           <div className="divider mb-0"></div>

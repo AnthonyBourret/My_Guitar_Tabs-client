@@ -37,7 +37,16 @@ function AddSong({ userId }: { userId: number }) {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
     // Check if all the required fields are filled
-    if (data.title === '' || data.artist === '' || data.firstStyle_id === '' || data.tuning_id === '' || data.difficulty === '' || data.status === '') {
+    if (
+      data.title === ''
+      || data.artist === ''
+      || data.firstStyle_id === ''
+      || data.tuning_id === ''
+      || data.capo === ''
+      || data.difficulty === ''
+      || data.status === ''
+      || data.tab_link === ''
+    ) {
       setIsVisible(true);
       setToastMessage('Please fill all the required fields');
       return;
@@ -70,13 +79,13 @@ function AddSong({ userId }: { userId: number }) {
   return (
     <div className="flex flex-col items-center w-full sm:w-[90%] bg-base-300 min-h-screen pb-8">
       <Header />
-      <div className="flex flex-col gap-6 w-full p-5 bg-base-100 border border-primary rounded-box max-[820px]:w-[75%] min-[820px]:w-[55%]">
+      <div className="flex flex-col gap-6 w-full p-5 bg-base-100 border border-primary rounded-box max-[820px]:w-[75%] min-[820px]:w-[55%] shadow-xl">
 
         {/* Add a song Header */}
-        <div className="w-full">
+        <div className="w-full text-center">
           <h1 className="text-2xl font-semibold self-start">Add a new song</h1>
-          <div className="divider mb-0"></div>
-          <div className="text-xs">All fields with * are required</div>
+          <div className="divider px-20 mb-0 " />
+          <div className="text-xs self-center">All fields with * are required</div>
         </div>
 
         {/* Song title & artist div */}
@@ -97,7 +106,6 @@ function AddSong({ userId }: { userId: number }) {
                 placeholder="Artist/Band name"
               />
             </div>
-
             {/* Style div */}
             <div className="flex flex-col gap-6 sm:w-[40%]">
               <SelectInputId
@@ -113,6 +121,7 @@ function AddSong({ userId }: { userId: number }) {
             </div>
           </div>
 
+          <div className="divider px-20" />
           {/* Tuning & Capo div */}
           <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:mb-8">
             <div className="flex flex-col gap-6 sm:w-[40%] items-center">
@@ -146,6 +155,8 @@ function AddSong({ userId }: { userId: number }) {
             </div>
           </div>
 
+          <div className="divider px-20" />
+
           {/* Tab & Lyrics Link div */}
           <div className="flex flex-col gap-6">
             <TextInput
@@ -164,7 +175,6 @@ function AddSong({ userId }: { userId: number }) {
               placeholder="Add any comments (optional)"
             />
           </div>
-
           {/* Submit button */}
           <button
             type="submit"

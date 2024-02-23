@@ -12,7 +12,7 @@ function SongCard({
     Styles,
     status }: SongCardProps) {
     return (
-        <div className="flex flex-col gap-8 border border-primary bg-base-100 rounded-box w-full items-center p-4 min-[820px]:w-full">
+        <div className="flex flex-col gap-8 border border-primary bg-base-100 rounded-box w-full items-center p-4 min-[820px]:w-full shadow-xl">
             <div className="w-full flex flex-col gap-2">
 
                 <div className="flex justify-between">

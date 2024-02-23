@@ -119,10 +119,10 @@ function EditSong() {
       <div className="flex flex-col gap-6 w-full p-5 bg-base-100 border border-primary rounded-box max-[820px]:w-[75%] min-[820px]:w-[55%]">
 
         {/* Add a song Header */}
-        <div className="w-full">
+        <div className="w-full text-center">
           <h1 className="text-2xl font-semibold self-start">Edit song informations</h1>
-          <div className="divider mb-0"></div>
-          <div className="text-xs">All fields with * are required</div>
+          <div className="divider px-20 mb-0" />
+          <div className="text-xs self-end">All fields with * are required</div>
         </div>
 
         {song && (
@@ -180,6 +180,8 @@ function EditSong() {
               </div>
             </div>
 
+            <div className="divider px-20" />
+
             {/* Tuning & Capo div */}
             <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:mb-8">
               <div className="flex flex-col gap-6 sm:w-[40%] items-center">
@@ -217,6 +219,8 @@ function EditSong() {
                 />
               </div>
             </div>
+
+            <div className="divider px-20" />
 
             {/* Tab & Lyrics Link div */}
             <div className="flex flex-col gap-6">

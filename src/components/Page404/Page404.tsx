@@ -10,14 +10,14 @@ function Page404() {
             <div className="pt-10">
                 <Logo widthValue="100%" color="#201c1b" />
             </div>
-            <div className="flex flex-col items-center gap-4 text-center mt-12 bg-base-100 p-10 border border-primary rounded-box">
+            <div className="flex flex-col items-center gap-4 text-center mt-12 bg-base-100 p-10 border border-primary rounded-box shadow-xl">
                 <h1 className="text-5xl font-bold">404</h1>
                 <p className="text-2xl font-semibold">Page not found !!</p>
                 <button
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate(-1)}
                     className="btn btn-primary w-fit mt-10"
                 >
-                    Go back to homepage
+                    Go back
                 </button>
             </div>
             <Footer />

@@ -70,14 +70,14 @@ function Signup() {
   useToastDisplay(isVisible, setIsVisible);
 
   return (
-    <div className="w-full flex flex-col gap-2 items-center bg-neutral justify-center px-6">
+    <div className="w-full flex flex-col gap-2 items-center bg-base-300 justify-center px-6">
 
       {/* Logo */}
       <div className="flex justify-center">
-        <Logo widthValue={"80%"} color={"#1C1917"} />
+        <Logo widthValue={"80%"} color={"#201c1b"} />
       </div>
 
-      <div className="flex flex-col bg-base-100 items-center p-8 py-4 rounded-box border border-primary min-[820px]:w-2/5 lg:w-1/3">
+      <div className="flex flex-col bg-base-100 items-center p-8 py-4 rounded-box border border-primary min-[820px]:w-2/5 lg:w-1/3 shadow-xl">
         <h1 className="text-xl font-semibold mb-6">Create an account</h1>
         {/* Signup Form */}
         <form
