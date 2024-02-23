@@ -11,7 +11,8 @@ import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import SongPage from "./components/SongPage/SongPage";
 import Page404 from './components/Page404/Page404';
-
+import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
+import LegalMentions from "./components/LegalMentions/LegalMentions";
 
 function App() {
 
@@ -59,6 +60,10 @@ function App() {
 
       {/* 404 page */}
       <Route path="*" element={<Page404 />} />
+
+      {/* Legal mentions & privacy policy pages */}
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/legal-mentions" element={<LegalMentions />} />
 
     </Routes>
   );

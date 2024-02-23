@@ -7,6 +7,7 @@ import BadgeStyle from "../CustomComponents/BadgeStyle";
 import EditProgressionModal from "../Modals/EditProgressionModal";
 import DeleteSongModal from "../Modals/DeleteSongModal";
 import LoaderSongPage from "../Loaders/LoaderSongPage";
+import Footer from "../Footer/Footer";
 
 // Import Fetch hook
 import useFetch from "../../hooks/useFetch";
@@ -42,7 +43,7 @@ function SongPage() {
 
 
     return (
-        <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8 px-6 sm:px-12">
+        <div className="flex flex-col items-center w-full sm:w-[90%] bg-base-300 min-h-screen pb-8 px-6 sm:px-12">
             <Header />
             <div className="flex flex-col w-full bg-base-100 border border-primary rounded-box p-4 gap-10 lg:w-3/5">
 
@@ -147,6 +148,8 @@ function SongPage() {
             {/* Modals */}
             <EditProgressionModal />
             <DeleteSongModal />
+
+            <Footer />
         </div>
     );
 };

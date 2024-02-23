@@ -20,5 +20,6 @@
     "**/*.js",
     "**/*.jsx",
     "**/*.tsx",
+    "src/components/LegalMentions",
   ],
 }

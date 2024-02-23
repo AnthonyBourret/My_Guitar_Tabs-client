@@ -99,8 +99,11 @@ function Login() {
 
       {/* Legal Mentions Link */}
       <div className="mt-8">
-        <Link to="/" className="link link-info text-xs">
-          Legal Mentions / Privacy Policy
+        <Link to="/legal-mentions" className="link link-info text-xs">
+          Legal Mentions
+        </Link>
+        <Link to="/privacy-policy" className="link link-info text-xs ml-4">
+          Privacy Policy
         </Link>
       </div>
 

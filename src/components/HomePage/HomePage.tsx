@@ -10,6 +10,7 @@ import FilterMobile from "../Filters/FilterMobile";
 import SongCard from '../CustomComponents/SongCard';
 import LoaderCardSong from "../Loaders/LoaderCardSong";
 import NewUserMessage from "./NewUserMessage";
+import Footer from "../Footer/Footer";
 
 // Import Types
 import { SongProps, SongCardProps } from "../../types/types";
@@ -59,7 +60,8 @@ function HomePage({ userId }: { userId: number }) {
   if (error) return null;
 
   return (
-    <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
+
+    <div className="flex flex-col items-center w-full sm:w-[90%] bg-base-300 min-h-screen pb-8">
       <Header />
       <div className="flex flex-col w-full sm:flex-row sm:justify-center gap-8 px-6 sm:gap-12">
         <FilterDesktop setFilters={setFilters as React.Dispatch<React.SetStateAction<{
@@ -68,16 +70,14 @@ function HomePage({ userId }: { userId: number }) {
           Styles: string;
           Tuning: string;
           capo: string;
-        }>>}
-        />
+        }>>} />
         <FilterMobile setFilters={setFilters as React.Dispatch<React.SetStateAction<{
           difficulty: string;
           status: string;
           Styles: string;
           Tuning: string;
           capo: string;
-        }>>}
-        />
+        }>>} />
         <div className="w-full min-[820px]:w-1/2 flex flex-col gap-6">
 
           {/* Loader */}
@@ -92,10 +92,8 @@ function HomePage({ userId }: { userId: number }) {
                 title={song.title}
                 artist={song.artist}
                 Styles={song.Styles}
-                status={song.status}
-              />
-            ))
-          }
+                status={song.status} />
+            ))}
           {/* If the user has no song, display a message */}
           {songs.length === 0 && <NewUserMessage />}
 
@@ -107,7 +105,10 @@ function HomePage({ userId }: { userId: number }) {
           )}
         </div>
       </div>
+      <Footer />
     </div>
+
+
   );
 };
 

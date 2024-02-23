@@ -16,7 +16,7 @@ function NavBarDesktop() {
         <div className="hidden sm:flex sm:flex-col items-center w-full pr-2">
 
             {/* Logo */}
-            <LogoHeader widthValue={"100%"} color={"#1C1917"} />
+            <LogoHeader widthValue={"100%"} color={"#201c1b"} />
 
             <div className="flex gap-12">
 
@@ -46,7 +46,7 @@ function NavBarDesktop() {
                     </button>
                 </Link>
             </div>
-            <div className="divider w-[77%] mt-0 self-center"></div>
+            <div className="divider w-[77%] mt-0 self-center" />
         </div>
     );
 };

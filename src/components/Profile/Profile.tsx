@@ -12,6 +12,7 @@ import EditUsernameModal from "../Modals/EditUsernameModal";
 import DeleteAccountModal from "../Modals/DeleteAccountModal";
 import LoaderProfile from "../Loaders/LoaderProfile";
 import EditPasswordModal from "../Modals/EditPasswordModal";
+import Footer from "../Footer/Footer";
 
 
 function Profile({ userId }: { userId: number }) {
@@ -36,7 +37,7 @@ function Profile({ userId }: { userId: number }) {
   if (userError || userSongsDataError) return null;
 
   return (
-    <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
+    <div className="flex flex-col items-center w-full sm:w-[90%] bg-base-300 min-h-screen pb-8">
 
       <Header />
 
@@ -135,6 +136,8 @@ function Profile({ userId }: { userId: number }) {
         <EditUsernameModal userId={userId} />
         <DeleteAccountModal userId={userId} />
       </div>
+
+      <Footer />
     </div>
   );
 };

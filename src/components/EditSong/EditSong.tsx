@@ -12,6 +12,7 @@ import SelectInputId from "../CustomComponents/SelectInputId";
 import EditTextAreaInput from "../CustomComponents/EditTextAreaInput";
 import Toast from "../CustomComponents/Toast";
 import LoadingDots from "../Loaders/LoadingDots";
+import Footer from "../Footer/Footer";
 
 // Import Fetch hook
 import useFetch from "../../hooks/useFetch";
@@ -113,7 +114,7 @@ function EditSong() {
   useToastDisplay(isVisible, setIsVisible);
 
   return (
-    <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
+    <div className="flex flex-col items-center w-full sm:w-[90%] bg-base-300 min-h-screen pb-8">
       <Header />
       <div className="flex flex-col gap-6 w-full p-5 bg-base-100 border border-primary rounded-box max-[820px]:w-[75%] min-[820px]:w-[55%]">
 
@@ -249,6 +250,8 @@ function EditSong() {
 
       {/* Toast */}
       {isVisible && <Toast message={toastMessage} />}
+
+      <Footer />
     </div>
   );
 };
