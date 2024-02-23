@@ -10,6 +10,7 @@ import Profile from './components/Profile/Profile';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import SongPage from "./components/SongPage/SongPage";
+import Page404 from './components/Page404/Page404';
 
 
 function App() {
@@ -55,6 +56,10 @@ function App() {
       <Route path="/profile" element={cookies.userInfo
         ? <Profile userId={userId} />
         : <Login />} />
+
+      {/* 404 page */}
+      <Route path="*" element={<Page404 />} />
+
     </Routes>
   );
 };
