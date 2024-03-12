@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 // Import Fetch hook
 import useFetch from "../../hooks/useFetch";
 
+// Import Utils
+import formatDate from "../../utils/formatDate";
+
 // Import Components
 import Header from '../Header/Header';
 import EditProfileButton from "../CustomComponents/EditProfileButton";
@@ -97,7 +100,7 @@ function Profile({ userId }: { userId: number }) {
               </div>
               <div className="flex flex-col gap-2">
                 <h2 className="text-lg font-semibold">Member since : </h2>
-                <p>{userData.created_at}</p>
+                <p>{formatDate(userData.created_at)}</p>
               </div>
             </div>
 
