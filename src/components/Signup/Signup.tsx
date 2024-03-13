@@ -78,7 +78,7 @@ function Signup() {
       </div>
 
       <div className="flex flex-col bg-base-100 items-center p-8 py-4 rounded-box border border-primary min-[820px]:w-2/5 lg:w-1/3 shadow-xl">
-        <h1 className="text-xl font-semibold mb-6">Create an account</h1>
+        <div className="text-xl font-semibold mb-6 text-center">Welcome on My Guitar Tabs !</div>
         {/* Signup Form */}
         <form
           onSubmit={handleSignup}
@@ -119,12 +119,21 @@ function Signup() {
 
           {/* Login Button */}
           <button
-            className="btn btn-primary btn-sm px-4 text-base sm:my-2"
+            className="btn btn-primary px-4 text-base my-2 border border-base-200"
             type="submit"
           >
             Signup
           </button>
         </form>
+        <div className="flex flex-col items-center text-sm my-2">
+          <p className="text-center">
+            Already have an account ?
+            {' '}
+          </p>
+          <Link to="/" className="link link-info">
+            Log in here !
+          </Link>
+        </div>
       </div>
 
       {/* Legal Mentions Link*/}

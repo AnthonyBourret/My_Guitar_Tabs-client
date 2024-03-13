@@ -72,7 +72,7 @@ function Login() {
           {/* Login Button */}
           <button
             type="submit"
-            className="btn btn-primary btn-sm px-4 text-base"
+            className="btn btn-primary my-2 px-4 text-base border border-base-200"
             onClick={() => handleLogin(
               username,
               password,
