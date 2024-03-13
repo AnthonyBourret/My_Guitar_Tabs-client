@@ -73,7 +73,7 @@ function SongPage() {
                                             (document.getElementById("progression_modal") as HTMLDialogElement).showModal();
                                         }
                                     }}
-                                    className="btn btn-sm w-fit btn-primary"
+                                    className="btn btn-sm w-fit btn-primary border border-base-200"
                                 >
                                     Edit status
                                 </button>
@@ -128,10 +128,10 @@ function SongPage() {
 
                         {/* Edit and Delete buttons */}
                         <div className="flex w-full justify-center gap-4">
-                            < Link to={`/edit-song/${id}`} className="btn btn-sm btn-primary border border-neutral">Edit song</Link>
+                            < Link to={`/edit-song/${id}`} className="btn btn-md btn-primary border border-base-200">Edit song</Link>
                             <button
                                 type="button"
-                                className="btn btn-sm btn-primary border border-neutral"
+                                className="btn btn-md btn-primary border border-base-200"
                                 onClick={() => {
                                     if (document) {
                                         (document.getElementById("delete_modal") as HTMLDialogElement).showModal();

@@ -63,7 +63,7 @@ function HomePage({ userId }: { userId: number }) {
 
     <div className="flex flex-col items-center w-full sm:w-[90%] bg-base-300 min-h-screen pb-8">
       <Header />
-      <div className="flex flex-col w-full sm:flex-row sm:justify-center gap-8 px-6 sm:gap-12">
+      <div className="flex flex-col w-full min-[770px]:flex-row min-[770px]:justify-center gap-8 px-6 min-[720px]:gap-12">
         <FilterDesktop setFilters={setFilters as React.Dispatch<React.SetStateAction<{
           difficulty: string;
           status: string;

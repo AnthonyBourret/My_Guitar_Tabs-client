@@ -178,7 +178,7 @@ function AddSong({ userId }: { userId: number }) {
           {/* Submit button */}
           <button
             type="submit"
-            className="btn btn-base w-fit mt-8 m-auto btn-primary"
+            className="btn btn-base w-fit mt-8 m-auto btn-primary border border-base-200"
           >
             Add song to my tabs
           </button>

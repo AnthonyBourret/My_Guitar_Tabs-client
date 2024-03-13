@@ -56,7 +56,7 @@ const PrivacyPolicy = () => {
             </div>
 
             {/* Button to go to the previous page */}
-            <button className="btn btn-primary" onClick={() => navigate(-1)}>
+            <button className="btn btn-primary border border-base-200" onClick={() => navigate(-1)}>
                 Go Back
             </button>
 

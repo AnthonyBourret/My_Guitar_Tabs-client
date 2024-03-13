@@ -25,7 +25,7 @@ function FilterMobile({ setFilters }: FilterProps) {
     return (
         // To display the filters, the collapse component (checkbox type) has to be clicked on
         // It will be closed when the title is clicked on again otherwise it will keep the focus
-        <div className="collapse collapse-arrow bg-base-100 border border-primary sm:hidden shadow-xl">
+        <div className="collapse collapse-arrow bg-base-100 border border-primary min-[770px]:hidden shadow-xl">
             <input type="checkbox" />
             <div className="collapse-title text-xl font-medium">
                 Filter songs by :
@@ -132,7 +132,7 @@ function FilterMobile({ setFilters }: FilterProps) {
                 {/* Reset filters button */}
                 <button
                     type="button"
-                    className="btn btn-sm btn-primary w-fit my-4"
+                    className="btn btn-md btn-primary w-fit my-4 border border-base-200"
                     onClick={() => setFilters({
                         difficulty: '',
                         status: '',

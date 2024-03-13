@@ -91,7 +91,7 @@ function EditPasswordModal({ userId }: { userId: number }) {
                 <button
                     onClick={() => { updatePassword() }}
                     type="submit"
-                    className="btn btn-primary btn-md text-lg w-fit self-center"
+                    className="btn btn-primary btn-md text-lg w-fit self-center border border-base-200"
                 >
                     Save
                 </button>

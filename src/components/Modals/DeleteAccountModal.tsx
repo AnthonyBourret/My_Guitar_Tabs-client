@@ -45,7 +45,7 @@ function DeleteAccountModal({ userId }: { userId: number }) {
             <div className="modal-box flex flex-col gap-8 pb-0 pt-12 border border-primary min-[440px]:w-3/5 sm:w-2/5 sm:px-10">
                 <p className="font-semibold text-base text-center">Are you sure you want to delete your account ?</p>
                 <button
-                    className="btn btn-primary btn-md text-lg w-fit self-center"
+                    className="btn btn-primary btn-md text-lg w-fit self-center border border-base-200"
                     type="button"
                     onClick={() => deleteAccount(userId)}
                 >

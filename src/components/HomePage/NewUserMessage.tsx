@@ -13,7 +13,7 @@ function NewUserMessage() {
             </p>
             <ArrowDown />
             <Link to="/add-a-song" className="text-base-content text-base font-semibold">
-                <button className="btn btn-primary" type="button">
+                <button className="btn btn-primary border border-base-200" type="button">
                     Add a Song
                 </button>
             </Link>

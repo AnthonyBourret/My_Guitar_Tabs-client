@@ -107,7 +107,7 @@ function Profile({ userId }: { userId: number }) {
             {/* Delete account */}
             <div className="flex flex-col gap-6 self-center my-4 min-[820px]:flex-row min-[820px]:gap-4">
               <button
-                className="btn btn-sm btn-primary"
+                className="btn btn-md btn-primary border border-base-200"
                 type="button"
                 onClick={() => {
                   if (document) {
@@ -118,7 +118,7 @@ function Profile({ userId }: { userId: number }) {
                 Change password
               </button>
               <button
-                className="btn btn-sm btn-primary"
+                className="btn btn-md btn-primary border border-base-200"
                 type="button"
                 onClick={() => {
                   if (document) {

@@ -50,7 +50,7 @@ function DeleteSongModal() {
                 <p className="font-semibold text-base text-center">Are you sure you want to delete the song ?</p>
                 <button
                     type="submit"
-                    className="btn btn-primary btn-md text-lg w-fit self-center"
+                    className="btn btn-primary btn-md text-lg w-fit self-center border border-base-200"
                     onClick={deleteSong}
                     onKeyDown={handleKey}
                 >

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { SongCardProps } from "../../types/types";
 import BadgeStyle from "./BadgeStyle";
+import BadgeStatus from "./BadgeStatus";
 import capitalize from "../../utils/capitalizeFirstLetter";
 
 function SongCard({
@@ -15,14 +16,10 @@ function SongCard({
             <div className="w-full flex flex-col items-center gap-4 min-[400px]:items-start min-[400px]:flex-row min-[400px]:justify-between">
 
                 <div className="flex flex-col gap-1 items-center">
-                    <h1 className="text-2xl font-semibold min-[400px]:text-2xl min-[400px]:mr-6 min-[400px]:self-start">{capitalize(title)}</h1>
+                    <h1 className="text-2xl font-semibold text-center min-[400px]:text-start whitespace-pre-line min-[400px]:text-2xl min-[400px]:mr-6 min-[400px]:self-start">{capitalize(title)}</h1>
                     <h2 className="text-lg min-[400px]:ml-14 min-[400px]:self-start min-[820px]:text-xl">By {artist}</h2>
                 </div>
-                <div className="m-2">
-                    {status === "In progress" && <div className="text-base font-semibold">In progress</div>}
-                    {status === "To learn" && <div className="text-base font-semibold">To learn</div>}
-                    {status === "Learned" && <div className="text-base font-semibold">Learned</div>}
-                </div>
+                <BadgeStatus status={status} />
             </div>
 
             <div className="w-full flex flex-col gap-8 items-center min-[400px]:flex-row min-[400px]:justify-between">
@@ -34,7 +31,7 @@ function SongCard({
                 <Link
                     to={`/song/${id}`}
 
-                    className="btn btn-md w-fit btn-primary min-[400px]:btn-md"
+                    className="btn btn-md w-fit border border-base-200 btn-primary min-[400px]:btn-md"
                 >
                     See Tabs
                 </Link>

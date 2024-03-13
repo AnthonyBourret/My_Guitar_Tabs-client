@@ -69,7 +69,7 @@ function EditProgressionModal() {
                     onClick={() => editProgression(status, id)}
                     type="submit"
                     disabled={status === "" || status === currentStatus}
-                    className="btn btn-primary btn-md text-lg w-fit self-center"
+                    className="btn btn-primary btn-md text-lg w-fit self-center border border-base-200"
                 >Save</button>
 
                 {/* Close button */}

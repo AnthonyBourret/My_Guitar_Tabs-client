@@ -23,7 +23,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
     };
 
     return (
-        <div className="hidden sm:flex flex-col rounded-box w-64 gap-4 bg-base-100 p-4 border border-primary h-fit shadow-xl">
+        <div className="hidden min-[770px]:flex flex-col rounded-box w-64 gap-4 bg-base-100 p-4 border border-primary h-fit shadow-xl">
             <h2 className="font-semibold">Show songs by :</h2>
             <div className="flex flex-col w-full items-center gap-2">
 
@@ -125,7 +125,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                 {/* Reset filters button */}
                 <button
                     type="button"
-                    className="btn btn-primary w-fit my-4"
+                    className="btn btn-primary w-fit my-4 border border-base-200"
                     onClick={() => setFilters({
                         difficulty: '',
                         status: '',

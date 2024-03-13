@@ -15,7 +15,7 @@ function Page404() {
                 <p className="text-2xl font-semibold">Page not found !!</p>
                 <button
                     onClick={() => navigate(-1)}
-                    className="btn btn-primary w-fit mt-10"
+                    className="btn btn-primary w-fit mt-10 border border-base-200"
                 >
                     Go back
                 </button>
