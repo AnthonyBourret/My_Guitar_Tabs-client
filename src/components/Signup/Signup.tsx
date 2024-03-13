@@ -70,15 +70,15 @@ function Signup() {
   useToastDisplay(isVisible, setIsVisible);
 
   return (
-    <div className="w-full flex flex-col gap-2 items-center bg-neutral justify-center px-6">
+    <div className="w-full flex flex-col gap-2 items-center bg-base-300 justify-center px-6">
 
       {/* Logo */}
       <div className="flex justify-center">
-        <Logo widthValue={"80%"} color={"#1C1917"} />
+        <Logo widthValue={"80%"} color={"#201c1b"} />
       </div>
 
-      <div className="flex flex-col bg-base-100 items-center p-8 py-4 rounded-box border border-primary min-[820px]:w-2/5 lg:w-1/3">
-        <h1 className="text-xl font-semibold mb-6">Create an account</h1>
+      <div className="flex flex-col bg-base-100 items-center p-8 py-4 rounded-box border border-primary min-[820px]:w-2/5 lg:w-1/3 shadow-xl">
+        <div className="text-xl font-semibold mb-6 text-center">Welcome on My Guitar Tabs !</div>
         {/* Signup Form */}
         <form
           onSubmit={handleSignup}
@@ -119,18 +119,30 @@ function Signup() {
 
           {/* Login Button */}
           <button
-            className="btn btn-primary btn-sm px-4 text-base sm:my-2"
+            className="btn btn-primary px-4 text-base my-2 border border-base-200"
             type="submit"
           >
             Signup
           </button>
         </form>
+        <div className="flex flex-col items-center text-sm my-2">
+          <p className="text-center">
+            Already have an account ?
+            {' '}
+          </p>
+          <Link to="/" className="link link-info">
+            Log in here !
+          </Link>
+        </div>
       </div>
 
       {/* Legal Mentions Link*/}
       <div>
-        <Link to="/" className="link link-info text-xs">
-          Legal Mentions / Privacy Policy
+        <Link to="/legal-mentions" className="link link-info text-xs">
+          Legal Mentions
+        </Link>
+        <Link to="/privacy-policy" className="link link-info text-xs ml-4">
+          Privacy Policy
         </Link>
       </div>
 

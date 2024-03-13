@@ -7,6 +7,7 @@ import BadgeStyle from "../CustomComponents/BadgeStyle";
 import EditProgressionModal from "../Modals/EditProgressionModal";
 import DeleteSongModal from "../Modals/DeleteSongModal";
 import LoaderSongPage from "../Loaders/LoaderSongPage";
+import Footer from "../Footer/Footer";
 
 // Import Fetch hook
 import useFetch from "../../hooks/useFetch";
@@ -18,7 +19,7 @@ import { IconLink } from "../../svg";
 import capitalize from "../../utils/capitalizeFirstLetter";
 
 // Import Types
-import { SongPageProps } from "../../types/types";
+import { SongProps } from "../../types/types";
 
 
 function SongPage() {
@@ -28,7 +29,7 @@ function SongPage() {
     // Fetch the song
     const { data, error, isLoading } = useFetch(`song/${id}`, 'GET');
     // State to set the song
-    const [song, setSong] = useState<SongPageProps | undefined>();
+    const [song, setSong] = useState<SongProps | undefined>();
 
     // When the data is fetched, set the song
     useEffect(() => {
@@ -42,7 +43,7 @@ function SongPage() {
 
 
     return (
-        <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8 px-12">
+        <div className="flex flex-col items-center w-full sm:w-[90%] bg-base-300 min-h-screen pb-8 px-6 sm:px-12">
             <Header />
             <div className="flex flex-col w-full bg-base-100 border border-primary rounded-box p-4 gap-10 lg:w-3/5">
 
@@ -58,12 +59,12 @@ function SongPage() {
                                 <div className="flex gap-6 py-4 w-fit mt-4 sm:self-start">
 
                                     {/* Display the styles of the song */}
-                                    {song.Styles.map((style, index) => (
+                                    {song.Styles.map((style: { name: string; }, index: React.Key | null | undefined) => (
                                         <BadgeStyle key={index} style={style.name} />))
                                     }
                                 </div>
                             </div>
-                            <div className="flex flex-col w-1/2 sm:w-1/3 py-4 self-center lg:self-start items-center justify-center gap-4 bg-neutral rounded-box border border-primary">
+                            <div className="flex flex-col w-fit sm:w-1/3 p-4 self-center lg:self-start items-center justify-center gap-4 bg-neutral rounded-box border border-primary">
                                 <p className="text-lg font-semibold lg:text-xl">{song.status}</p>
                                 <button
                                     type="button"
@@ -72,7 +73,7 @@ function SongPage() {
                                             (document.getElementById("progression_modal") as HTMLDialogElement).showModal();
                                         }
                                     }}
-                                    className="btn btn-sm w-fit btn-primary"
+                                    className="btn btn-sm w-fit btn-primary border border-base-200"
                                 >
                                     Edit status
                                 </button>
@@ -101,28 +102,36 @@ function SongPage() {
 
                         {/* Link and Comments sections */}
                         <div className="flex flex-col gap-2 px-4 w-full">
-                            <p className="font-semibold sm:text-lg">Tab :</p>
-                            <div className="flex gap-2 items-center">
-                                <IconLink />
-                                <Link to="/tabsLink" className="truncate" target="_blank" rel="noreferrer">{song.tab_link}</Link>
+                            <div className="mt-2">
+                                <p className="font-semibold sm:text-lg">Tab :</p>
+                                <div className="flex gap-2 items-center mt-1">
+                                    <IconLink />
+                                    <Link to="/tabsLink" className="truncate" target="_blank" rel="noreferrer">{song.tab_link}</Link>
+                                </div>
+
                             </div>
-                            <p className="font-semibold sm:text-lg">Lyrics :</p>
-                            <div className="flex gap-2 items-center">
-                                <IconLink />
-                                <Link to="/lyricsLink" className="truncate" target="_blank" rel="noreferrer">{song.lyrics_link}</Link>
-                            </div>
+                            {song.lyrics_link &&
+                                <div className="mt-2">
+                                    <p className="font-semibold sm:text-lg">Lyrics :</p>
+                                    <div className="flex gap-2 items-center mt-1">
+                                        <IconLink />
+                                        <Link to="/lyricsLink" className="truncate" target="_blank" rel="noreferrer">{song.lyrics_link}</Link>
+                                    </div>
+                                </div>
+                            }
                         </div>
-                        <div className="flex flex-col gap-2 px-4 w-full">
-                            <h3 className="font-semibold sm:text-lg">Comments :</h3>
-                            <p>{song.comments}</p>
-                        </div>
+                        {song.comments &&
+                            <div className="flex flex-col gap-2 px-4 w-full">
+                                <h3 className="font-semibold sm:text-lg">Comments :</h3>
+                                <p>{song.comments}</p>
+                            </div>}
 
                         {/* Edit and Delete buttons */}
                         <div className="flex w-full justify-center gap-4">
-                            < Link to={`/edit-song/${id}`} className="btn btn-sm btn-primary border border-neutral">Edit song</Link>
+                            < Link to={`/edit-song/${id}`} className="btn btn-md btn-primary border border-base-200">Edit song</Link>
                             <button
                                 type="button"
-                                className="btn btn-sm btn-primary border border-neutral"
+                                className="btn btn-md btn-primary border border-base-200"
                                 onClick={() => {
                                     if (document) {
                                         (document.getElementById("delete_modal") as HTMLDialogElement).showModal();
@@ -139,6 +148,8 @@ function SongPage() {
             {/* Modals */}
             <EditProgressionModal />
             <DeleteSongModal />
+
+            <Footer />
         </div>
     );
 };

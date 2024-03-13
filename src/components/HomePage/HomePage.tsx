@@ -8,9 +8,9 @@ import Header from '../Header/Header';
 import FilterDesktop from '../Filters/FilterDesktop';
 import FilterMobile from "../Filters/FilterMobile";
 import SongCard from '../CustomComponents/SongCard';
-import AvatarDesktop from '../CustomComponents/AvatarDesktop';
 import LoaderCardSong from "../Loaders/LoaderCardSong";
 import NewUserMessage from "./NewUserMessage";
+import Footer from "../Footer/Footer";
 
 // Import Types
 import { SongProps, SongCardProps } from "../../types/types";
@@ -60,25 +60,24 @@ function HomePage({ userId }: { userId: number }) {
   if (error) return null;
 
   return (
-    <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
+
+    <div className="flex flex-col items-center w-full sm:w-[90%] bg-base-300 min-h-screen pb-8">
       <Header />
-      <div className="flex flex-col w-full sm:flex-row sm:justify-center gap-8 px-6 sm:gap-12">
+      <div className="flex flex-col w-full min-[770px]:flex-row min-[770px]:justify-center gap-8 px-6 min-[720px]:gap-12">
         <FilterDesktop setFilters={setFilters as React.Dispatch<React.SetStateAction<{
           difficulty: string;
           status: string;
           Styles: string;
           Tuning: string;
           capo: string;
-        }>>}
-        />
+        }>>} />
         <FilterMobile setFilters={setFilters as React.Dispatch<React.SetStateAction<{
           difficulty: string;
           status: string;
           Styles: string;
           Tuning: string;
           capo: string;
-        }>>}
-        />
+        }>>} />
         <div className="w-full min-[820px]:w-1/2 flex flex-col gap-6">
 
           {/* Loader */}
@@ -86,29 +85,30 @@ function HomePage({ userId }: { userId: number }) {
 
           {/* If the user has at least one song, display the songs list */}
           {songs.length != 0
-            ? filteredArray.map((song: SongCardProps) => (
+            && filteredArray.map((song: SongCardProps) => (
               <SongCard
                 key={song.id}
                 id={song.id}
                 title={song.title}
                 artist={song.artist}
                 Styles={song.Styles}
-                status={song.status}
-              />
-            ))
-            // If the user has no song, display a message to invite him to add one
-            : <NewUserMessage />
-          }
+                status={song.status} />
+            ))}
+          {/* If the user has no song, display a message */}
+          {songs.length === 0 && <NewUserMessage />}
 
           {/* If the filters selected has no matching songs, display a message */}
-          {filteredArray.length === 0 && (
+          {filteredArray.length === 0 && songs.length > 0 && (
             <div className="flex flex-col items-center">
               <div className="text-2xl font-semibold">No song found</div>
             </div>
           )}
         </div>
       </div>
+      <Footer />
     </div>
+
+
   );
 };
 

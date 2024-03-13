@@ -7,7 +7,7 @@ function useToastDisplay(isVisible: boolean, setIsVisible: React.Dispatch<React.
         if (isVisible) {
             const timer = setTimeout(() => {
                 setIsVisible(false);
-            }, 2000);
+            }, 2500);
             return () => clearTimeout(timer);
         }
     }, [isVisible]);

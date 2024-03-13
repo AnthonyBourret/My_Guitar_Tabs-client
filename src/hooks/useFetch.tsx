@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axiosInstance from '../utils/axiosInstance';
 
-
+// This custom hook is used to GET and DELETE data from the server
 const useFetch = (url: string, method: string): { data: any, isLoading: boolean, error: boolean } => {
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(false);

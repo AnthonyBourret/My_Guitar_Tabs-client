@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 interface Props {
     widthValue: string
     color: string
-}
+};
 
 function Logo({ widthValue, color }: Props) {
     return (
@@ -474,7 +474,7 @@ function Logo({ widthValue, color }: Props) {
        C282.962494,129.595367 281.828888,132.345139 278.500977,134.735779 
    z"/>
         </svg>
-    )
-}
+    );
+};
 
-export default Logo
+export default Logo;

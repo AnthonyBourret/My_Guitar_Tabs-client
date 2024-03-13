@@ -4,6 +4,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 // Components
 import Toast from "../CustomComponents/Toast";
+import LoadingDots from "../Loaders/LoadingDots";
 
 // Hookes 
 import useToastDisplay from "../../hooks/useToastDisplay";
@@ -14,7 +15,7 @@ function DeleteSongModal() {
 
     // States
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    const [toastMessage, setToastMessage] = useState<string>("");
+    const [toastMessage, setToastMessage] = useState<string | React.JSX.Element>("");
 
     // Function to handle the Enter key
     async function handleKey(e: React.KeyboardEvent) {
@@ -28,7 +29,8 @@ function DeleteSongModal() {
         try {
             const res = await axiosInstance.delete(`/song/${id}`);
             if (res.status === 200) {
-                setToastMessage(res.data);
+                setToastMessage(<LoadingDots />);
+                setTimeout(() => { setToastMessage(res.data) }, 1500);
                 setIsVisible(true);
                 setTimeout(() => {
                     navigate("/");
@@ -48,7 +50,7 @@ function DeleteSongModal() {
                 <p className="font-semibold text-base text-center">Are you sure you want to delete the song ?</p>
                 <button
                     type="submit"
-                    className="btn btn-primary btn-md text-lg w-fit self-center"
+                    className="btn btn-primary btn-md text-lg w-fit self-center border border-base-200"
                     onClick={deleteSong}
                     onKeyDown={handleKey}
                 >

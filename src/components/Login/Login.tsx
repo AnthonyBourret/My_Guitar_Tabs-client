@@ -43,14 +43,14 @@ function Login() {
   useToastDisplay(isVisible, setIsVisible);
 
   return (
-    <div className="w-full flex flex-col gap-4 pt-2 items-center bg-neutral justify-center px-6">
+    <div className="w-full flex flex-col gap-4 pt-2 items-center bg-base-300 justify-center px-6">
 
       {/* Logo */}
       <div>
-        <Logo widthValue={"100%"} color={"#1C1917"} />
+        <Logo widthValue={"100%"} color={"#201c1b"} />
       </div>
 
-      <div className="flex flex-col bg-base-100 items-center p-8 rounded-box border border-primary sm:px-20 sm:w-fit">
+      <div className="flex flex-col bg-base-100 items-center p-8 rounded-box border border-primary sm:px-20 sm:w-fit shadow-xl">
         <div className="flex flex-col gap-6 items-center">
 
           {/* Username Input */}
@@ -72,7 +72,7 @@ function Login() {
           {/* Login Button */}
           <button
             type="submit"
-            className="btn btn-primary btn-sm px-4 text-base"
+            className="btn btn-primary my-2 px-4 text-base border border-base-200"
             onClick={() => handleLogin(
               username,
               password,
@@ -99,8 +99,11 @@ function Login() {
 
       {/* Legal Mentions Link */}
       <div className="mt-8">
-        <Link to="/" className="link link-info text-xs">
-          Legal Mentions / Privacy Policy
+        <Link to="/legal-mentions" className="link link-info text-xs">
+          Legal Mentions
+        </Link>
+        <Link to="/privacy-policy" className="link link-info text-xs ml-4">
+          Privacy Policy
         </Link>
       </div>
 

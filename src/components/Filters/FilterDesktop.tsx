@@ -23,7 +23,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
     };
 
     return (
-        <div className="hidden sm:flex flex-col rounded-box w-64 gap-4 bg-base-100 p-4 border border-primary h-fit">
+        <div className="hidden min-[770px]:flex flex-col rounded-box w-64 gap-4 bg-base-100 p-4 border border-primary h-fit shadow-xl">
             <h2 className="font-semibold">Show songs by :</h2>
             <div className="flex flex-col w-full items-center gap-2">
 
@@ -38,7 +38,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                         name="difficulty"
                         defaultValue=""
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {difficultyOptions.map((option: string, index: number) =>
                             <option key={index} value={option}>
                                 {option}
@@ -57,7 +57,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                         name="status"
                         defaultValue=""
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {progressionOptions.map((option: string, index: number) =>
                             <option key={index} value={option}>
                                 {option}
@@ -76,7 +76,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                         name="Styles"
                         defaultValue=""
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {styleOptions.map((option: string, index: number) =>
                             <option key={index} value={option}>
                                 {option}
@@ -95,7 +95,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                         name="Tuning"
                         defaultValue=""
                     >
-                        <option value="">None</option>
+                        <option value="">-</option>
                         {tuningOptions.map((option: string, index: number) =>
                             <option key={index} value={option}>
                                 {option}
@@ -114,7 +114,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                         name="capo"
                         defaultValue=""
                     >
-                        <option value="">Not chosen</option>
+                        <option value="">-</option>
                         {capoOptions.map((option: string, index: number) =>
                             <option key={index} value={option}>
                                 {option}
@@ -125,7 +125,7 @@ function FilterDesktop({ setFilters }: FilterProps) {
                 {/* Reset filters button */}
                 <button
                     type="button"
-                    className="btn btn-primary w-fit my-4"
+                    className="btn btn-primary w-fit my-4 border border-base-200"
                     onClick={() => setFilters({
                         difficulty: '',
                         status: '',

@@ -1,3 +1,4 @@
+//Types for the Song page
 export interface SongProps {
     id: number;
     title: string;
@@ -19,6 +20,7 @@ export interface SongProps {
     comments: string;
 };
 
+// Types for the SongCard component on the Homepage
 export interface SongCardProps {
     id: number;
     title: string;
@@ -30,6 +32,7 @@ export interface SongCardProps {
     status: string;
 };
 
+// Types for the filters input values
 export interface FilterProps {
     setFilters: React.Dispatch<React.SetStateAction<{
         difficulty: string,

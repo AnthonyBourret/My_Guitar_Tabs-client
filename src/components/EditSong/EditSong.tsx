@@ -11,18 +11,15 @@ import EditSelectStyleInput from "../CustomComponents/EditSelectStyleInput";
 import SelectInputId from "../CustomComponents/SelectInputId";
 import EditTextAreaInput from "../CustomComponents/EditTextAreaInput";
 import Toast from "../CustomComponents/Toast";
-// Components to delete style => not used yet, for a V2
-// import BadgeStyleEdit from "../CustomComponents/BadgeStyleEdit";
-
-// Import SVG
-import IconDelete from "../../svg/IconDelete";
+import LoadingDots from "../Loaders/LoadingDots";
+import Footer from "../Footer/Footer";
 
 // Import Fetch hook
 import useFetch from "../../hooks/useFetch";
 import useToastDisplay from "../../hooks/useToastDisplay";
 
 // Import Types
-import { SongPageProps } from "../../types/types";
+import { SongProps } from "../../types/types";
 
 // Import Utils
 import {
@@ -42,9 +39,9 @@ function EditSong() {
   const { data, error, isLoading } = useFetch(`song/${id}`, 'GET');
 
   // States
-  const [song, setSong] = useState<SongPageProps | undefined>();
+  const [song, setSong] = useState<SongProps | undefined>();
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [toastMessage, setToastMessage] = useState<string>("");
+  const [toastMessage, setToastMessage] = useState<string | React.JSX.Element>("");
 
   // When the data is fetched, set the song
   useEffect(() => {
@@ -100,15 +97,16 @@ function EditSong() {
       secondStyle_id: data.secondStyle_id
     });
     if (resSong.status === 200 && resStyle.status === 200) {
-      setToastMessage("Song updated successfully");
       setIsVisible(true);
+      setToastMessage(<LoadingDots />);
+      setTimeout(() => { setToastMessage("Song updated succesfully") }, 1500);
       setTimeout(() => {
         window.location.href = `/song/${id}`;
       }, 2500);
     };
     if (resSong.status !== 200 || resStyle.status !== 200) {
-      setToastMessage("An error occured, please try again later");
       setIsVisible(true);
+      setToastMessage("An error occured, please try again later");
     };
   };
 
@@ -116,15 +114,15 @@ function EditSong() {
   useToastDisplay(isVisible, setIsVisible);
 
   return (
-    <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
+    <div className="flex flex-col items-center w-full sm:w-[90%] bg-base-300 min-h-screen pb-8">
       <Header />
       <div className="flex flex-col gap-6 w-full p-5 bg-base-100 border border-primary rounded-box max-[820px]:w-[75%] min-[820px]:w-[55%]">
 
         {/* Add a song Header */}
-        <div className="w-full">
+        <div className="w-full text-center">
           <h1 className="text-2xl font-semibold self-start">Edit song informations</h1>
-          <div className="divider mb-0"></div>
-          <div className="text-xs">All fields with * are required</div>
+          <div className="divider px-20 mb-0" />
+          <div className="text-xs self-end">All fields with * are required</div>
         </div>
 
         {song && (
@@ -182,6 +180,8 @@ function EditSong() {
               </div>
             </div>
 
+            <div className="divider px-20" />
+
             {/* Tuning & Capo div */}
             <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:mb-8">
               <div className="flex flex-col gap-6 sm:w-[40%] items-center">
@@ -220,6 +220,8 @@ function EditSong() {
               </div>
             </div>
 
+            <div className="divider px-20" />
+
             {/* Tab & Lyrics Link div */}
             <div className="flex flex-col gap-6">
               <EditTextInput
@@ -242,7 +244,7 @@ function EditSong() {
             {/* Submit button */}
             <button
               type="submit"
-              className="btn btn-base w-fit mt-8 m-auto btn-primary"
+              className="btn btn-base w-fit mt-8 m-auto btn-primary border border-base-200"
             >
               Save changes
             </button>
@@ -252,6 +254,8 @@ function EditSong() {
 
       {/* Toast */}
       {isVisible && <Toast message={toastMessage} />}
+
+      <Footer />
     </div>
   );
 };

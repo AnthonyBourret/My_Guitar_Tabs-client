@@ -4,6 +4,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 // Import Components
 import Toast from "../CustomComponents/Toast";
+import LoadingDots from "../Loaders/LoadingDots";
 
 // Import utils
 import useToastDisplay from "../../hooks/useToastDisplay";
@@ -14,7 +15,7 @@ function EditMailModal({ userId }: { userId: number }) {
     // States
     const [mail, setMail] = useState<string>("");
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    const [toastMessage, setToastMessage] = useState('');
+    const [toastMessage, setToastMessage] = useState<string | React.JSX.Element>('');
 
     // Function to handle the Enter key
     async function handleKey(e: React.KeyboardEvent) {
@@ -39,7 +40,8 @@ function EditMailModal({ userId }: { userId: number }) {
             try {
                 const res = await axiosInstance.patch(`/user/${userId}`, { mail: mail });
                 setIsVisible(true);
-                setToastMessage(res.data);
+                setToastMessage(<LoadingDots />);
+                setTimeout(() => { setToastMessage(res.data) }, 1500);
                 reloadPageTimeOut();
             } catch (error) {
                 setIsVisible(true);

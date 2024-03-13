@@ -10,7 +10,9 @@ import Profile from './components/Profile/Profile';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import SongPage from "./components/SongPage/SongPage";
-
+import Page404 from './components/Page404/Page404';
+import PrivacyPolicy from "./components/PrivacyPolicy/PrivacyPolicy";
+import LegalMentions from "./components/LegalMentions/LegalMentions";
 
 function App() {
 
@@ -23,7 +25,7 @@ function App() {
   return (
 
     //If there is no cookie the user will be redirected to the login page
-    //In fact, the cookie is set when the user logs in or create an account
+    //The cookie is set when the user logs in or creates an account
     <Routes>
 
       {/* Home (logged => HomePage, not logged => Login) */}
@@ -55,6 +57,14 @@ function App() {
       <Route path="/profile" element={cookies.userInfo
         ? <Profile userId={userId} />
         : <Login />} />
+
+      {/* 404 page */}
+      <Route path="*" element={<Page404 />} />
+
+      {/* Legal mentions & privacy policy pages */}
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/legal-mentions" element={<LegalMentions />} />
+
     </Routes>
   );
 };

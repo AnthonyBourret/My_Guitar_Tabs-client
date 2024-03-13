@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 // Import Fetch hook
 import useFetch from "../../hooks/useFetch";
 
+// Import Utils
+import formatDate from "../../utils/formatDate";
+
 // Import Components
 import Header from '../Header/Header';
 import EditProfileButton from "../CustomComponents/EditProfileButton";
@@ -12,6 +15,7 @@ import EditUsernameModal from "../Modals/EditUsernameModal";
 import DeleteAccountModal from "../Modals/DeleteAccountModal";
 import LoaderProfile from "../Loaders/LoaderProfile";
 import EditPasswordModal from "../Modals/EditPasswordModal";
+import Footer from "../Footer/Footer";
 
 
 function Profile({ userId }: { userId: number }) {
@@ -34,14 +38,13 @@ function Profile({ userId }: { userId: number }) {
 
   // If there is an error, return null
   if (userError || userSongsDataError) return null;
-  console.log(userData);
 
   return (
-    <div className="flex flex-col items-center w-full sm:w-[90%] bg-neutral min-h-screen pb-8">
+    <div className="flex flex-col items-center w-full sm:w-[90%] bg-base-300 min-h-screen pb-8">
 
       <Header />
 
-      <div className="flex flex-col gap-8 w-[90%] items-center justify-center bg-base-100 border border-primary rounded-box p-6 min-[590px]:w-1/2 min-[590px]:px-8 lg:w-2/5">
+      <div className="flex flex-col gap-8 w-[90%] items-center justify-center bg-base-100 border border-primary rounded-box p-6 min-[590px]:w-1/2 min-[590px]:px-8 lg:w-2/5 shadow-xl">
         <div className="w-full">
           <h1 className="text-2xl font-semibold self-start">My profile</h1>
           <div className="divider mb-0"></div>
@@ -58,7 +61,7 @@ function Profile({ userId }: { userId: number }) {
                 <div className="w-14 rounded-full border border-primary">
 
                   {/* // If the user has no avatar, the default avatar is displayed */}
-                  <img src={userData.picture ? userData.picture : "/public/DefaultAvatar.png"} />
+                  <img src={userData.picture ? userData.picture : "/DefaultAvatar.png"} />
                   <div className="absolute top-8 left-10">
                     <EditProfileButton modalName="avatar_modal" />
                   </div>
@@ -97,14 +100,14 @@ function Profile({ userId }: { userId: number }) {
               </div>
               <div className="flex flex-col gap-2">
                 <h2 className="text-lg font-semibold">Member since : </h2>
-                <p>{userData.created_at}</p>
+                <p>{formatDate(userData.created_at)}</p>
               </div>
             </div>
 
             {/* Delete account */}
             <div className="flex flex-col gap-6 self-center my-4 min-[820px]:flex-row min-[820px]:gap-4">
               <button
-                className="btn btn-sm btn-primary"
+                className="btn btn-md btn-primary border border-base-200"
                 type="button"
                 onClick={() => {
                   if (document) {
@@ -115,7 +118,7 @@ function Profile({ userId }: { userId: number }) {
                 Change password
               </button>
               <button
-                className="btn btn-sm btn-primary"
+                className="btn btn-md btn-primary border border-base-200"
                 type="button"
                 onClick={() => {
                   if (document) {
@@ -136,6 +139,8 @@ function Profile({ userId }: { userId: number }) {
         <EditUsernameModal userId={userId} />
         <DeleteAccountModal userId={userId} />
       </div>
+
+      <Footer />
     </div>
   );
 };

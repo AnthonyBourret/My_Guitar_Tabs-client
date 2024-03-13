@@ -5,6 +5,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 // Components
 import Toast from "../CustomComponents/Toast";
+import LoadingDots from "../Loaders/LoadingDots";
 
 // Hooks
 import useToastDisplay from "../../hooks/useToastDisplay";
@@ -16,14 +17,15 @@ function DeleteAccountModal({ userId }: { userId: number }) {
 
     // States
     const [isVisible, setIsVisible] = React.useState<boolean>(false);
-    const [toastMessage, setToastMessage] = React.useState<string>("");
+    const [toastMessage, setToastMessage] = React.useState<string | React.JSX.Element>("");
 
     // Function to delete the account
     async function deleteAccount(id: number) {
         try {
             const res = await axiosInstance.delete(`/user/${id}`);
             if (res.status === 200) {
-                setToastMessage(res.data);
+                setToastMessage(<LoadingDots />);
+                setTimeout(() => { setToastMessage(res.data) }, 1500);
                 setIsVisible(true);
                 setTimeout(() => {
                     removeCookie('userInfo', { path: '/' });
@@ -43,7 +45,7 @@ function DeleteAccountModal({ userId }: { userId: number }) {
             <div className="modal-box flex flex-col gap-8 pb-0 pt-12 border border-primary min-[440px]:w-3/5 sm:w-2/5 sm:px-10">
                 <p className="font-semibold text-base text-center">Are you sure you want to delete your account ?</p>
                 <button
-                    className="btn btn-primary btn-md text-lg w-fit self-center"
+                    className="btn btn-primary btn-md text-lg w-fit self-center border border-base-200"
                     type="button"
                     onClick={() => deleteAccount(userId)}
                 >

@@ -3,6 +3,7 @@ import axiosInstance from "../../utils/axiosInstance";
 
 // Immport Components
 import Toast from "../CustomComponents/Toast";
+import LoadingDots from "../Loaders/LoadingDots";
 
 // Import utils
 import useToastDisplay from "../../hooks/useToastDisplay";
@@ -14,7 +15,7 @@ function EditUsernameModal({ userId }: { userId: number }) {
     // States
     const [newUsername, setNewUsername] = useState<string>("");
     const [isVisible, setIsVisible] = useState<boolean>(false);
-    const [toastMessage, setToastMessage] = useState('');
+    const [toastMessage, setToastMessage] = useState<string | React.JSX.Element>('');
 
     // Function to get the input value
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -32,22 +33,22 @@ function EditUsernameModal({ userId }: { userId: number }) {
     async function handleSubmit(id: number) {
         // If the input is empty, display a Toast and return
         if (newUsername === "") {
-            setToastMessage("Please enter a username");
             setIsVisible(true);
+            setToastMessage("Please enter a username");
             return;
         }
         try {
-            const response = await axiosInstance.patch(`/user/${id}`, {
+            const res = await axiosInstance.patch(`/user/${id}`, {
                 username: newUsername,
             });
-            console.log(response.data);
-            setToastMessage(response.data);
             setIsVisible(true);
+            setToastMessage(<LoadingDots />);
+            setTimeout(() => { setToastMessage(res.data) }, 1500);
             reloadPageTimeOut();
         } catch (error) {
             console.log(error);
-            setToastMessage("An error occurred");
             setIsVisible(true);
+            setToastMessage("An error occurred");
         };
     };
 
